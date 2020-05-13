@@ -31,7 +31,8 @@ const router =  new VueRouter({
 					next();
 				} else {
 					next({
-						name: 'Home',
+						// name: 'Home',
+						name: 'NotFound',
 					});
 				}
 			},

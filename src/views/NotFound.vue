@@ -1,13 +1,20 @@
 <template>
 	<div class="not-found">
-		<h1>Oops!</h1>
-		<img src="/static/undraw_campfire_s6y4.svg" alt="campfire">
-		<RouterLink to="/">Back to Home</RouterLink>
+		<h1>Everygram</h1>
+		<div>Every gram counts!</div>
+		<img :src="notFoundImg" alt="campfire">
+		<h2>coming soon</h2>
 	</div>
 </template>
 
 <script>
+import notFoundImg from '@assets/img/undraw_campfire_s6y4.svg';
 export default {
+	data() {
+		return {
+			notFoundImg,
+		};
+	},
 };
 </script>
 

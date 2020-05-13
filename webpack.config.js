@@ -3,9 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 
 module.exports = {
-	entry: './src/main.js',
+	entry: {
+		main: ['./src/main.js'],
+		lazy: ['./src/lazy.js'],
+	},
 	output: {
 		filename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'dist')
@@ -64,6 +68,7 @@ module.exports = {
 		}),
 		new CopyPlugin([
 			{ from: 'static', to: 'static' },
+			{ from: 'manifest.pwa.json', to: 'manifest.pwa.json' },
 		]),
 		new VueLoaderPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
@@ -76,6 +81,9 @@ module.exports = {
 			mapGetters: ['vuex', 'mapGetters'],
 			mapMutations: ['vuex', 'mapMutations'],
 			mapActions: ['vuex', 'mapActions'],
+		}),
+		new ServiceWorkerWebpackPlugin({
+			entry: path.join(__dirname, 'src/sw/sw.js'),
 		}),
 	],
 };

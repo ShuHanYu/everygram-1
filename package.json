@@ -34,7 +34,9 @@
 	},
 	"dependencies": {
 		"lodash": "^4.17.15",
-		"moment": "^2.24.0"
+		"moment": "^2.24.0",
+		"pwacompat": "^2.0.12",
+		"serviceworker-webpack-plugin": "^1.0.1"
 	},
 	"description": ""
 }
