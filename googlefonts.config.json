@@ -1,0 +1,18 @@
+{
+	"google-fonts-plugin": {
+		"fonts": [
+			{
+				"family": "Montserrat",
+				"variants": [
+					"400",
+					"700"
+				],
+				"subsets": []
+			}
+		],
+		"formats": [
+			"woff2"
+		],
+		"filename": "googlefonts.css"
+	}
+}

@@ -5,6 +5,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
 const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const GoogleFontsPlugin = require('google-fonts-plugin');
 
 module.exports = [{
 	// js
@@ -60,6 +61,7 @@ module.exports = [{
 			{ from: 'manifest.pwa.json', to: 'manifest.pwa.json' },
 		]),
 		new VueLoaderPlugin(),
+		new GoogleFontsPlugin('./googlefonts.config.json'),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.ProvidePlugin({
 			_: 'lodash',
