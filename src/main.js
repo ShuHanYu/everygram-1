@@ -1,6 +1,3 @@
-import '@style/vendor.scss';
-import '@style/custom.scss';
-
 // firebase
 import 'firebase/auth';
 import 'firebase/firestore';

@@ -4,8 +4,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
 const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
-module.exports = {
+module.exports = [{
+	// js
 	entry: {
 		main: ['./src/main.js'],
 		lazy: ['./src/lazy.js'],
@@ -34,24 +36,11 @@ module.exports = {
 			{ test: /\.js$/, use: 'babel-loader' },
 			{ test: /\.vue$/, use: 'vue-loader' },
 			{
-				test: /\.s[ac]ss$/i,
-				use: [
-					'vue-style-loader',
-					// Creates `style` nodes from JS strings
-					'style-loader',
-					// Translates CSS into CommonJS
-					'css-loader',
-					// Compiles Sass to CSS
-					'sass-loader',
-				],
-			},
-			{
 				test: /\.(png|svg|jpg|gif)$/,
 				use: [
 					'file-loader',
 				],
 			},
-			{ test: /\.css$/, use: ['vue-style-loader', 'css-loader']},
 		]
 	},
 	devServer: {
@@ -86,4 +75,46 @@ module.exports = {
 			entry: path.join(__dirname, 'src/sw/sw.js'),
 		}),
 	],
-};
+}, {
+	// css
+	entry: [
+		'./src/style/custom.scss',
+		'./src/style/vendor.scss'
+	],
+	module: {
+		rules: [
+			{
+				test: /\.scss$/,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[name].bundle.css',
+						},
+					},
+					{ loader: 'extract-loader' },
+					{ loader: 'css-loader' },
+					{
+						loader: 'postcss-loader',
+						options: {
+							plugins: () => [autoprefixer()]
+						}
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							// Prefer Dart Sass
+							implementation: require('sass'),
+
+							// See https://github.com/webpack-contrib/sass-loader/issues/804
+							webpackImporter: false,
+							sassOptions: {
+								includePaths: ['./node_modules']
+							},
+						}
+					}
+				]
+			}
+		]
+	},
+}];

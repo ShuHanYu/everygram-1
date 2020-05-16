@@ -1,11 +1,12 @@
-$c-primary: #ffa100;
-$c-primary-dark: #d88a04;
-
-$c-secondary: #52CBD9;
+$c-primary: #9D8B73;
+$c-on-primary: #FFFFFF;
+$c-secondary: #7B909C;
+$c-on-secondary: #FFFFFF;
 
 $c-danger: #ff6b6a;
+$c-warning: #ffa100;
 
-$c-dark: #46506A;
+$c-dark: #333333;
 $c-bright: #FFFFFF;
 
 $c-gray-darker: #333333;
@@ -14,7 +15,14 @@ $c-gray: #999999;
 $c-gray-light: #CCCCCC;
 $c-gray-lighter: #F4F4F4;
 
-$c-background: #FFF8E6;
-$c-background-dark: #FEEFC4;
+$c-background: #f2f3f2;
 
 $c-overlay: rgba(0,0,0,0.3);
+
+// Material Design Components Theme Colors
+@use 'node_modules/@material/theme' with (
+  $primary: $c-primary,
+  $on-primary: $c-bright,
+  $secondary: $c-secondary,
+  $on-secondary: $c-bright,
+);

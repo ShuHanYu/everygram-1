@@ -1,6 +1,6 @@
 // 0. settings
-@import "0_settings/settings.colors.scss";
-@import "0_settings/settings.fonts.scss";
+@import "0_settings/settings.colors";
+@import "0_settings/settings.fonts";
 
 // 1. tools
 
@@ -12,5 +12,7 @@
 // 4. objects
 
 // 5. components
+@import "5_components/components.MdcButton";
+@import "5_components/components.NotFound";
 
 // 6. utilities
