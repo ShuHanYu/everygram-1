@@ -8,6 +8,9 @@
 					"700"
 				],
 				"subsets": []
+			},
+			{
+				"family": "Material Icons"
 			}
 		],
 		"formats": [

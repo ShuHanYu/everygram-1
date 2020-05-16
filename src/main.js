@@ -58,3 +58,13 @@ if ('serviceWorker' in navigator) {
 		const registration = runtime.register();
 	});
 }
+
+// PWA splash screen remove on load
+import { transitionendOnce } from '@libs/uiUtils';
+window.addEventListener("load", function(){
+	const splashScreen = document.querySelector('.splash-screen');
+	transitionendOnce(splashScreen, () => {
+		splashScreen.remove();
+	});
+	document.querySelector('body').classList.add('app-loaded');
+});

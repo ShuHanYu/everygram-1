@@ -1,12 +1,42 @@
 {
-	"short_name": "Everygram",
-	"name": "Everygram: every gram counts",
+	"name": "everygram",
+	"short_name": "everygram",
 	"description": "Outdoor gear management app",
 	"icons": [
 		{
-			"src": "/static/icons/icon-192.png",
+			"src": "/static/icons/icon-80.png",
 			"type": "image/png",
-			"sizes": "192x192"
+			"sizes": "80x80"
+		},
+		{
+			"src": "/static/icons/icon-100.png",
+			"type": "image/png",
+			"sizes": "100x100"
+		},
+		{
+			"src": "/static/icons/icon-152.png",
+			"type": "image/png",
+			"sizes": "152x152"
+		},
+		{
+			"src": "/static/icons/icon-167.png",
+			"type": "image/png",
+			"sizes": "167x167"
+		},
+		{
+			"src": "/static/icons/icon-180.png",
+			"type": "image/png",
+			"sizes": "180x180"
+		},
+		{
+			"src": "/static/icons/icon-196.png",
+			"type": "image/png",
+			"sizes": "196x196"
+		},
+		{
+			"src": "/static/icons/icon-256.png",
+			"type": "image/png",
+			"sizes": "256x256"
 		},
 		{
 			"src": "/static/icons/icon-512.png",
@@ -15,8 +45,8 @@
 		}
 	],
 	"start_url": "/?source=pwa",
-	"background_color": "#3367D6",
-	"theme_color": "#3367D6",
+	"background_color": "#9D8B73",
+	"theme_color": "#9D8B73",
 	"display": "standalone",
 	"scope": "/",
 	"orientation": "portrait"

@@ -5,6 +5,7 @@ import Login from '@views/Login';
 import Main from '@views/Main';
 import NotFound from '@views/NotFound';
 Vue.use(VueRouter);
+const DEFAULT_TITLE = 'everygram';
 
 const getCurrentUser = () => {
 	console.log('router getCurrentUser');
@@ -24,7 +25,7 @@ const router =  new VueRouter({
 			name: 'Main',
 			component: Main,
 			meta: {
-				title: 'Loading - everygram',
+				title: 'Loading - ' + DEFAULT_TITLE,
 			},
 			beforeEnter: async (to, from, next) => {
 				if (await getCurrentUser()) {
@@ -42,7 +43,7 @@ const router =  new VueRouter({
 			name: 'Home',
 			component: Home,
 			meta: {
-				title: 'Home - everygram',
+				title: 'Home - ' + DEFAULT_TITLE,
 			},
 		},
 		{
@@ -50,7 +51,7 @@ const router =  new VueRouter({
 			name: 'Login',
 			component: Login,
 			meta: {
-				title: 'Login - everygram',
+				title: 'Login - ' + DEFAULT_TITLE,
 			},
 			beforeEnter: async (to, from, next) => {
 				if (await getCurrentUser()) {
@@ -68,14 +69,13 @@ const router =  new VueRouter({
 			name: 'NotFound',
 			component: NotFound,
 			meta: {
-				title: '404 - BYZ',
+				title: DEFAULT_TITLE,
 			},
 		},
 	],
 	// mode: 'history',
 });
 
-const DEFAULT_TITLE = 'everygram';
 router.afterEach((to, from) => {
 	Vue.nextTick(() => {
 		document.title = to.meta.title || DEFAULT_TITLE;

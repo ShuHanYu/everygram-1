@@ -1,11 +1,15 @@
 <template>
 	<div class="not-found">
-		<h1>Everygram!</h1>
-		<div>Every gram counts!</div>
+		<h1>everygram</h1>
+		<div>Count every gram, every gram counts.</div>
 		<img :src="notFoundImg" alt="campfire" class="not-found__img">
 		<h2>coming soon</h2>
-		<MdcButton @click.native="viewOnGithub">
-			<i class="lab la-github"></i>
+		<MdcButton
+			el="a"
+			href="https://github.com/LeeBoYin/everygram"
+			target="_blank"
+		>
+			<i class="material-icons mdc-button__icon" slot="icon">whatshot</i>
 			View on GitHub
 		</MdcButton>
 	</div>
@@ -22,11 +26,6 @@ export default {
 		return {
 			notFoundImg,
 		};
-	},
-	methods: {
-		viewOnGithub() {
-			window.location = 'https://github.com/LeeBoYin/everygram';
-		},
 	},
 };
 </script>
