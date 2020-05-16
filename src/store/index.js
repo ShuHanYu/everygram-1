@@ -27,13 +27,14 @@ const mutations = {
 	},
 };
 const actions = {
-	init({ commit }) {
-		commit('setDB', firebase.firestore());
+	init(context) {
+		context.commit('setDB', firebase.firestore());
+		context.dispatch('user/init');
 		console.log('store initialized');
 	},
-	onInstallReady({ commit }, installPrompt) {
-		commit('setInstallPrompt', installPrompt);
-		commit('setIsReadyToInstall', true);
+	onInstallReady(context, installPrompt) {
+		context.commit('setInstallPrompt', installPrompt);
+		context.commit('setIsReadyToInstall', true);
 	},
 };
 

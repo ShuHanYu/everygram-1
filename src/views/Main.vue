@@ -11,12 +11,14 @@ export default {
 		async onClickSignOut() {
 			try {
 				await this.signOut();
-				await this.$router.push('/home');
+				await this.$router.push({
+					name: 'Home',
+				});
 			} catch (e) {
 				console.error(e);
 			}
 		},
-		...mapActions([
+		...mapActions('user', [
 			'signOut'
 		]),
 	},

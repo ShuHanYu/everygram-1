@@ -1,7 +1,7 @@
 <template>
 	<div>
 		Home
-		<RouterLink to="/login">Start</RouterLink>
+		<RouterLink :to="{ name: 'Login' }">Start</RouterLink>
 		<button v-if="isReadyToInstall && isShowInstallBtn" @click="installPWA">install PWA</button>
 	</div>
 </template>

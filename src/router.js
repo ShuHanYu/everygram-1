@@ -8,11 +8,9 @@ Vue.use(VueRouter);
 const DEFAULT_TITLE = 'everygram';
 
 const getCurrentUser = () => {
-	console.log('router getCurrentUser');
 	return new Promise((resolve, reject) => {
 		const unsubscribe = firebase.auth().onAuthStateChanged(user => {
 			unsubscribe();
-			console.log('router get user:', user);
 			resolve(user);
 		}, reject);
 	})

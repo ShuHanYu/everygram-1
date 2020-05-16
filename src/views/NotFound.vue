@@ -2,7 +2,9 @@
 	<div class="not-found">
 		<h1>everygram</h1>
 		<div>Count every gram, every gram counts.</div>
-		<img :src="notFoundImg" alt="campfire" class="not-found__img">
+		<RouterLink :to="{ name: 'Login' }">
+			<img :src="notFoundImg" alt="campfire" class="not-found__img">
+		</RouterLink>
 		<h2>coming soon</h2>
 		<MdcButton
 			el="a"
