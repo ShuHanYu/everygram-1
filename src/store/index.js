@@ -1,3 +1,4 @@
+import memberStore from '@store/member';
 import userStore from '@store/user';
 const state = {
 	db: null,
@@ -44,6 +45,7 @@ export default {
 	mutations,
 	actions,
 	modules: {
+		member: memberStore,
 		user: userStore,
 	},
 };

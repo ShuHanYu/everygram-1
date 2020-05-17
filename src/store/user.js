@@ -7,7 +7,6 @@ const getters = {
 
 const mutations = {
 	setUser(state, user) {
-		console.log('setUser', user);
 		state.user = user;
 	}
 };
@@ -22,6 +21,24 @@ const actions = {
 				// User is signed out.
 				context.dispatch('onSignOut');
 			}
+		});
+	},
+	onSignIn(context, user) {
+		console.log('user is signed in');
+		context.commit('setUser', user);
+		context.dispatch('member/init', null, { root: true });
+	},
+	onSignOut(context) {
+		console.log('user is signed out');
+		context.commit('setUser', null);
+	},
+	signInWithEmail(context, payload) {
+		console.log(payload);
+		return firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then((result) => {
+			context.dispatch('onSignIn', result.user);
+		}).catch((e) => {
+			console.log('sign in fail');
+			console.log(e);
 		});
 	},
 	signInWithGoogle() {
@@ -41,6 +58,9 @@ const actions = {
 			const credential = error.credential;
 		});
 	},
+	signOut() {
+		return firebase.auth().signOut();
+	},
 	signUpWithEmail(context, payload) {
 		console.log(payload);
 		return firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then((result) => {
@@ -49,26 +69,6 @@ const actions = {
 			console.log('sign up fail');
 			console.log(e);
 		});
-	},
-	signInWithEmail(context, payload) {
-		console.log(payload);
-		return firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then((result) => {
-			context.dispatch('onSignIn', result.user);
-		}).catch((e) => {
-			console.log('sign in fail');
-			console.log(e);
-		});
-	},
-	signOut() {
-		return firebase.auth().signOut();
-	},
-	onSignIn(context, user) {
-		console.log('user is signed in');
-		context.commit('setUser', user);
-	},
-	onSignOut(context) {
-		console.log('user is signed out');
-		context.commit('setUser', null);
 	},
 };
 
