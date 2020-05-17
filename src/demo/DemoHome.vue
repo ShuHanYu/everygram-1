@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<h1>Demo Home</h1>
+		<h1>Demo Main</h1>
+		<MdcButton class="mdc-button--raised">笨笨的按鈕</MdcButton>
+		<MdcButton class="mdc-button--raised">笨笨的按鈕</MdcButton>
+		<MdcButton class="mdc-button--raised">笨笨的按鈕</MdcButton>
 		<MdcButton class="mdc-button--raised">笨笨的按鈕</MdcButton>
 		<MdcButton class="mdc-button--raised">笨笨的按鈕</MdcButton>
 		<MdcButton class="mdc-button--raised">笨笨的按鈕</MdcButton>

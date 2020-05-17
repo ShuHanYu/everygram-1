@@ -1,19 +1,23 @@
+$c-dark: #333333;
+$c-bright: #FFFFFF;
+
 $c-primary: #9D8B73;
-$c-on-primary: #FFFFFF;
+$c-primary-dark: #6e5e47;
+$c-primary-light: #cebba2;
+$c-on-primary: $c-bright;
+
 $c-secondary: #7B909C;
-$c-on-secondary: #FFFFFF;
+$c-secondary-dark: #4e636e;
+$c-secondary-light: #aac0cd;
+$c-on-secondary: $c-bright;
 
 $c-danger: #ff6b6a;
 $c-warning: #ffa100;
 
-$c-dark: #333333;
-$c-bright: #FFFFFF;
-
-$c-gray-darker: #333333;
-$c-gray-dark: #666666;
-$c-gray: #999999;
-$c-gray-light: #CCCCCC;
-$c-gray-lighter: #F4F4F4;
+$c-gray-900: black;
+$c-gray-800: rgba(0, 0, 0, .8);
+$c-gray-700: rgba(0, 0, 0, .6);
+$c-gray-600: rgba(0, 0, 0, .4);
 
 $c-background: #f2f3f2;
 
@@ -25,4 +29,10 @@ $c-overlay: rgba(0,0,0,0.3);
   $on-primary: $c-bright,
   $secondary: $c-secondary,
   $on-secondary: $c-bright,
+  
+  $text-emphasis: (
+    high: .8,
+    medium: .6,
+    disabled: .4,
+  )
 );
