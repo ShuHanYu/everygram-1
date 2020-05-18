@@ -65,6 +65,14 @@ const router =  new VueRouter({
 			},
 		},
 		{
+			path: '*' ,
+			name: 'NotFound',
+			component: NotFound,
+			meta: {
+				title: DEFAULT_TITLE,
+			},
+		},
+		{
 			path: '/demo/home' ,
 			name: 'DemoHome',
 			component: DemoHome,
@@ -72,7 +80,6 @@ const router =  new VueRouter({
 				title: 'Demo Home - ' + DEFAULT_TITLE,
 			},
 		},
-
 		{
 			path: '/demo/main' ,
 			name: 'DemoMain',

@@ -12,9 +12,9 @@
 	border: 0;
 	background: transparent;
 	@include drawer.width(288px);
-    @include drawer.item-icon-ink-color($c-gray-900);
-    @include drawer.item-text-ink-color($c-gray-900);
-    @include drawer.item-activated-icon-ink-color($c-primary-dark);
+	@include drawer.item-icon-ink-color($c-gray-900);
+	@include drawer.item-text-ink-color($c-gray-900);
+	@include drawer.item-activated-icon-ink-color($c-primary-dark);
 	@include drawer.item-activated-text-ink-color($c-primary-dark);
 	@include drawer.item-shape-radius(6px);
 
