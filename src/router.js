@@ -5,6 +5,7 @@ import Login from '@views/Login';
 import Main from '@views/Main';
 import NotFound from '@views/NotFound';
 import DemoHome from '@demo/DemoHome';
+import DemoMain from '@demo/DemoMain';
 Vue.use(VueRouter);
 const DEFAULT_TITLE = 'everygram';
 
@@ -64,19 +65,27 @@ const router =  new VueRouter({
 			},
 		},
 		{
-			path: '/demo/home' ,
-			name: 'DemoHome',
-			component: DemoHome,
-			meta: {
-				title: DEFAULT_TITLE,
-			},
-		},
-		{
 			path: '*' ,
 			name: 'NotFound',
 			component: NotFound,
 			meta: {
 				title: DEFAULT_TITLE,
+			},
+		},
+		{
+			path: '/demo/home' ,
+			name: 'DemoHome',
+			component: DemoHome,
+			meta: {
+				title: 'Demo Home - ' + DEFAULT_TITLE,
+			},
+		},
+		{
+			path: '/demo/main' ,
+			name: 'DemoMain',
+			component: DemoMain,
+			meta: {
+				title: 'Demo Main - ' + DEFAULT_TITLE,
 			},
 		},
 	],

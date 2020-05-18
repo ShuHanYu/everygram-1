@@ -1,0 +1,12 @@
+.main {
+	display: flex;
+	min-height: 100vh;
+	
+	@media (min-width: 992px) {
+		border-top: 8px solid $c-primary;
+	}
+
+	&__content {
+		padding: 40px 24px;
+	}
+}
