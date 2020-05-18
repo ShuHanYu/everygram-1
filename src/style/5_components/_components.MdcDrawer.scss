@@ -1,22 +1,26 @@
-@use "@material/drawer" with (
+@use "node_modules/@material/drawer" with (
 	$item-inactive-icon-ink-opacity: .4,
 	$item-inactive-text-ink-opacity: .6,
 	$item-active-icon-ink-opacity: 1,
 	$item-active-text-ink-opacity: 1,
 );
-@use "@material/list/mdc-list";
+@use "node_modules/@material/drawer/mdc-drawer";
+@use "node_modules/@material/list/mdc-list";
 
 .mdc-drawer {
-	max-height: 100vh;
 	padding: 40px 24px;
 	border: 0;
-	background: transparent;
+	overflow-y: auto;
 	@include drawer.width(288px);
 	@include drawer.item-icon-ink-color($c-gray-900);
 	@include drawer.item-text-ink-color($c-gray-900);
 	@include drawer.item-activated-icon-ink-color($c-primary-dark);
 	@include drawer.item-activated-text-ink-color($c-primary-dark);
 	@include drawer.item-shape-radius(6px);
+
+	@media (min-width: 992px) {
+		background: transparent;
+	}
 
 	&__header {
 		margin-bottom: 1rem;
@@ -25,7 +29,7 @@
 	.mdc-list {
 		font-size: $font-size-sm;
 	}
-	
+
 	.mdc-list-item {
 		padding: 1rem;
 		font-weight: 500;
@@ -34,9 +38,4 @@
 			margin-right: 1rem;
 		}
 	}
-	
-}
-
-.mdc-drawer-app-content {
-	flex-grow: 1;
 }

@@ -1,7 +1,8 @@
 <template>
 	<div>
 		Home
-		<RouterLink :to="{ name: 'Login' }">Start</RouterLink>
+		<button v-if="isSignedIn" @click="signOut">Sign out</button>
+		<RouterLink v-else :to="{ name: 'Login' }">Start</RouterLink>
 		<button v-if="isReadyToInstall && isShowInstallBtn" @click="installPWA">install PWA</button>
 	</div>
 </template>
@@ -17,6 +18,9 @@ export default {
 		...mapState([
 			'isReadyToInstall',
 			'installPrompt',
+		]),
+		...mapGetters('user', [
+			'isSignedIn',
 		]),
 	},
 	methods: {
@@ -34,6 +38,9 @@ export default {
 				}
 			})
 		},
+		...mapActions('user', [
+			'signOut'
+		]),
 	},
 };
 </script>

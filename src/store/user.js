@@ -3,6 +3,9 @@ const state = {
 };
 
 const getters = {
+	isSignedIn(state) {
+		return !!state.user;
+	},
 };
 
 const mutations = {

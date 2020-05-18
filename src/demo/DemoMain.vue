@@ -1,5 +1,13 @@
 <template>
 	<div class="main">
+		<header class="mdc-top-app-bar">
+			<div class="mdc-top-app-bar__row">
+				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+					<button class="material-icons-outlined mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+					<span class="mdc-top-app-bar__title">Dismissible Drawer</span>
+				</section>
+			</div>
+		</header>
 		<aside class="mdc-drawer">
 			<div class="mdc-drawer__header">
 				<div class="drawer-header">
@@ -43,14 +51,6 @@
 		<div class="mdc-drawer-scrim"></div>
 
 		<div class="mdc-drawer-app-content">
-			<header class="mdc-top-app-bar">
-				<div class="mdc-top-app-bar__row">
-					<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-						<button class="material-icons-outlined mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-						<span class="mdc-top-app-bar__title">Dismissible Drawer</span>
-					</section>
-				</div>
-			</header>
 			<main class="main__content">
 				
 			</main>
