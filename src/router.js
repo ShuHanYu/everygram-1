@@ -29,7 +29,6 @@ const router =  new VueRouter({
 	routes: [
 		{
 			path: '/',
-			name: 'Main',
 			component: Main,
 			meta: {
 				title: DEFAULT_TITLE,
