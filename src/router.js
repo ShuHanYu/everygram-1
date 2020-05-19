@@ -3,6 +3,13 @@ import VueRouter from 'vue-router';
 import Home from '@views/Home';
 import Login from '@views/Login';
 import Main from '@views/Main';
+import Gears from '@views/main/Gears';
+import Trips from '@views/main/Trips';
+import Collections from '@views/main/Collections';
+import Wishes from '@views/main/Wishes';
+import Archives from '@views/main/Archives';
+import Settings from '@views/main/Settings';
+
 import NotFound from '@views/NotFound';
 import DemoHome from '@demo/DemoHome';
 import DemoMain from '@demo/DemoMain';
@@ -25,7 +32,7 @@ const router =  new VueRouter({
 			name: 'Main',
 			component: Main,
 			meta: {
-				title: 'Loading - ' + DEFAULT_TITLE,
+				title: DEFAULT_TITLE,
 			},
 			beforeEnter: async (to, from, next) => {
 				if (await getCurrentUser()) {
@@ -37,6 +44,57 @@ const router =  new VueRouter({
 					});
 				}
 			},
+			children: [
+				{
+					path: '/',
+					alias: '/gears',
+					name: 'Gears',
+					component: Gears,
+					meta: {
+						title: 'Gears - ' + DEFAULT_TITLE,
+					},
+				},
+				{
+					path: '/trips',
+					name: 'Trips',
+					component: Trips,
+					meta: {
+						title: 'Trips - ' + DEFAULT_TITLE,
+					},
+				},
+				{
+					path: '/collections',
+					name: 'Collections',
+					component: Collections,
+					meta: {
+						title: 'Collections - ' + DEFAULT_TITLE,
+					},
+				},
+				{
+					path: '/wishes',
+					name: 'Wishes',
+					component: Wishes,
+					meta: {
+						title: 'Wishes - ' + DEFAULT_TITLE,
+					},
+				},
+				{
+					path: '/archives',
+					name: 'Archives',
+					component: Archives,
+					meta: {
+						title: 'Archives - ' + DEFAULT_TITLE,
+					},
+				},
+				{
+					path: '/settings',
+					name: 'Settings',
+					component: Settings,
+					meta: {
+						title: 'Settings - ' + DEFAULT_TITLE,
+					},
+				},
+			],
 		},
 		{
 			path: '/home',

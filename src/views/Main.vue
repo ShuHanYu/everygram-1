@@ -28,39 +28,56 @@
 			</div>
 			<div class="mdc-drawer__content">
 				<nav ref="mdcList" class="mdc-list">
-					<a class="mdc-list-item mdc-list-item--activated" tabindex="0">
+					<RouterLink
+						:to="{ name: 'Gears' }"
+						class="mdc-list-item mdc-list-item--activated"
+						tabindex="0"
+					>
 						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">category</i>
 						<span class="mdc-list-item__text">裝備清單</span>
-					</a>
-					<a class="mdc-list-item">
+					</RouterLink>
+					<RouterLink
+						:to="{ name: 'Trips' }"
+						class="mdc-list-item"
+					>
 						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">landscape</i>
 						<span class="mdc-list-item__text">行程裝備</span>
-					</a>
-					<a class="mdc-list-item">
+					</RouterLink>
+					<RouterLink
+						:to="{ name: 'Collections' }"
+						class="mdc-list-item"
+					>
 						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">collections_bookmark</i>
 						<span class="mdc-list-item__text">常用裝備組合</span>
-					</a>
-					<a class="mdc-list-item">
+					</RouterLink>
+					<RouterLink
+						:to="{ name: 'Wishes' }"
+						class="mdc-list-item"
+					>
 						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">favorite_border</i>
 						<span class="mdc-list-item__text">願望清單</span>
-					</a>
-					<a class="mdc-list-item">
+					</RouterLink>
+					<RouterLink
+						:to="{ name: 'Archives' }"
+						class="mdc-list-item"
+					>
 						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">archive</i>
 						<span class="mdc-list-item__text">已封存</span>
-					</a>
-					<a class="mdc-list-item">
+					</RouterLink>
+					<RouterLink
+						:to="{ name: 'Settings' }"
+						class="mdc-list-item"
+					>
 						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">settings</i>
 						<span class="mdc-list-item__text">設定</span>
-					</a>
+					</RouterLink>
 				</nav>
 			</div>
 		</aside>
 		<div class="mdc-drawer-scrim"></div>
 		<div ref="mdcDrawerAppContent" class="mdc-drawer-app-content">
 			<main ref="mainContent" class="main__content">
-				<div style="padding: 100px 0; display: flex; justify-content: center; align-items: center;">
-					<img :src="campfireImg" alt="campfire" style="max-width: 250px">
-				</div>
+				<router-view></router-view>
 			</main>
 		</div>
 	</div>
@@ -70,13 +87,7 @@
 import { MDCList } from "@material/list";
 import { MDCDrawer } from "@material/drawer";
 import { MDCTopAppBar } from "@material/top-app-bar";
-import campfireImg from '@assets/img/undraw_campfire_s6y4.svg';
 export default {
-	data() {
-		return {
-			campfireImg,
-		};
-	},
 	computed: {
 		...mapState('user', [
 			'user',
