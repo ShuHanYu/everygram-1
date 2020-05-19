@@ -3,7 +3,7 @@
 		<h1>everygram</h1>
 		<div>Count every gram, every gram counts.</div>
 		<RouterLink :to="{ name: 'Home' }">
-			<img :src="notFoundImg" alt="campfire" class="not-found__img">
+			<img src="/static/images/campfire.svg" alt="campfire" class="not-found__img">
 		</RouterLink>
 		<h2>coming soon</h2>
 		<MdcButton
@@ -18,16 +18,10 @@
 </template>
 
 <script>
-import notFoundImg from '@assets/img/undraw_campfire_s6y4.svg';
 import MdcButton from '@components/MdcButton'
 export default {
 	components: {
 		MdcButton,
-	},
-	data() {
-		return {
-			notFoundImg,
-		};
 	},
 };
 </script>
