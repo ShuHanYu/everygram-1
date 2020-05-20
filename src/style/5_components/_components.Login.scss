@@ -1,0 +1,40 @@
+.login {
+	&__title {
+		min-height: 100vh;
+		margin: 0 -15px;;
+		padding: 80px 60px 40px;
+		background-image: url('/static/images/illustration/login-bg.png');
+		background-position: bottom;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-color: $c-primary;
+
+		h1 {
+			margin-bottom: 40px;
+		}
+	}
+
+	&__illustration {
+		max-width: 100%;
+	}
+
+	&__logo {
+		align-self: center;
+		width: 160px;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 100%;
+		min-height: 100vh;
+		padding: 80px 20px;
+
+		@media (min-width: 768px) {
+			max-width: 600px;
+    		margin: 0 auto;
+			padding: 80px 40px;
+		}
+	}
+}

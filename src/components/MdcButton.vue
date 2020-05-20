@@ -1,7 +1,7 @@
 <template>
 	<component :is="el" class="mdc-button mdc-button--touch">
 		<div class="mdc-button__ripple"></div>
-			<slot name="icon"></slot>
+		<slot name="icon"></slot>
 		<span class="mdc-button__label">
 			<slot></slot>
 		</span>
