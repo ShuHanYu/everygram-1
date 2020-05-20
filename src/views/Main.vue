@@ -4,7 +4,7 @@
 			<div class="mdc-top-app-bar__row">
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
 					<button class="material-icons-outlined mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-					<span class="mdc-top-app-bar__title">everygram</span>
+					<span class="mdc-top-app-bar__title">{{ currentPage.text }}</span>
 				</section>
 			</div>
 		</header>
@@ -29,47 +29,21 @@
 			<div class="mdc-drawer__content">
 				<nav ref="mdcList" class="mdc-list">
 					<RouterLink
-						:to="{ name: 'Gears' }"
-						class="mdc-list-item mdc-list-item--activated"
-						tabindex="0"
-					>
-						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">category</i>
-						<span class="mdc-list-item__text">裝備清單</span>
-					</RouterLink>
-					<RouterLink
-						:to="{ name: 'Trips' }"
+						v-for="page in pageList"
+						ref="listItem"
+						:key="page.name"
+						:to="{ name: page.name }"
+						:class="{ 'mdc-list-item--activated': page.name === currentPage.name }"
 						class="mdc-list-item"
+						:aria-current="page.name === currentPage.name ? 'page' : null"
+						:tabindex="page.name === currentPage.name ? 0 : -1"
 					>
-						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">landscape</i>
-						<span class="mdc-list-item__text">行程裝備</span>
-					</RouterLink>
-					<RouterLink
-						:to="{ name: 'Collections' }"
-						class="mdc-list-item"
-					>
-						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">collections_bookmark</i>
-						<span class="mdc-list-item__text">常用裝備組合</span>
-					</RouterLink>
-					<RouterLink
-						:to="{ name: 'Wishes' }"
-						class="mdc-list-item"
-					>
-						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">favorite_border</i>
-						<span class="mdc-list-item__text">願望清單</span>
-					</RouterLink>
-					<RouterLink
-						:to="{ name: 'Archives' }"
-						class="mdc-list-item"
-					>
-						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">archive</i>
-						<span class="mdc-list-item__text">已封存</span>
-					</RouterLink>
-					<RouterLink
-						:to="{ name: 'Settings' }"
-						class="mdc-list-item"
-					>
-						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">settings</i>
-						<span class="mdc-list-item__text">設定</span>
+						<i class="material-icons-outlined mdc-list-item__graphic" aria-hidden="true">
+							{{ page.icon }}
+						</i>
+						<span class="mdc-list-item__text">
+							{{ page.text }}
+						</span>
 					</RouterLink>
 				</nav>
 			</div>
@@ -87,14 +61,55 @@
 import { MDCList } from "@material/list";
 import { MDCDrawer } from "@material/drawer";
 import { MDCTopAppBar } from "@material/top-app-bar";
+import { MDCRipple } from '@material/ripple/index';
 export default {
+	data() {
+		return {
+			pageList: [
+				{
+					name: 'Gears',
+					icon: 'category',
+					text: '裝備清單',
+				},
+				{
+					name: 'Trips',
+					icon: 'landscape',
+					text: '行程裝備',
+				},
+				{
+					name: 'Collections',
+					icon: 'collections_bookmark',
+					text: '常用裝備組合',
+				},
+				{
+					name: 'Wishes',
+					icon: 'favorite_border',
+					text: '願望清單',
+				},
+				{
+					name: 'Archives',
+					icon: 'archive',
+					text: '已封存',
+				},
+				{
+					name: 'Settings',
+					icon: 'settings',
+					text: '設定',
+				},
+			],
+		};
+	},
 	computed: {
+		currentPage() {
+			return _.find(this.pageList, ['name', this.$route.name]);
+		},
 		...mapState('user', [
 			'user',
 		]),
 	},
 	mounted() {
 		this.initResponsiveDrawer();
+		this.initRipple()
 	},
 	methods: {
 		initResponsiveDrawer() {
@@ -116,7 +131,7 @@ export default {
 					drawer.open = !drawer.open;
 				});
 
-				listEl.addEventListener('click', (event) => {
+				listEl.addEventListener('click', () => {
 					drawer.open = false;
 				});
 
@@ -147,6 +162,11 @@ export default {
 				}
 			};
 			window.addEventListener('resize', resizeHandler);
+		},
+		initRipple() {
+			this.$refs.listItem.forEach(listItem => {
+				new MDCRipple(listItem.$el);
+			});
 		},
 	},
 };
