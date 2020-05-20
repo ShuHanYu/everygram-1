@@ -11,7 +11,9 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 offset-xl-1 mx-auto">
 					<!-- Login -->
 					<div class="login__form">
-						<img src="static/images/logo-vertical.svg" alt="" class="login__logo mb-5">
+						<a href="/#/demo/home" class="login__logo mb-5">
+							<img src="static/images/logo-vertical.svg" alt="">
+						</a>
 						<div class="mb-4">
 							<label class="mdc-text-field mdc-text-field--filled">
 								<span class="mdc-text-field__ripple"></span>

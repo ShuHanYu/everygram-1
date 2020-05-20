@@ -1,5 +1,8 @@
 .login {
 	&__title {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		min-height: 100vh;
 		margin: 0 -15px;;
 		padding: 80px 60px 40px;
@@ -20,7 +23,10 @@
 
 	&__logo {
 		align-self: center;
-		width: 160px;
+
+		img {
+			width: 160px;
+		}
 	}
 
 	&__form {
