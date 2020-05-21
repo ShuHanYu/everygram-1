@@ -149,7 +149,7 @@ const router =  new VueRouter({
 	// mode: 'history',
 });
 
-router.afterEach((to, from) => {
+router.afterEach((to) => {
 	Vue.nextTick(() => {
 		document.title = to.meta.title || DEFAULT_TITLE;
 	});
