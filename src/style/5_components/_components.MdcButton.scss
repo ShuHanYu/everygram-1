@@ -1,2 +1,8 @@
 @use "node_modules/@material/button";
+
 @include button.core-styles;
+
+.mdc-button {
+	height: 44px;
+	font-size: $font-size-base;
+}

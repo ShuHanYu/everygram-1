@@ -12,6 +12,7 @@ import Settings from '@views/main/Settings';
 
 import NotFound from '@views/NotFound';
 import DemoHome from '@demo/DemoHome';
+import DemoLogin from '@demo/DemoLogin';
 import DemoMain from '@demo/DemoMain';
 Vue.use(VueRouter);
 const DEFAULT_TITLE = 'everygram';
@@ -127,6 +128,14 @@ const router =  new VueRouter({
 			component: DemoHome,
 			meta: {
 				title: 'Demo Home - ' + DEFAULT_TITLE,
+			},
+		},
+		{
+			path: '/demo/login' ,
+			name: 'DemoLogin',
+			component: DemoLogin,
+			meta: {
+				title: 'Demo Login - ' + DEFAULT_TITLE,
 			},
 		},
 		{

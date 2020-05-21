@@ -60,9 +60,9 @@
 
 <script>
 import MdcButton from '@components/MdcButton';
-import {MDCTopAppBar} from '@material/top-app-bar';
-import {MDCDrawer} from "@material/drawer";
-import {MDCList} from "@material/list";
+import { MDCTopAppBar } from '@material/top-app-bar';
+import { MDCDrawer } from "@material/drawer";
+import { MDCList } from "@material/list";
 
 export default {
 	components: {
