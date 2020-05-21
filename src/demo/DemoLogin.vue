@@ -3,8 +3,8 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-6 col-xl-5 d-none d-lg-block">
-					<div class="login__title">
-						<h1 class="text-white mt-0">Start managing your gears with Everygram</h1>
+					<div class="login__banner">
+						<h1 class="login__title">Start managing your gears with Everygram</h1>
 						<img src="static/images/illustration/login.png" alt="" class="login__illustration">
 					</div>
 				</div>
@@ -128,7 +128,7 @@
 
 <script>
 import MdcButton from '@components/MdcButton';
-import {MDCTextField} from '@material/textfield';
+import { MDCTextField } from '@material/textfield';
 
 export default {
 	components: {

@@ -1,5 +1,5 @@
 .login {
-	&__title {
+	&__banner {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -11,10 +11,12 @@
 		background-size: contain;
 		background-repeat: no-repeat;
 		background-color: $c-primary;
+	}
 
-		h1 {
-			margin-bottom: 40px;
-		}
+	&__title {
+		margin-top: 0;
+		margin-bottom: 40px;
+		color: $c-bright;
 	}
 
 	&__illustration {
@@ -39,7 +41,7 @@
 
 		@media (min-width: 768px) {
 			max-width: 600px;
-    		margin: 0 auto;
+			margin: 0 auto;
 			padding: 80px 40px;
 		}
 	}
