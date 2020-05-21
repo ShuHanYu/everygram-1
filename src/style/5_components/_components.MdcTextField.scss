@@ -1,0 +1,17 @@
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/textfield";
+@use "@material/textfield/helper-text";
+
+@include textfield.core-styles;
+@include helper-text.helper-text-core-styles;
+
+.mdc-text-field {
+	width: 100%;
+	@include textfield.fill-color(transparent);
+	@include textfield.placeholder-color($c-gray-600);
+	@include textfield.disabled-fill-color(transparent);
+	@include textfield.disabled-placeholder-color($c-gray-600);
+	@include textfield.disabled-ink-color($c-gray-800);
+	@include textfield.hover-bottom-line-color($c-primary);
+}
