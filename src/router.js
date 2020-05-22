@@ -15,6 +15,12 @@ import NotFound from '@views/NotFound';
 import DemoHome from '@demo/DemoHome';
 import DemoLogin from '@demo/DemoLogin';
 import DemoMain from '@demo/DemoMain';
+import DemoGears from '@demo/DemoGears';
+import DemoTrips from '@demo/DemoTrips';
+import DemoCollections from '@demo/DemoCollections';
+import DemoWishes from '@demo/DemoWishes';
+import DemoArchives from '@demo/DemoArchives';
+import DemoSettings from '@demo/DemoSettings';
 import DemoComponents from '@demo/DemoComponents';
 
 Vue.use(VueRouter);
@@ -113,7 +119,7 @@ const router =  new VueRouter({
 			beforeEnter: async (to, from, next) => {
 				if (await getCurrentUser()) {
 					next({
-						name: 'Main',
+						name: 'Gears',
 						replace: true,
 					});
 				} else {
@@ -138,12 +144,60 @@ const router =  new VueRouter({
 			},
 		},
 		{
-			path: '/demo/main' ,
+			path: '/demo/main',
 			name: 'DemoMain',
 			component: DemoMain,
-			meta: {
-				title: 'Demo Main',
-			},
+			children: [
+				{
+					path: '/demo/main',
+					alias: 'demo/gears',
+					name: 'DemoGears',
+					component: DemoGears,
+					meta: {
+						title: 'Demo Gears',
+					},
+				},
+				{
+					path: '/demo/trips',
+					name: 'DemoTrips',
+					component: DemoTrips,
+					meta: {
+						title: 'Demo Trips',
+					},
+				},
+				{
+					path: '/demo/collections',
+					name: 'DemoCollections',
+					component: DemoCollections,
+					meta: {
+						title: 'Demo Collections',
+					},
+				},
+				{
+					path: '/demo/wishes',
+					name: 'DemoWishes',
+					component: DemoWishes,
+					meta: {
+						title: 'Demo Wishes',
+					},
+				},
+				{
+					path: '/demo/archives',
+					name: 'DemoArchives',
+					component: DemoArchives,
+					meta: {
+						title: 'Demo Archives',
+					},
+				},
+				{
+					path: '/demo/settings',
+					name: 'DemoSettings',
+					component: DemoSettings,
+					meta: {
+						title: 'Demo Settings',
+					},
+				},
+			],
 		},
 		{
 			path: '/demo/components' ,
