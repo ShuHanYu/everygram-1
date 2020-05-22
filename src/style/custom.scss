@@ -1,3 +1,8 @@
+// Vendor
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
 // 0. settings
 @import "0_settings/settings.colors";
 @import "0_settings/settings.fonts";

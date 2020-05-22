@@ -6,7 +6,7 @@
 .mdc-top-app-bar {
 	display: none;
 
-	@media (max-width: 991px) {
+	@include media-breakpoint-down(md) {
 		display: block;
 	}
 }
