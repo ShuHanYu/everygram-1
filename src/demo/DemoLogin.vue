@@ -36,7 +36,7 @@
 						</div>
 						<div class="mb-3 text-center text-muted">或</div>
 						<div>
-							<MdcButton class="mdc-button--outlined w-100">
+							<MdcButton class="mdc-button--raised button--white w-100">
 								<img slot="icon"  src="static/images/social-google.svg" alt="" class="mdc-button__icon">
 								使用 Google 登入
 							</MdcButton>
