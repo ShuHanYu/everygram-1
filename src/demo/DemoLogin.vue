@@ -11,7 +11,7 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 offset-xl-1 mx-auto">
 					<!-- Login -->
 					<div v-if="mode === 'signIn'" class="login__form">
-						<a href="/#/demo/home" class="login__logo mb-5">
+						<a href="/#/demo/home" class="login__logo" tabindex="-1">
 							<img src="static/images/logo-vertical.svg" alt="">
 						</a>
 						<div class="mb-4">
@@ -27,7 +27,9 @@
 							/>
 						</div>
 						<div class="mb-1">
-							<MdcButton class="mdc-button--raised w-100">登入</MdcButton>
+							<MdcButton class="mdc-button--raised w-100">
+								登入
+							</MdcButton>
 						</div>
 						<div class="text-center mb-2">
 							<MdcButton class="mdc-button--text" @click.native="mode = 'signUp'">註冊會員</MdcButton>
@@ -36,7 +38,7 @@
 						</div>
 						<div class="mb-3 text-center text-muted">或</div>
 						<div>
-							<MdcButton class="mdc-button--outlined w-100">
+							<MdcButton class="mdc-button--raised button--white w-100">
 								<img slot="icon"  src="static/images/social-google.svg" alt="" class="mdc-button__icon">
 								使用 Google 登入
 							</MdcButton>
@@ -45,6 +47,7 @@
 
 					<!-- Sign Up -->
 					<div v-if="mode === 'signUp'" class="login__form">
+						<h2>註冊會員</h2>
 						<div class="mb-4">
 							<MdcTextField
 								type="text"
@@ -76,6 +79,7 @@
 
 					<!-- Forgot Password -->
 					<div v-if="mode === 'forgetPassword'" class="login__form">
+						<h2>忘記密碼</h2>
 						<div class="mb-4">
 							<MdcTextField
 								type="email"
@@ -95,7 +99,7 @@
 
 					<!-- 註冊成功 -->
 					<div v-if="mode === 'singUpSuccess'" class="login__form">
-						<h3>註冊成功！</h3>
+						<h2>註冊成功！</h2>
 						<p>請先至電子信箱點選驗證連結以完成註冊流程</p>
 						<div class="mb-4">
 							<span class="align-middle">沒有收到驗證信嗎？ </span>

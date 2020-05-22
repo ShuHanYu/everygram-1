@@ -8,7 +8,7 @@
 @use "node_modules/@material/list/mdc-list";
 
 .mdc-drawer {
-	padding: 40px 24px;
+	padding: 40px 24px 0;
 	border: 0;
 	overflow-y: auto;
 	@include drawer.width(288px);
@@ -18,12 +18,25 @@
 	@include drawer.item-activated-text-ink-color($c-primary-dark);
 	@include drawer.item-shape-radius(6px);
 
-	@media (min-width: 992px) {
+	@include media-breakpoint-up(lg) {
 		background: transparent;
+	}
+
+	@include media-breakpoint-down(md) {
+		height: auto;
+		top: 0;
+		bottom: 0;
+		padding: 24px 0 0;
 	}
 
 	&__header {
 		margin-bottom: 1rem;
+
+		@include media-breakpoint-down(md) {
+			margin-bottom: 0;
+			padding: 0 16px;
+			border-bottom: 1px solid $c-gray-300;
+		}
 	}
 
 	.mdc-list {

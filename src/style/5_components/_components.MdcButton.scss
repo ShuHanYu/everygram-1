@@ -6,3 +6,8 @@
 	height: 44px;
 	font-size: $font-size-base;
 }
+
+.button--white {
+	@include button.filled-accessible(white);
+	@include button.ink-color($c-gray-700);
+}

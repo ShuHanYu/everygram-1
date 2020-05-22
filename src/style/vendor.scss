@@ -1,5 +1,18 @@
+@import "0_settings/settings.colors";
+
 // Bootstrap
-@import "bootstrap/scss/bootstrap-grid";
+$theme-colors: (
+	"primary":    $c-primary,
+	"secondary":  $c-secondary,
+	"success":    $c-success,
+	"warning":    $c-warning,
+	"danger":     $c-danger,
+	"light":      $c-bright,
+	"dark":       $c-gray-800
+);
+
+@import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
+@import "bootstrap/scss/bootstrap-grid";

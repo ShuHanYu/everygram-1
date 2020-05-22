@@ -10,17 +10,19 @@ $c-secondary-dark: #4e636e;
 $c-secondary-light: #aac0cd;
 $c-on-secondary: $c-bright;
 
-$c-danger: #ff6b6a;
+$c-success: #48A735;
+$c-danger:  #CF4526;
 $c-warning: #ffa100;
 
 $c-gray-900: black;
 $c-gray-800: rgba(0, 0, 0, .8);
 $c-gray-700: rgba(0, 0, 0, .6);
 $c-gray-600: rgba(0, 0, 0, .4);
-$c-gray-500: rgba(0, 0, 0, .16);
-$c-gray-400: rgba(0, 0, 0, .1);
-$c-gray-300: rgba(0, 0, 0, .04);
-$c-gray-200: rgba(0, 0, 0, .02);
+$c-gray-500: rgba(0, 0, 0, .2);
+$c-gray-400: rgba(0, 0, 0, .16);
+$c-gray-300: rgba(0, 0, 0, .12);
+$c-gray-200: rgba(0, 0, 0, .04);
+$c-gray-100: rgba(0, 0, 0, .02);
 
 $c-background: #f2f3f2;
 
@@ -30,6 +32,31 @@ $c-overlay: rgba(0,0,0,0.3);
 @use 'node_modules/@material/theme' with (
   $primary: $c-primary,
   $on-primary: $c-bright,
+  $accent: $c-secondary,
   $secondary: $c-secondary,
   $on-secondary: $c-bright,
+  $error: $c-danger,
+  
+  $text-colors: (
+    dark: (
+      primary: $c-gray-800,
+      secondary: $c-gray-700,
+      hint: $c-gray-600,
+      disabled: $c-gray-500,
+      icon: $c-gray-600
+    ),
+    light: (
+      primary: white,
+      secondary: rgba(white, .8),
+      hint: rgba(white, .6),
+      disabled: rgba(white, .5),
+      icon: rgba(white, .6)
+    ),
+  ),
+
+  $text-emphasis: (
+    high: .8,
+    medium: .6,
+    disabled: .2,
+  )
 );

@@ -1,12 +1,12 @@
 <template>
-	<MdcMain :user="user" :page-list="pageList" />
+	<MainLayout :user="user" :page-list="pageList" />
 </template>
 
 <script>
-import MdcMain from '@components/MdcMain';
+import MainLayout from '@components/MainLayout';
 export default {
 	components: {
-		MdcMain,
+		MainLayout,
 	},
 	data() {
 		return {
