@@ -2,6 +2,13 @@ a {
 	cursor: pointer;
 }
 
+$headings: (
+	1: $font-size-h1,
+	2: $font-size-h2,
+	3: $font-size-h3,
+	4: $font-size-h4,
+	5: $font-size-h5,
+);
 @each $heading, $value in $headings {
 	h#{$heading} {
 		font-size: $value;

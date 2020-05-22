@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+// pages
 import Home from '@views/Home';
 import Login from '@views/Login';
 import Main from '@views/Main';
@@ -9,13 +10,14 @@ import Collections from '@views/main/Collections';
 import Wishes from '@views/main/Wishes';
 import Archives from '@views/main/Archives';
 import Settings from '@views/main/Settings';
-
 import NotFound from '@views/NotFound';
+// Demo pages
 import DemoHome from '@demo/DemoHome';
 import DemoLogin from '@demo/DemoLogin';
 import DemoMain from '@demo/DemoMain';
+import DemoComponents from '@demo/DemoComponents';
+
 Vue.use(VueRouter);
-const DEFAULT_TITLE = 'everygram';
 
 const getCurrentUser = () => {
 	return new Promise((resolve, reject) => {
@@ -31,9 +33,6 @@ const router =  new VueRouter({
 		{
 			path: '/',
 			component: Main,
-			meta: {
-				title: DEFAULT_TITLE,
-			},
 			beforeEnter: async (to, from, next) => {
 				if (await getCurrentUser()) {
 					next();
@@ -51,7 +50,7 @@ const router =  new VueRouter({
 					name: 'Gears',
 					component: Gears,
 					meta: {
-						title: 'Gears - ' + DEFAULT_TITLE,
+						title: 'Gears',
 					},
 				},
 				{
@@ -59,7 +58,7 @@ const router =  new VueRouter({
 					name: 'Trips',
 					component: Trips,
 					meta: {
-						title: 'Trips - ' + DEFAULT_TITLE,
+						title: 'Trips',
 					},
 				},
 				{
@@ -67,7 +66,7 @@ const router =  new VueRouter({
 					name: 'Collections',
 					component: Collections,
 					meta: {
-						title: 'Collections - ' + DEFAULT_TITLE,
+						title: 'Collections',
 					},
 				},
 				{
@@ -75,7 +74,7 @@ const router =  new VueRouter({
 					name: 'Wishes',
 					component: Wishes,
 					meta: {
-						title: 'Wishes - ' + DEFAULT_TITLE,
+						title: 'Wishes',
 					},
 				},
 				{
@@ -83,7 +82,7 @@ const router =  new VueRouter({
 					name: 'Archives',
 					component: Archives,
 					meta: {
-						title: 'Archives - ' + DEFAULT_TITLE,
+						title: 'Archives',
 					},
 				},
 				{
@@ -91,7 +90,7 @@ const router =  new VueRouter({
 					name: 'Settings',
 					component: Settings,
 					meta: {
-						title: 'Settings - ' + DEFAULT_TITLE,
+						title: 'Settings',
 					},
 				},
 			],
@@ -101,7 +100,7 @@ const router =  new VueRouter({
 			name: 'Home',
 			component: Home,
 			meta: {
-				title: 'Home - ' + DEFAULT_TITLE,
+				title: 'Home',
 			},
 		},
 		{
@@ -109,7 +108,7 @@ const router =  new VueRouter({
 			name: 'Login',
 			component: Login,
 			meta: {
-				title: 'Login - ' + DEFAULT_TITLE,
+				title: 'Login',
 			},
 			beforeEnter: async (to, from, next) => {
 				if (await getCurrentUser()) {
@@ -127,7 +126,7 @@ const router =  new VueRouter({
 			name: 'DemoHome',
 			component: DemoHome,
 			meta: {
-				title: 'Demo Home - ' + DEFAULT_TITLE,
+				title: 'Demo Home',
 			},
 		},
 		{
@@ -135,7 +134,7 @@ const router =  new VueRouter({
 			name: 'DemoLogin',
 			component: DemoLogin,
 			meta: {
-				title: 'Demo Login - ' + DEFAULT_TITLE,
+				title: 'Demo Login',
 			},
 		},
 		{
@@ -143,16 +142,21 @@ const router =  new VueRouter({
 			name: 'DemoMain',
 			component: DemoMain,
 			meta: {
-				title: 'Demo Main - ' + DEFAULT_TITLE,
+				title: 'Demo Main',
+			},
+		},
+		{
+			path: '/demo/components' ,
+			name: 'DemoComponents',
+			component: DemoComponents,
+			meta: {
+				title: 'Demo Components',
 			},
 		},
 		{
 			path: '*' ,
 			name: 'NotFound',
 			component: NotFound,
-			meta: {
-				title: DEFAULT_TITLE,
-			},
 		},
 	],
 	// mode: 'history',
@@ -160,7 +164,7 @@ const router =  new VueRouter({
 
 router.afterEach((to) => {
 	Vue.nextTick(() => {
-		document.title = to.meta.title || DEFAULT_TITLE;
+		document.title = to.meta.title ? `${ to.meta.title } - everygram` : 'everygram';
 	});
 });
 

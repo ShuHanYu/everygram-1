@@ -15,20 +15,16 @@
 							<img src="static/images/logo-vertical.svg" alt="">
 						</a>
 						<div class="mb-4">
-							<label class="mdc-text-field mdc-text-field--filled">
-								<span class="mdc-text-field__ripple"></span>
-								<input class="mdc-text-field__input" type="email">
-								<span class="mdc-floating-label">Email</span>
-								<span class="mdc-line-ripple"></span>
-							</label>
+							<MdcTextField
+								type="email"
+								label="Email"
+							/>
 						</div>
 						<div class="mb-4">
-							<label class="mdc-text-field mdc-text-field--filled">
-								<span class="mdc-text-field__ripple"></span>
-								<input class="mdc-text-field__input" type="password">
-								<span class="mdc-floating-label">Password</span>
-								<span class="mdc-line-ripple"></span>
-							</label>
+							<MdcTextField
+								type="password"
+								label="Password"
+							/>
 						</div>
 						<div class="mb-1">
 							<MdcButton class="mdc-button--raised w-100">登入</MdcButton>
@@ -46,32 +42,26 @@
 							</MdcButton>
 						</div>
 					</div>
-					
+
 					<!-- Sign Up -->
 					<!-- <div class="login__form">
 						<div class="mb-4">
-							<label class="mdc-text-field mdc-text-field--filled">
-								<span class="mdc-text-field__ripple"></span>
-								<input class="mdc-text-field__input" type="text">
-								<span class="mdc-floating-label">Name</span>
-								<span class="mdc-line-ripple"></span>
-							</label>
+							<MdcTextField
+								type="text"
+								label="Name"
+							/>
 						</div>
 						<div class="mb-4">
-							<label class="mdc-text-field mdc-text-field--filled">
-								<span class="mdc-text-field__ripple"></span>
-								<input class="mdc-text-field__input" type="email">
-								<span class="mdc-floating-label">Email</span>
-								<span class="mdc-line-ripple"></span>
-							</label>
+							<MdcTextField
+								type="email"
+								label="Email"
+							/>
 						</div>
 						<div class="mb-4">
-							<label class="mdc-text-field mdc-text-field--filled">
-								<span class="mdc-text-field__ripple"></span>
-								<input class="mdc-text-field__input" type="password">
-								<span class="mdc-floating-label">Password</span>
-								<span class="mdc-line-ripple"></span>
-							</label>
+							<MdcTextField
+								type="password"
+								label="Password"
+							/>
 						</div>
 						<div class="mb-2">
 							<MdcButton class="mdc-button--raised w-100">註冊</MdcButton>
@@ -87,12 +77,10 @@
 					<!-- Forgot Password -->
 					<!-- <div class="login__form">
 						<div class="mb-4">
-							<label class="mdc-text-field mdc-text-field--filled">
-								<span class="mdc-text-field__ripple"></span>
-								<input class="mdc-text-field__input" type="email">
-								<span class="mdc-floating-label">Email</span>
-								<span class="mdc-line-ripple"></span>
-							</label>
+							<MdcTextField
+								type="email"
+								label="Email"
+							/>
 						</div>
 						<div class="mb-2">
 							<MdcButton class="mdc-button--raised w-100">寄送密碼重設信件</MdcButton>
@@ -120,7 +108,7 @@
 							</MdcButton>
 						</div>
 					</div> -->
-				</div>	
+				</div>
 			</div>
 		</div>
 	</div>
@@ -128,18 +116,12 @@
 
 <script>
 import MdcButton from '@components/MdcButton';
-import { MDCTextField } from '@material/textfield';
+import MdcTextField from '@components/MdcTextField';
 
 export default {
 	components: {
 		MdcButton,
-		MDCTextField,
-	},
-	mounted() {
-		const textFields = document.querySelectorAll('.mdc-text-field');
-		textFields.forEach(element => {
-			const textField = new MDCTextField(element);
-		});
+		MdcTextField,
 	},
 };
 </script>
