@@ -10,7 +10,8 @@ $c-secondary-dark: #4e636e;
 $c-secondary-light: #aac0cd;
 $c-on-secondary: $c-bright;
 
-$c-danger: #ff6b6a;
+$c-success: #48A735;
+$c-danger:  #CF4526;
 $c-warning: #ffa100;
 
 $c-gray-900: black;
@@ -34,6 +35,7 @@ $c-overlay: rgba(0,0,0,0.3);
   $accent: $c-secondary,
   $secondary: $c-secondary,
   $on-secondary: $c-bright,
+  $error: $c-danger,
   
   $text-colors: (
     dark: (
