@@ -38,14 +38,12 @@
 			<slot name="trailingIcon"></slot>
 		</span>
 		<!-- label -->
-		<div v-if="label">
-			<span
-				:class="{ 'mdc-floating-label--float-above': !!value.length }"
-				class="mdc-floating-label"
-			>
-				{{ label }}
-			</span>
-		</div>
+		<span
+			:class="{ 'mdc-floating-label--float-above': !!value.length }"
+			class="mdc-floating-label"
+		>
+			{{ label }}
+		</span>
 		<span class="mdc-line-ripple"></span>
 	</label>
 </template>
@@ -56,7 +54,15 @@ import { MDCTextFieldIcon } from '@material/textfield/icon';
 
 export default {
 	props: {
+		autofocus: {
+			type: Boolean,
+			default: false,
+		},
 		disabled: {
+			type: Boolean,
+			default: false,
+		},
+		invalid: {
 			type: Boolean,
 			default: false,
 		},
@@ -81,14 +87,33 @@ export default {
 			default: '',
 		},
 	},
+	data() {
+		return {
+			mdcTextField: null,
+		};
+	},
+	watch: {
+		invalid() {
+			this.mdcTextField.valid = !this.invalid;
+		},
+	},
 	mounted() {
-		new MDCTextField(this.$el);
+		this.mdcTextField = new MDCTextField(this.$el);
+		this.mdcTextField.useNativeValidation = false;
+
 		if(this.$refs.leadingIcon) {
 			new MDCTextFieldIcon(this.$refs.leadingIcon);
 		}
 		if(this.$refs.trailingIcon) {
 			new MDCTextFieldIcon(this.$refs.trailingIcon);
 		}
+
+		if(this.autofocus) {
+			this.mdcTextField.focus();
+		}
+	},
+	destroyed() {
+		this.mdcTextField.destroy();
 	},
 };
 </script>

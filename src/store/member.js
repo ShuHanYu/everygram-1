@@ -1,12 +1,12 @@
+import { errorMessageLang } from '@libs/lang';
+
 const state = {
 	member: null,
 	memberRef: null,
 };
 
 const getters = {
-	isInitialized(state) {
-		return !!state.member;
-	},
+
 };
 
 const mutations = {
@@ -19,13 +19,36 @@ const mutations = {
 };
 
 const actions = {
-	async init(context) {
-		if(context.getters.isInitialized) {
-			return;
+	async createMember(context, payload) {
+		if(context.state.member) {
+			throw 'member exist';
 		}
+		try {
+			await context.state.memberRef.set({
+				...payload,
+				userAgent: window.navigator.userAgent,
+			});
+		} catch (e) {
+			console.log(e);
+			throw errorMessageLang(e.code);
+		}
+	},
+	async getMember(context) {
+		try {
+			const memberSnapshot = await context.state.memberRef.get();
+			if(!memberSnapshot.exists) {
+				return;
+			}
+			context.commit('setMember', memberSnapshot.data());
+		} catch (e) {
+			console.log(e);
+			throw errorMessageLang(e.code);
+		}
+	},
+	async init(context) {
 		const user = context.rootState.user.user;
 		if(!user) {
-			return;
+			throw 'user not defined';
 		}
 
 		context.commit('setMemberRef', context.rootState.db.collection('member').doc(user.uid));
@@ -35,29 +58,9 @@ const actions = {
 			await context.dispatch('getMember');
 		}
 	},
-	async createMember(context) {
-		await context.state.memberRef.set({
-			userAgent: window.navigator.userAgent,
-		}).then(() => {
-			console.log('member created');
-		}).catch((error) => {
-			console.error("Error creating member: ", error);
-			throw error;
-		});
-	},
-	async getMember(context) {
-		await context.state.memberRef.get().then((memberSnapshot) => {
-			if(!memberSnapshot.exists) {
-				console.log('Member not exist');
-				return;
-			}
-			context.commit('setMember', memberSnapshot.data());
-		}).catch((error) => {
-			console.error('Error getting member:', error);
-		});
-	},
-	updateMember(context) {
-
+	onSignOut(context) {
+		context.commit('setMemberRef', null);
+		context.commit('setMember', null);
 	},
 };
 

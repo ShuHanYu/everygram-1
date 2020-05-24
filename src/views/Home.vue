@@ -2,7 +2,7 @@
 	<div>
 		Home
 		<button v-if="isSignedIn" @click="signOut">Sign out</button>
-		<RouterLink v-else :to="{ name: 'Login' }">Start</RouterLink>
+		<RouterLink v-else :to="{ name: 'SignIn' }">Start</RouterLink>
 		<button v-if="isReadyToInstall && isShowInstallBtn" @click="installPWA">install PWA</button>
 	</div>
 </template>

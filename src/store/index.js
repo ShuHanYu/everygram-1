@@ -2,8 +2,9 @@ import memberStore from '@store/member';
 import userStore from '@store/user';
 const state = {
 	db: null,
-	isReadyToInstall: false,
+	displayMode: null,
 	installPrompt: null,
+	isReadyToInstall: false,
 };
 const getters = {
 
@@ -19,12 +20,15 @@ const mutations = {
 		// }
 		state.db = db;
 	},
-	setIsReadyToInstall(state, isReadyToInstall) {
-		state.isReadyToInstall = isReadyToInstall;
-
+	setDisplayMode(state, displayMode) {
+		state.displayMode = displayMode;
 	},
 	setInstallPrompt(state, installPrompt) {
 		state.installPrompt = installPrompt;
+	},
+	setIsReadyToInstall(state, isReadyToInstall) {
+		state.isReadyToInstall = isReadyToInstall;
+
 	},
 };
 const actions = {

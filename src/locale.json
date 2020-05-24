@@ -1,0 +1,5 @@
+{
+	"error-auth/email-already-in-use": "您輸入的 Email 已經被註冊",
+	"error-auth/user-not-found": "您輸入的 email 或密碼不正確",
+	"error-auth/wrong-password": "您輸入的 email 或密碼不正確"
+}

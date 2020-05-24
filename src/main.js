@@ -9,8 +9,16 @@ import Vue from 'vue';
 import router from '@/router';
 import store from '@/store';
 
+// vee validation
+import '@libs/veeValidations';
+
+// lang
+import { lang, errorMessageLang } from '@libs/lang';
+
 // use _ in all of vue component template
 Object.defineProperty(Vue.prototype, '_', { value: _ });
+Object.defineProperty(Vue.prototype, 'lang', { value: lang });
+Object.defineProperty(Vue.prototype, 'errorMessageLang', { value: errorMessageLang });
 
 export const EventBus = new Vue();
 
@@ -26,8 +34,7 @@ new Vue({
 		bindEvents() {
 			// install prompt
 			window.addEventListener('beforeinstallprompt', (e) => {
-				console.log('showInstallPromotion');
-				// Prevent the mini-infobar from appearing on mobile
+				// Prevent the mini info bar from appearing on mobile
 				e.preventDefault();
 				this.$store.dispatch('onInstallReady', e);
 			});
@@ -40,11 +47,13 @@ new Vue({
 			// track how the PWA was launched
 			window.addEventListener('load', () => {
 				if (navigator.standalone) {
-					console.log('Launched: Installed (iOS)');
+					// iOS standalone
+					this.$store.commit('setDisplayMode', 'standalone');
 				} else if (matchMedia('(display-mode: standalone)').matches) {
-					console.log('Launched: Installed');
+					// other standalone
+					this.$store.commit('setDisplayMode', 'standalone');
 				} else {
-					console.log('Launched: Browser Tab');
+					this.$store.commit('setDisplayMode', 'browser');
 				}
 			});
 		},
@@ -55,6 +64,6 @@ new Vue({
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 if ('serviceWorker' in navigator) {
 	window.addEventListener('load', () => {
-		const registration = runtime.register();
+		runtime.register();
 	});
 }

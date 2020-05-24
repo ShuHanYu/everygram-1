@@ -73,6 +73,7 @@ module.exports = [{
 			mapGetters: ['vuex', 'mapGetters'],
 			mapMutations: ['vuex', 'mapMutations'],
 			mapActions: ['vuex', 'mapActions'],
+			lang: ['@libs/lang', 'lang'],
 		}),
 		new ServiceWorkerWebpackPlugin({
 			entry: path.join(__dirname, 'src/sw/sw.js'),

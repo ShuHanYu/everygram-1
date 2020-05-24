@@ -1,0 +1,18 @@
+@use "node_modules/@material/circular-progress";
+@use "node_modules/@material/circular-progress/mdc-circular-progress";
+
+.mdc-circular-progress {
+	vertical-align: middle;
+	&--on-dark {
+		@include circular-progress.color($c-bright);
+	}
+
+	// #hack fix circular progress in <button> tag
+	&__determinate-container,
+	&__indeterminate-circle-graphic,
+	&__indeterminate-container,
+	&__spinner-layer {
+		top: 0;
+		left: 0;
+	}
+}

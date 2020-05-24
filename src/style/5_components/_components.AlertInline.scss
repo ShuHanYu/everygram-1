@@ -1,0 +1,8 @@
+.alert-inline {
+	display: flex;
+	align-items: center;
+	font-size: $font-size-sm;
+	&__icon {
+		margin-right: 10px;
+	}
+}

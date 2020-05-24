@@ -1,3 +1,5 @@
+import { errorMessageLang } from '@libs/lang';
+
 const state = {
 	user: null,
 };
@@ -15,6 +17,49 @@ const mutations = {
 };
 
 const actions = {
+	async onSignIn(context, user) {
+		context.commit('setUser', user);
+		await context.dispatch('member/init', null, { root: true });
+	},
+	async signInWithEmail(context, payload) {
+		try {
+			await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password);
+		} catch (e) {
+			console.log(e);
+			throw errorMessageLang(e.code);
+		}
+	},
+	async signInWithGoogle() {
+		const provider = new firebase.auth.GoogleAuthProvider();
+		try {
+			await firebase.auth().signInWithPopup(provider);
+		} catch (e) {
+			console.log(e);
+			throw errorMessageLang(e.code);
+		}
+	},
+	async signUpWithEmail(context, payload) {
+		try {
+			await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password);
+			await context.dispatch('updateProfile', {
+				displayName: payload.name,
+			});
+		} catch (e) {
+			console.log(e);
+			throw errorMessageLang(e.code);
+		}
+	},
+	async updateProfile(context, payload) {
+		if(!context.state.user) {
+			throw 'user not exist';
+		}
+		try {
+			await context.state.user.updateProfile(_.pick(payload, ['displayName', 'photoURL']));
+		} catch (e) {
+			console.log(e);
+			throw errorMessageLang(e.code);
+		}
+	},
 	init(context) {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
@@ -26,52 +71,12 @@ const actions = {
 			}
 		});
 	},
-	onSignIn(context, user) {
-		console.log('user is signed in');
-		context.commit('setUser', user);
-		context.dispatch('member/init', null, { root: true });
-	},
 	onSignOut(context) {
-		console.log('user is signed out');
 		context.commit('setUser', null);
-	},
-	signInWithEmail(context, payload) {
-		console.log(payload);
-		return firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then((result) => {
-			context.dispatch('onSignIn', result.user);
-		}).catch((e) => {
-			console.log('sign in fail');
-			console.log(e);
-		});
-	},
-	signInWithGoogle() {
-		const provider = new firebase.auth.GoogleAuthProvider();
-		return firebase.auth().signInWithPopup(provider).then(function(result) {
-			// This gives you a Google Access Token. You can use it to access the Google API.
-			const token = result.credential.accessToken;
-			// The signed-in user info.
-			context.dispatch('onSignIn', result.user);
-		}).catch(function(error) {
-			// Handle Errors here.
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			// The email of the user's account used.
-			const email = error.email;
-			// The firebase.auth.AuthCredential type that was used.
-			const credential = error.credential;
-		});
+		context.dispatch('member/onSignOut', null, { root: true });
 	},
 	signOut() {
 		return firebase.auth().signOut();
-	},
-	signUpWithEmail(context, payload) {
-		console.log(payload);
-		return firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then((result) => {
-			context.dispatch('onSignIn', result.user);
-		}).catch((e) => {
-			console.log('sign up fail');
-			console.log(e);
-		});
 	},
 };
 

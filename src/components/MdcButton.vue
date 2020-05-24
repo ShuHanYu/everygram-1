@@ -1,9 +1,15 @@
 <template>
-	<component :is="el" class="mdc-button mdc-button--touch">
+	<component
+		:is="el"
+		:to="to"
+		:disabled="isLoading"
+		class="mdc-button mdc-button--touch"
+	>
 		<div class="mdc-button__ripple"></div>
 		<slot name="icon"></slot>
 		<span class="mdc-button__label">
-			<slot></slot>
+			<MdcCircularProgress v-if="isLoading" class="mdc-circular-progress--small" />
+			<slot v-else></slot>
 		</span>
 		<div class="mdc-button__touch"></div>
 	</component>
@@ -11,15 +17,35 @@
 
 <script>
 import { MDCRipple } from '@material/ripple/index';
+import MdcCircularProgress from '@components/MdcCircularProgress';
 export default {
+	components: {
+		MdcCircularProgress,
+	},
 	props: {
 		el: {
 			type: String,
 			default: 'button',
 		},
+		to: {
+			// router link to
+			default: null,
+		},
+		isLoading: {
+			type: Boolean,
+			default: false,
+		},
+	},
+	data() {
+		return {
+			mdcButton: null,
+		};
 	},
 	mounted() {
-		const ripple = new MDCRipple(this.$el);
+		this.mdcButton = new MDCRipple(this.$el);
+	},
+	destroyed() {
+		this.mdcButton.destroy();
 	},
 };
 </script>

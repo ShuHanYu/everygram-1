@@ -3,6 +3,9 @@ import VueRouter from 'vue-router';
 // pages
 import Home from '@views/Home';
 import Login from '@views/Login';
+import SignIn from '@views/Login/SignIn';
+import SignUp from '@views/Login/SignUp';
+import ForgetPassword from '@views/Login/ForgetPassword';
 import Main from '@views/Main';
 import Gears from '@views/main/Gears';
 import Trips from '@views/main/Trips';
@@ -113,9 +116,6 @@ const router =  new VueRouter({
 			path: '/login',
 			name: 'Login',
 			component: Login,
-			meta: {
-				title: 'Login',
-			},
 			beforeEnter: async (to, from, next) => {
 				if (await getCurrentUser()) {
 					next({
@@ -126,6 +126,33 @@ const router =  new VueRouter({
 					next();
 				}
 			},
+			children: [
+				{
+					path: '/sign-in',
+					alias: '/login',
+					name: 'SignIn',
+					component: SignIn,
+					meta: {
+						title: 'Sign In',
+					},
+				},
+				{
+					path: '/sign-up',
+					name: 'SignUp',
+					component: SignUp,
+					meta: {
+						title: 'Sign Up',
+					},
+				},
+				{
+					path: '/forget-password',
+					name: 'ForgetPassword',
+					component: ForgetPassword,
+					meta: {
+						title: 'Forget Password',
+					},
+				},
+			],
 		},
 		{
 			path: '/demo/home' ,
@@ -150,7 +177,7 @@ const router =  new VueRouter({
 			children: [
 				{
 					path: '/demo/main',
-					alias: 'demo/gears',
+					alias: '/demo/gears',
 					name: 'DemoGears',
 					component: DemoGears,
 					meta: {

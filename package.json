@@ -41,6 +41,7 @@
 	},
 	"dependencies": {
 		"@material/button": "^6.0.0",
+		"@material/circular-progress": "^6.0.0",
 		"@material/drawer": "^6.0.0",
 		"@material/icon-button": "^6.0.0",
 		"@material/layout-grid": "^6.0.0",
@@ -52,7 +53,8 @@
 		"bootstrap": "^4.5.0",
 		"lodash": "^4.17.15",
 		"moment": "^2.24.0",
-		"serviceworker-webpack-plugin": "^1.0.1"
+		"serviceworker-webpack-plugin": "^1.0.1",
+		"vee-validate": "^3.3.0"
 	},
 	"description": ""
 }
