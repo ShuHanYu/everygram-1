@@ -47,6 +47,7 @@
 		"@material/layout-grid": "^6.0.0",
 		"@material/list": "^6.0.0",
 		"@material/ripple": "^6.0.0",
+		"@material/snackbar": "^6.0.0",
 		"@material/textfield": "^6.0.0",
 		"@material/theme": "^6.0.0",
 		"@material/top-app-bar": "^6.0.0",

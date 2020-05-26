@@ -21,6 +21,14 @@ const actions = {
 		context.commit('setUser', user);
 		await context.dispatch('member/init', null, { root: true });
 	},
+	async sendPasswordResetEmail(context, email) {
+		try {
+			await firebase.auth().sendPasswordResetEmail(email);
+		} catch (e) {
+			console.log(e);
+			throw errorMessageLang(e.code);
+		}
+	},
 	async signInWithEmail(context, payload) {
 		try {
 			await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password);

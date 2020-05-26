@@ -12,20 +12,23 @@
 						label="Email"
 						:required="true"
 						:invalid="failed"
+						@keypress.enter="onEmailEnter"
 					/>
-					<TextFieldErrorMessage :msg="errors[0]" />
+					<TextFieldErrorMessage :message="errors[0]" />
 				</ValidationProvider>
 			</div>
 			<div class="mb-4">
 				<ValidationProvider name="Password" rules="required" v-slot="{ failed, errors }">
 					<MdcTextField
+						ref="passwordTextField"
 						v-model="password"
 						type="password"
 						label="Password"
 						:required="true"
 						:invalid="failed"
+						@keypress.enter="onClickSignIn"
 					/>
-					<TextFieldErrorMessage :msg="errors[0]" />
+					<TextFieldErrorMessage :message="errors[0]" />
 				</ValidationProvider>
 			</div>
 			<AlertInline v-if="pristine && errorMessage" class="text-danger mb-3">
@@ -110,6 +113,16 @@ export default {
 			} catch (e) {
 				console.error(e);
 			}
+		},
+		onEmailEnter() {
+			if(!this.email) {
+				return;
+			}
+			if(!this.password) {
+				this.$refs.passwordTextField.focus();
+				return;
+			}
+			this.onClickSignIn();
 		},
 		onSignedIn() {
 			this.$router.push({

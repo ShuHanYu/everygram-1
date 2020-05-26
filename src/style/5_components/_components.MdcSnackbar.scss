@@ -1,0 +1,8 @@
+@use "node_modules/@material/button";
+@use "node_modules/@material/snackbar/mdc-snackbar";
+
+.mdc-snackbar {
+	&__action {
+		@include button.ink-color($c-primary-light);
+	}
+}

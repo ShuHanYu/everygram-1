@@ -1,5 +1,6 @@
 {
 	"error-auth/email-already-in-use": "您輸入的 Email 已經被註冊",
-	"error-auth/user-not-found": "您輸入的 email 或密碼不正確",
-	"error-auth/wrong-password": "您輸入的 email 或密碼不正確"
+	"error-auth/user-not-found": "您輸入的 email 不正確",
+	"error-auth/wrong-password": "您輸入的密碼不正確",
+	"password-length-hint": "密碼長度至少 6 個字"
 }

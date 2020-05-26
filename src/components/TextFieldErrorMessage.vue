@@ -1,6 +1,6 @@
 <template>
-	<MdcTextFieldHelperText v-if="msg" :persistent="true" :validation="true">
-		{{ msg }}
+	<MdcTextFieldHelperText v-if="message" :persistent="true" :validation="true">
+		{{ message }}
 	</MdcTextFieldHelperText>
 </template>
 
@@ -11,7 +11,7 @@ export default {
 		MdcTextFieldHelperText,
 	},
 	props: {
-		msg: {
+		message: {
 			type: String,
 			default: null,
 		},

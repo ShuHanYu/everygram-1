@@ -28,6 +28,7 @@
 			:required="required"
 			@input="$emit('input', $event.target.value)"
 			@change="$emit('change', $event.target.value)"
+			@keypress="$emit('keypress', $event)"
 		>
 		<!-- suffix text -->
 		<span v-if="$slots.suffix" class="mdc-text-field__affix mdc-text-field__affix--suffix">
@@ -100,6 +101,7 @@ export default {
 	mounted() {
 		this.mdcTextField = new MDCTextField(this.$el);
 		this.mdcTextField.useNativeValidation = false;
+		this.mdcTextField.valid = !this.invalid;
 
 		if(this.$refs.leadingIcon) {
 			new MDCTextFieldIcon(this.$refs.leadingIcon);
@@ -114,6 +116,11 @@ export default {
 	},
 	destroyed() {
 		this.mdcTextField.destroy();
+	},
+	methods: {
+		focus() {
+			this.mdcTextField.focus();
+		},
 	},
 };
 </script>

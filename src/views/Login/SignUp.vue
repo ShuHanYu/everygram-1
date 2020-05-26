@@ -10,8 +10,9 @@
 						label="Name"
 						:required="true"
 						:invalid="failed"
+						@keypress.enter="onClickSignUp"
 					/>
-					<TextFieldErrorMessage :msg="errors[0]" />
+					<TextFieldErrorMessage :message="errors[0]" />
 				</ValidationProvider>
 			</div>
 			<div class="mb-4">
@@ -22,20 +23,25 @@
 						label="Email"
 						:required="true"
 						:invalid="failed"
+						@keypress.enter="onClickSignUp"
 					/>
-					<TextFieldErrorMessage :msg="errors[0]" />
+					<TextFieldErrorMessage :message="errors[0]" />
 				</ValidationProvider>
 			</div>
 			<div class="mb-4">
-				<ValidationProvider name="Password" rules="required|min:6" v-slot="{ failed, errors }">
+				<ValidationProvider name="Password" rules="required|alpha_num|min:6" v-slot="{ failed, errors }">
 					<MdcTextField
 						v-model="password"
 						type="password"
 						label="Password"
 						:required="true"
 						:invalid="failed"
+						@keypress.enter="onClickSignUp"
 					/>
-					<TextFieldErrorMessage :msg="errors[0]" />
+					<MdcTextFieldHelperText v-if="!errors[0]">
+						{{ lang('password-length-hint') }}
+					</MdcTextFieldHelperText>
+					<TextFieldErrorMessage :message="errors[0]" />
 				</ValidationProvider>
 			</div>
 			<AlertInline v-if="pristine && errorMessage" class="text-danger mb-3">
@@ -65,12 +71,15 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import AlertInline from '@components/AlertInline';
 import MdcButton from '@components/MdcButton';
 import MdcTextField from '@components/MdcTextField';
+import MdcTextFieldHelperText from '@components/MdcTextFieldHelperText';
 import TextFieldErrorMessage from '@components/TextFieldErrorMessage';
+
 export default {
 	components: {
 		AlertInline,
 		MdcButton,
 		MdcTextField,
+		MdcTextFieldHelperText,
 		TextFieldErrorMessage,
 		ValidationObserver,
 		ValidationProvider,

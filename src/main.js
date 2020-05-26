@@ -20,6 +20,10 @@ Object.defineProperty(Vue.prototype, '_', { value: _ });
 Object.defineProperty(Vue.prototype, 'lang', { value: lang });
 Object.defineProperty(Vue.prototype, 'errorMessageLang', { value: errorMessageLang });
 
+// plugins
+import snackbar from '@plugins/snackbar';
+Vue.use(snackbar);
+
 export const EventBus = new Vue();
 
 new Vue({

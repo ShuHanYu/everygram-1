@@ -24,3 +24,6 @@ extend('email', email);
 
 import { min } from 'vee-validate/dist/rules';
 extend('min', min);
+
+import { alpha_num } from 'vee-validate/dist/rules';
+extend('alpha_num', alpha_num);
