@@ -7,6 +7,7 @@ import SignIn from '@views/Login/SignIn';
 import SignUp from '@views/Login/SignUp';
 import ForgetPassword from '@views/Login/ForgetPassword';
 import ResetPassword from '@views/Login/ResetPassword';
+import ResetPasswordInvalid from '@views/Login/ResetPasswordInvalid';
 import Main from '@views/Main';
 import Gears from '@views/main/Gears';
 import Trips from '@views/main/Trips';
@@ -162,22 +163,23 @@ const router =  new VueRouter({
 					},
 					beforeEnter: async (to, from, next) => {
 						const code = to.query.code;
-						if(!code) {
-							next({
-								name: 'Home',
-								replace: true,
-							});
-							return;
-						}
-						await firebase.auth().verifyPasswordResetCode(code).then(email => {
-							to.params.email = email;
+						try {
+							to.params.email = await firebase.auth().verifyPasswordResetCode(code);
 							next();
-						}).catch(() => {
+						} catch (e) {
 							next({
-								name: 'NotFound',
+								name: 'ResetPasswordInvalid',
 								replace: true,
 							});
-						});
+						}
+					},
+				},
+				{
+					path: '/reset-password-invalid',
+					name: 'ResetPasswordInvalid',
+					component: ResetPasswordInvalid,
+					meta: {
+						title: 'Reset Password Invalid',
 					},
 				},
 			],
