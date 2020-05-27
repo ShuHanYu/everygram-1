@@ -21,6 +21,14 @@ const actions = {
 		context.commit('setUser', user);
 		await context.dispatch('member/init', null, { root: true });
 	},
+	async resetPassword(context, payload) {
+		try {
+			await firebase.auth().confirmPasswordReset(payload.code, payload.newPassword);
+		} catch (e) {
+			console.log(e);
+			throw errorMessageLang(e.code);
+		}
+	},
 	async sendPasswordResetEmail(context, email) {
 		try {
 			await firebase.auth().sendPasswordResetEmail(email);

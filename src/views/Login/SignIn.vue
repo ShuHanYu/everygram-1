@@ -45,9 +45,9 @@
 			</div>
 		</ValidationObserver>
 		<div class="text-center mb-2">
-			<MdcButton el="router-link" :to="{ name: 'SignUp' }" class="mdc-button--text">註冊會員</MdcButton>
+			<MdcButton el="router-link" :to="{ name: 'SignUp' }">註冊會員</MdcButton>
 			<span class="text-muted">|</span>
-			<MdcButton el="router-link" :to="{ name: 'ForgetPassword' }" class="mdc-button--text">忘記密碼</MdcButton>
+			<MdcButton el="router-link" :to="{ name: 'ForgetPassword' }">忘記密碼</MdcButton>
 		</div>
 		<div class="mb-3 text-center text-muted">或</div>
 		<div>

@@ -1,17 +1,22 @@
 <template>
 	<div class="login__form">
-		<h2>忘記密碼</h2>
+		<RouterLink :to="{ name: 'Home' }" class="login__logo" tabindex="-1">
+			<img src="static/images/logo-vertical.svg" alt="logo">
+		</RouterLink>
 		<ValidationObserver ref="validationObserver" v-slot="{ pristine }">
 			<div class="mb-4">
-				<ValidationProvider name="Email" rules="required|email" v-slot="{ failed, errors }">
+				<ValidationProvider name="New password" :rules="constant('PASSWORD_RULES')" v-slot="{ failed, errors }">
 					<MdcTextField
-						v-model="email"
-						type="email"
-						label="Email"
+						v-model="newPassword"
+						type="password"
+						label="New password"
 						:required="true"
 						:invalid="failed"
-						@keypress.enter="onClickSend"
+						@keypress.enter="onClickReset"
 					/>
+					<MdcTextFieldHelperText v-if="!errors[0]">
+						{{ lang('password-length-hint') }}
+					</MdcTextFieldHelperText>
 					<TextFieldErrorMessage :message="errors[0]" />
 				</ValidationProvider>
 			</div>
@@ -22,16 +27,15 @@
 				<MdcButton
 					class="mdc-button--raised w-100"
 					:is-loading="isLoading"
-					@click.native="onClickSend"
+					@click.native="onClickReset"
 				>
-					寄送密碼重設信件
+					重設密碼
 				</MdcButton>
 			</div>
 		</ValidationObserver>
-		<div>
-			<MdcButton el="router-link" :to="{ name: 'SignIn' }">
-				<i slot="icon" class="material-icons material-icons-outlined mdc-button__icon">keyboard_arrow_left</i>
-				返回登入
+		<div class="text-center">
+			<MdcButton el="router-link" :to="{ name: 'Home' }">
+				返回首頁
 			</MdcButton>
 		</div>
 	</div>
@@ -42,6 +46,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import AlertInline from '@components/AlertInline';
 import MdcButton from '@components/MdcButton';
 import MdcTextField from '@components/MdcTextField';
+import MdcTextFieldHelperText from '@components/MdcTextFieldHelperText';
 import TextFieldErrorMessage from '@components/TextFieldErrorMessage';
 
 export default {
@@ -49,19 +54,23 @@ export default {
 		AlertInline,
 		MdcButton,
 		MdcTextField,
+		MdcTextFieldHelperText,
 		TextFieldErrorMessage,
 		ValidationObserver,
 		ValidationProvider,
 	},
 	data() {
 		return {
-			email: '',
+			newPassword: '',
 			isLoading: false,
 			errorMessage: null,
 		};
 	},
+	mounted() {
+		console.log(this.$route);
+	},
 	methods: {
-		async onClickSend() {
+		async onClickReset() {
 			this.errorMessage = null;
 			try {
 				const success = await this.$refs.validationObserver.validate();
@@ -70,11 +79,16 @@ export default {
 				}
 				this.$refs.validationObserver.reset();
 				this.isLoading = true;
-				await this.sendPasswordResetEmail(this.email);
+				await this.resetPassword({
+					code: this.$route.query.code,
+					newPassword: this.newPassword,
+				});
 				this.isLoading = false;
+				await this.$router.push({
+					name: 'SignIn',
+				});
 				this.$snackbar({
-					message: 'Reset password email sent',
-					buttonText: 'Got it',
+					message: '密碼重新設定完成，請重新登入',
 				});
 			} catch (errorMessage) {
 				this.errorMessage = errorMessage;
@@ -82,8 +96,12 @@ export default {
 			}
 		},
 		...mapActions('user', [
-			'sendPasswordResetEmail',
+			'resetPassword',
 		]),
 	},
 };
 </script>
+
+<style scoped>
+
+</style>

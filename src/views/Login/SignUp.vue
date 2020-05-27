@@ -29,7 +29,7 @@
 				</ValidationProvider>
 			</div>
 			<div class="mb-4">
-				<ValidationProvider name="Password" rules="required|alpha_num|min:6" v-slot="{ failed, errors }">
+				<ValidationProvider name="Password" :rules="constant('PASSWORD_RULES')" v-slot="{ failed, errors }">
 					<MdcTextField
 						v-model="password"
 						type="password"
@@ -58,7 +58,7 @@
 			</div>
 		</ValidationObserver>
 		<div>
-			<MdcButton el="router-link" :to="{ name: 'SignIn' }" class="mdc-button--text">
+			<MdcButton el="router-link" :to="{ name: 'SignIn' }">
 				<i slot="icon" class="material-icons material-icons-outlined mdc-button__icon">keyboard_arrow_left</i>
 				返回登入
 			</MdcButton>

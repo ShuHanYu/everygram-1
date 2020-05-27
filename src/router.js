@@ -6,6 +6,7 @@ import Login from '@views/Login';
 import SignIn from '@views/Login/SignIn';
 import SignUp from '@views/Login/SignUp';
 import ForgetPassword from '@views/Login/ForgetPassword';
+import ResetPassword from '@views/Login/ResetPassword';
 import Main from '@views/Main';
 import Gears from '@views/main/Gears';
 import Trips from '@views/main/Trips';
@@ -150,6 +151,33 @@ const router =  new VueRouter({
 					component: ForgetPassword,
 					meta: {
 						title: 'Forget Password',
+					},
+				},
+				{
+					path: '/reset-password',
+					name: 'ResetPassword',
+					component: ResetPassword,
+					meta: {
+						title: 'Reset Password',
+					},
+					beforeEnter: async (to, from, next) => {
+						const code = to.query.code;
+						if(!code) {
+							next({
+								name: 'Home',
+								replace: true,
+							});
+							return;
+						}
+						await firebase.auth().verifyPasswordResetCode(code).then(email => {
+							to.params.email = email;
+							next();
+						}).catch(() => {
+							next({
+								name: 'NotFound',
+								replace: true,
+							});
+						});
 					},
 				},
 			],

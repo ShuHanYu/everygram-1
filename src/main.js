@@ -19,6 +19,7 @@ import { lang, errorMessageLang } from '@libs/lang';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
 Object.defineProperty(Vue.prototype, 'lang', { value: lang });
 Object.defineProperty(Vue.prototype, 'errorMessageLang', { value: errorMessageLang });
+Object.defineProperty(Vue.prototype, 'constant', { value: constant });
 
 // plugins
 import snackbar from '@plugins/snackbar';

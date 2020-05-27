@@ -32,9 +32,9 @@
 							</MdcButton>
 						</div>
 						<div class="text-center mb-2">
-							<MdcButton class="mdc-button--text" @click.native="mode = 'signUp'">註冊會員</MdcButton>
+							<MdcButton @click.native="mode = 'signUp'">註冊會員</MdcButton>
 							<span class="text-muted">|</span>
-							<MdcButton class="mdc-button--text" @click.native="mode = 'forgetPassword'">忘記密碼</MdcButton>
+							<MdcButton @click.native="mode = 'forgetPassword'">忘記密碼</MdcButton>
 						</div>
 						<div class="mb-3 text-center text-muted">或</div>
 						<div>
@@ -70,7 +70,7 @@
 							<MdcButton class="mdc-button--raised w-100" @click.native="mode = 'singUpSuccess'">註冊</MdcButton>
 						</div>
 						<div>
-							<MdcButton class="mdc-button--text" @click.native="mode = 'signIn'">
+							<MdcButton @click.native="mode = 'signIn'">
 								<i slot="icon" class="material-icons material-icons-outlined mdc-button__icon">keyboard_arrow_left</i>
 								返回登入
 							</MdcButton>
@@ -90,7 +90,7 @@
 							<MdcButton class="mdc-button--raised w-100">寄送密碼重設信件</MdcButton>
 						</div>
 						<div>
-							<MdcButton class="mdc-button--text" @click.native="mode = 'signIn'">
+							<MdcButton @click.native="mode = 'signIn'">
 								<i slot="icon" class="material-icons material-icons-outlined mdc-button__icon">keyboard_arrow_left</i>
 								返回登入
 							</MdcButton>
@@ -103,10 +103,10 @@
 						<p>請先至電子信箱點選驗證連結以完成註冊流程</p>
 						<div class="mb-4">
 							<span class="align-middle">沒有收到驗證信嗎？ </span>
-							<MdcButton class="mdc-button--text">重新發送</MdcButton>
+							<MdcButton>重新發送</MdcButton>
 						</div>
 						<div>
-							<MdcButton class="mdc-button--text" @click.native="mode = 'signIn'">
+							<MdcButton @click.native="mode = 'signIn'">
 								<i slot="icon" class="material-icons material-icons-outlined mdc-button__icon">keyboard_arrow_left</i>
 								返回登入
 							</MdcButton>
