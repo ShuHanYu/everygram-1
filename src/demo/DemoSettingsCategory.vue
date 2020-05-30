@@ -117,7 +117,6 @@
 <script>
 import { MDCDialog } from '@material/dialog';
 import { MDCRipple } from '@material/ripple';
-import {MDCMenu} from '@material/menu';
 import MdcButton from '@components/MdcButton';
 import MdcTextField from '@components/MdcTextField';
 
