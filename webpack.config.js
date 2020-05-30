@@ -51,6 +51,9 @@ module.exports = [{
 		host: '0.0.0.0',
 		port: 3690,
 		historyApiFallback: true,// for vue router mode history
+		watchOptions: {
+			poll: true
+		},
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
