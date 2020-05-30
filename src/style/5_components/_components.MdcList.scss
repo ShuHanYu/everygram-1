@@ -1,0 +1,22 @@
+@use "@material/ripple";
+@use "@material/list";
+
+@include list.core-styles;
+
+.mdc-list {
+	&:not(.mdc-list--non-interactive) {
+		> .mdc-list-item:not(.mdc-list-item--disabled) {
+			@include ripple.states-opacities((hover: .03, focus: .07, press: .08));
+		}
+	}
+
+	&.mdc-list--non-interactive {
+		.mdc-list-item {
+			&:hover {
+				position: relative;
+				z-index: 2;
+				box-shadow: $box-shadow-sm;
+			}
+		}
+	}
+}

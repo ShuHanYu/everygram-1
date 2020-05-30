@@ -1,0 +1,15 @@
+@use "@material/dialog";
+
+@include dialog.core-styles;
+
+.mdc-dialog {
+	@include dialog.title-ink-color($c-gray-900, .8);
+	@include dialog.content-ink-color($c-gray-900, .8);
+	@include dialog.shape-radius(6px);
+	@include dialog.min-width(400px);
+	@include dialog.max-width(800px, 16px);
+
+	@include media-breakpoint-down(sm) {
+		@include dialog.min-width(calc(100vw - 40px)); // 40px = 2 * 20px(兩側 margin)
+	}
+}

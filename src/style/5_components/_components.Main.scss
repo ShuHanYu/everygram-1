@@ -15,6 +15,14 @@
 	&__content {
 		overflow: auto;
 		height: 100%;
-		padding: 40px 24px;
+		padding: 40px 24px 24px;
+
+		@include media-breakpoint-down(md) {
+			padding: 40px 16px 16px;
+		}
+
+		[class*=container] {
+			padding: 0;
+		}
 	}
 }

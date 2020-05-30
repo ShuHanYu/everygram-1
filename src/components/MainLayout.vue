@@ -16,13 +16,8 @@
 						class="avatar drawer-header__avatar"
 						:style="{ 'background-image': `url(${ user.photoURL })` }"
 					></div>
-					<div class="flex-remain">
-						<div class="drawer-header__title">
-							{{ user.displayName }}
-						</div>
-						<div class="drawer-header__subtitle">
-							{{ user.email }}
-						</div>
+					<div class="drawer-header__title">
+						{{ user.displayName }}
 					</div>
 				</div>
 			</div>

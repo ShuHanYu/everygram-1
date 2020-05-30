@@ -26,6 +26,7 @@ import DemoCollections from '@demo/DemoCollections';
 import DemoWishes from '@demo/DemoWishes';
 import DemoArchives from '@demo/DemoArchives';
 import DemoSettings from '@demo/DemoSettings';
+import DemoSettingsCategory from '@demo/DemoSettingsCategory';
 import DemoComponents from '@demo/DemoComponents';
 
 Vue.use(VueRouter);
@@ -255,6 +256,14 @@ const router =  new VueRouter({
 					},
 				},
 			],
+		},
+		{
+			path: '/demo/settings/category',
+			name: 'DemoSettingsCategory',
+			component: DemoSettingsCategory,
+			meta: {
+				title: 'Demo Settings Category',
+			},
 		},
 		{
 			path: '/demo/components' ,

@@ -2,14 +2,6 @@
 	"google-fonts-plugin": {
 		"fonts": [
 			{
-				"family": "Montserrat",
-				"variants": [
-					"400",
-					"700"
-				],
-				"subsets": []
-			},
-			{
 				"family": "Material Icons Outlined"
 			}
 		],
