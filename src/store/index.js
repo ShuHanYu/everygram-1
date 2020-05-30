@@ -1,5 +1,7 @@
 import memberStore from '@store/member';
+import storageStore from '@store/storage';
 import userStore from '@store/user';
+
 const state = {
 	db: null,
 	displayMode: null,
@@ -9,6 +11,7 @@ const state = {
 const getters = {
 
 };
+
 const mutations = {
 	setDB(state, db) {
 		// if (location.hostname === "localhost") {
@@ -31,6 +34,7 @@ const mutations = {
 
 	},
 };
+
 const actions = {
 	init(context) {
 		context.commit('setDB', firebase.firestore());
@@ -50,6 +54,7 @@ export default {
 	actions,
 	modules: {
 		member: memberStore,
+		storage: storageStore,
 		user: userStore,
 	},
 };
