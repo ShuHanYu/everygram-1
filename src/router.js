@@ -7,7 +7,7 @@ Vue.use(VueRouter);
 
 const router =  new VueRouter({
 	routes: _.concat(routesDemo, routes),
-	// mode: 'history',
+	mode: 'history',
 });
 
 // set title

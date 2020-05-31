@@ -1,7 +1,7 @@
 <template>
 	<div class="login__form">
 		<RouterLink :to="{ name: 'Home' }" class="login__logo" tabindex="-1">
-			<img src="static/images/logo-vertical.svg" alt="logo">
+			<img src="/static/images/logo-vertical.svg" alt="logo">
 		</RouterLink>
 		<ValidationObserver ref="validationObserver" v-slot="{ pristine }">
 			<div class="mb-4">

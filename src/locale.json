@@ -2,6 +2,7 @@
 	"error-auth/email-already-in-use": "您輸入的 Email 已經被註冊",
 	"error-auth/expired-action-code": "您的連結已失效",
 	"error-auth/invalid-action-code": "您的連結已失效",
+	"error-auth/network-request-failed": "網路連線失敗",
 	"error-auth/user-disabled": "您的帳號已停用",
 	"error-auth/user-not-found": "您的帳號不存在",
 	"error-auth/weak-password": "您的密碼強度不足",

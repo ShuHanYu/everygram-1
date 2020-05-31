@@ -1,3 +1,7 @@
+// style
+import '@style/vendor.scss';
+import '@style/custom.scss';
+
 // firebase
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -66,10 +70,11 @@ new Vue({
 	}
 });
 
-// register service worker
-import runtime from 'serviceworker-webpack-plugin/lib/runtime';
+// Check that service workers are supported
 if ('serviceWorker' in navigator) {
+	// Use the window load event to keep the page load performant
 	window.addEventListener('load', () => {
-		runtime.register();
+console.log('register sw');
+		navigator.serviceWorker.register('/service-worker.js');
 	});
 }
