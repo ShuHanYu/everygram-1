@@ -15,7 +15,7 @@
 					<div class="row">
 						<div class="col-lg-6 mx-auto">
 							<div class="d-none d-lg-block">
-								<MdcButton el="a" class="mdc-button--text" href="#/demo/settings">
+								<MdcButton el="a" class="mdc-button--text" href="/demo/settings">
 									<i slot="icon" class="material-icons material-icons-outlined mdc-button__icon">keyboard_arrow_left</i>
 									返回
 								</MdcButton>

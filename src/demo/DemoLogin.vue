@@ -11,7 +11,7 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 offset-xl-1 mx-auto">
 					<!-- Login -->
 					<div v-if="mode === 'signIn'" class="login__form">
-						<a href="/#/demo/home" class="login__logo" tabindex="-1">
+						<a href="/demo/home" class="login__logo" tabindex="-1">
 							<img src="/static/images/logo-vertical.svg" alt="">
 						</a>
 						<div class="mb-4">
