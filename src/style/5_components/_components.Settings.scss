@@ -1,0 +1,101 @@
+@use "@material/ripple";
+
+.settings {
+	$setting-avater-width: 120px;
+
+	&__profile-avatar {
+		position: relative;
+		width: $setting-avater-width;
+		height: $setting-avater-width;
+		margin: 0 auto -#{$setting-avater-width / 2};
+		z-index: 1;
+		box-shadow: $box-shadow-md;
+		transition: box-shadow .3s;
+
+		&:hover {
+			box-shadow: $box-shadow-lg;
+		}
+
+		> input[type=file] {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			opacity: 0;
+			cursor: pointer;
+		}
+	}
+
+	&__profile-camera {
+		position: absolute;
+		left: auto;
+		right: 4px;
+		bottom: 4px;
+		padding: 4px;
+		background-color: $c-bright;
+		border-radius: 50%;
+		color: $c-gray-800;
+		font-size: $font-size-md;
+		box-shadow: $box-shadow-md;
+	}
+
+	&__profile-header {
+		height: $setting-avater-width / 3;
+		border-radius: $border-radius-lg $border-radius-lg 0 0;
+	}
+
+	&__profile-name {
+		position: relative;
+
+		.mdc-text-field__input {
+			padding-right: 40px;
+		}
+
+		&--editing .mdc-text-field__input {
+			padding-right: 80px;
+		}
+
+		.mdc-icon-button {
+			position: absolute;
+			top: 8px;
+			right: 0;
+
+			+ .mdc-icon-button {
+				right: 48px;
+			}
+		}
+	}
+	
+	&__board {
+		margin-bottom: 24px;
+		
+		
+		&:first-child {
+			margin-top: $setting-avater-width / 2;
+			@include media-breakpoint-down(md) {
+				margin-top: 24px;
+			}
+		}
+
+		> .mdc-list {
+
+			.mdc-list-item {
+				position: relative;
+				padding-top: 24px;
+				padding-bottom: 24px;
+
+				> select {
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					z-index: 5;
+					opacity: 0;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
