@@ -1,5 +1,6 @@
 .drawer-header {
 	display: flex;
+	align-items: center;
 
 	&__avatar {
 		flex-shrink: 0;
@@ -9,12 +10,6 @@
 	&__title {
 		font-size: 1rem;
 		font-weight: $font-weight-bold;
-		margin-bottom: .25rem;
-	}
-
-	&__subtitle {
-		@extend %text-ellipsis;
-		font-size: .875rem;
-		color: $c-gray-700;
+		letter-spacing: 1px;
 	}
 }

@@ -1,7 +1,4 @@
-@use "node_modules/@material/icon-button";
 @use "node_modules/@material/top-app-bar/mdc-top-app-bar";
-
-@include icon-button.core-styles;
 
 .mdc-top-app-bar {
 	display: none;

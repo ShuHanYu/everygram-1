@@ -1,0 +1,9 @@
+@use "@material/fab/mdc-fab";
+
+.fab--sticky {
+	display: flex;
+	justify-content: flex-end;
+	padding: 24px 0 0;
+	position: sticky;
+	bottom: 0;
+}

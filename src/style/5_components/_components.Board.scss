@@ -1,0 +1,35 @@
+.board {
+	border-radius: $border-radius-lg;
+	background-color: $c-bright;
+
+	&__body {
+		padding: 24px;
+	}
+
+	@include media-breakpoint-down(md) {
+		border-radius: 0;
+		margin: 0 -16px;
+	}
+
+	> .mdc-list {
+		padding: 0;
+
+		.mdc-list-item {
+			height: auto;
+			padding-top: 16px;
+			padding-bottom: 16px;
+			border-bottom: 1px solid $c-gray-200;
+
+			&:first-child {
+				border-top-left-radius: $border-radius-lg;
+				border-top-right-radius: $border-radius-lg;
+			}
+
+			&:last-child {
+				border-bottom: 0;
+				border-bottom-left-radius: $border-radius-lg;
+				border-bottom-right-radius: $border-radius-lg;
+			}
+		}
+	}
+}

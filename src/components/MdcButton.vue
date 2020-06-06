@@ -3,7 +3,7 @@
 		:is="el"
 		:to="to"
 		:disabled="isLoading"
-		class="mdc-button mdc-button--touch"
+		class="mdc-button"
 	>
 		<div class="mdc-button__ripple"></div>
 		<slot name="icon"></slot>
