@@ -1,5 +1,6 @@
 import { errorMessageLang } from '@libs/lang';
 import settingsConfig from '@/settingsConfig';
+const defaultMemberPhotoUrl = '/static/images/placeholder-user.jpg';
 
 const state = {
 	user: null,
@@ -7,12 +8,20 @@ const state = {
 
 const getters = {
 	isSignedIn(state) {
-		return !!state.user;
+		return !state.user;
 	},
 	isUserHasPassword(state) {
 		return _.some(_.get(state.user, 'providerData', []), userInfo => {
 			return userInfo.providerId === 'password';
 		});
+	},
+	user(state, getter, rootState) {
+		if(!state.user) {
+			return {};
+		}
+		return _.assign({
+			photoURL: _.get(rootState.member, ['member', 'photoURL'], defaultMemberPhotoUrl),
+		}, _.pickBy(state.user));
 	},
 	userSettings(state) {
 		const settings = _.cloneDeep(settingsConfig.default);
@@ -25,14 +34,10 @@ const getters = {
 
 const mutations = {
 	clearUser(state) {
-		state.user = {};
+		state.user = null;
 	},
 	setUser(state, user) {
 		state.user = _.assign({}, user);
-		if(!state.user.photoURL) {
-			// set default user photo
-			state.user.photoURL = '/static/images/placeholder-user.jpg';
-		}
 	}
 };
 

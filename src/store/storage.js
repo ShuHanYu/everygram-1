@@ -14,8 +14,9 @@ const actions = {
 				reject('empty file');
 			}
 
+			const fileName = payload.fileName || payload.file.name;
 			const storageRef = firebase.storage().ref();
-			const fullPath = payload.path ? `${ trimPathSlash(payload.path) }/${ payload.file.name }` : payload.file.name;
+			const fullPath = payload.path ? `${ trimPathSlash(payload.path) }/${ fileName }` : fileName;
 			const uploadTask = storageRef.child(fullPath).put(payload.file, payload.metadata);
 
 			// Listen for state changes, errors, and completion of the upload.

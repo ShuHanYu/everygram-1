@@ -5,16 +5,18 @@
 				<div class="col-lg-5">
 					<div
 						class="avatar settings__profile-avatar"
-						:style="{ 'background-image': `url(${ user.photoURL })` }"
+						:style="{ 'background-image': isUploadingProfilePicture ? '' : `url(${ user.photoURL })` }"
 					>
 						<i class="material-icons-outlined settings__profile-camera">photo_camera</i>
-						<input type="file">
+						<input type="file" @change="onProfilePictureSelected" accept="image/*" title="" />
+						<MdcCircularProgress v-if="isUploadingProfilePicture" class="settings__profile-avatar-loading" />
 					</div>
 					<Board>
 						<div slot="header" class="settings__profile-header"></div>
 						<template #body>
 							<EditableTextField
 								label="名稱"
+								name="display-name"
 								:value="user.displayName"
 								:on-save="onSaveDisplayName"
 							/>
@@ -152,9 +154,11 @@
 </template>
 
 <script>
+import Compressor from 'compressorjs';
 import Board from '@components/Board';
 import EditableTextField from '@components/EditableTextField';
 import MdcButton from '@components/MdcButton';
+import MdcCircularProgress from '@components/MdcCircularProgress';
 import MdcDialogActionButton from '@components/MdcDialogActionButton';
 import MdcDialogConfirm from '@components/MdcDialogConfirm';
 import MdcList from '@components/MdcList';
@@ -167,6 +171,7 @@ export default {
 		Board,
 		EditableTextField,
 		MdcButton,
+		MdcCircularProgress,
 		MdcDialogActionButton,
 		MdcDialogConfirm,
 		MdcList,
@@ -181,6 +186,7 @@ export default {
 			dateFormat: '',
 			isSavingNewPassword: false,
 			isSigningOut: false,
+			isUploadingProfilePicture: false,
 			language: '',
 			mode: 'viewMode',
 			newDisplayName: '',
@@ -189,10 +195,8 @@ export default {
 		};
 	},
 	computed: {
-		...mapState('user', [
-			'user',
-		]),
 		...mapGetters('user', [
+			'user',
 			'isUserHasPassword',
 			'userSettings',
 		]),
@@ -258,6 +262,57 @@ export default {
 				this.isSigningOut = false;
 			}
 		},
+		async onProfilePictureSelected(e) {
+			const file = e.target.files[0];
+			if (!file || this.isUploadingProfilePicture) {
+				return;
+			}
+			try {
+				this.isUploadingProfilePicture = true;
+				// compress image
+				const compressedFile = await new Promise((resolve) => {
+					new Compressor(file, {
+						quality: 0.8,
+						maxHeight: 300,
+						maxWidth: 300,
+						success(result) {
+							resolve(result);
+						},
+						error(err) {
+							console.log(err.message);
+							throw err.message;
+						},
+					});
+				});
+				// clear input
+				e.target.value = '';
+				// upload
+				const photoURL = await this.uploadFile({
+					path: `member/${ this.user.uid }`,
+					file: compressedFile,
+					fileName: 'profile_picture',
+				});
+				// update member data
+				await this.updateMember({
+					photoURL,
+				});
+				this.$snackbar({
+					message: '變更已儲存',
+				});
+			} catch (e) {
+				this.$snackbar({
+					message: e,
+				});
+			} finally {
+				this.isUploadingProfilePicture = false;
+			}
+		},
+		...mapActions('member', [
+			'updateMember',
+		]),
+		...mapActions('storage', [
+			'uploadFile',
+		]),
 		...mapActions('user', [
 			'signOut',
 			'updatePassword',

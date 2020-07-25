@@ -8,6 +8,8 @@
 			:placeholder="placeholder"
 			:value="isEditing ? newValue : value"
 			:disabled="!isEditing || isSaving"
+			:name="name"
+			autocomplete="off"
 			@input="onInput"
 			@keypress.enter="onClickSave"
 		/>
@@ -54,6 +56,10 @@ export default {
 		placeholder: {
 			type: String,
 			default: ' ',
+		},
+		name: {
+			type: String,
+			default: null,
 		},
 		onSave: {
 			type: Function,

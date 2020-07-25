@@ -45,6 +45,14 @@ const actions = {
 			throw errorMessageLang(e.code);
 		}
 	},
+	async updateMember(context, updateObj) {
+		try {
+			await context.state.memberRef.update(updateObj);
+			await context.dispatch('getMember');
+		} catch (e) {
+			console.log(e);
+		}
+	},
 	async init(context) {
 		const user = context.rootState.user.user;
 		if(!user) {

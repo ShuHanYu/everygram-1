@@ -9,7 +9,7 @@
 		z-index: 1;
 		box-shadow: $box-shadow-md;
 		transition: box-shadow .3s;
-
+		background-color: $c-bright;
 		&:hover {
 			box-shadow: $box-shadow-lg;
 		}
@@ -36,6 +36,10 @@
 		color: $c-gray-800;
 		font-size: $font-size-md;
 		box-shadow: $box-shadow-md;
+	}
+
+	&__profile-avatar-loading.mdc-circular-progress {
+		@extend %absolute-center;
 	}
 
 	&__profile-header {
