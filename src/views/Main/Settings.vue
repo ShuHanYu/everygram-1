@@ -29,6 +29,7 @@
 							</div>
 							<div class="text-center">
 								<MdcButton
+									v-if="isUserHasPassword"
 									class="mdc-button--outlined"
 									@click.native="showChangePasswordDialog"
 								>更改密碼</MdcButton>
@@ -192,6 +193,7 @@ export default {
 			'user',
 		]),
 		...mapGetters('user', [
+			'isUserHasPassword',
 			'userSettings',
 		]),
 	},

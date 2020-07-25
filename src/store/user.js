@@ -9,6 +9,11 @@ const getters = {
 	isSignedIn(state) {
 		return !!state.user;
 	},
+	isUserHasPassword(state) {
+		return _.some(_.get(state.user, 'providerData', []), userInfo => {
+			return userInfo.providerId === 'password';
+		});
+	},
 	userSettings(state) {
 		const settings = _.cloneDeep(settingsConfig.default);
 		if(!state.user) {
@@ -19,8 +24,15 @@ const getters = {
 };
 
 const mutations = {
+	clearUser(state) {
+		state.user = {};
+	},
 	setUser(state, user) {
 		state.user = _.assign({}, user);
+		if(!state.user.photoURL) {
+			// set default user photo
+			state.user.photoURL = '/static/images/placeholder-user.jpg';
+		}
 	}
 };
 
@@ -114,7 +126,7 @@ const actions = {
 		});
 	},
 	onSignOut(context) {
-		context.commit('setUser', null);
+		context.commit('clearUser');
 		context.dispatch('member/onSignOut', null, { root: true });
 	},
 	async signOut() {
