@@ -117,6 +117,7 @@ module.exports = {
 		new InjectManifest({
 			swSrc: '@/service-worker.js',
 			swDest: 'service-worker.js',
+			maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
 		}),
 	],
 };
