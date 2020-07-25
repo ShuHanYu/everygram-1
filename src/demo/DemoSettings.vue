@@ -13,24 +13,11 @@
 					<Board>
 						<div slot="header" class="settings__profile-header"></div>
 						<template #body>
-							<div v-if="mode === 'viewMode'" class="settings__profile-name mb-4">
-								<MdcTextField
-									type="text"
-									label="名稱"
-									value="LIN PEI ZHEN"
-									disabled
-								/>
-								<MdcIconButton @click.native="mode = 'editName'">edit</MdcIconButton>
-							</div>
-							<div v-if="mode === 'editName'" class="settings__profile-name settings__profile-name--editing mb-4">
-								<MdcTextField
-									type="text"
-									label="名稱"
-									value="LIN PEI ZHEN"
-								/>
-								<MdcIconButton class="text-danger" @click.native="mode = 'viewMode'">close</MdcIconButton>
-								<MdcIconButton class="text-success" @click.native="mode = 'viewMode'">check</MdcIconButton>
-							</div>
+							<EditableTextField
+								label="名稱"
+								:value="displayName"
+								:on-save="onSaveDisplayName"
+							/>
 							<div class="mb-4">
 								<MdcTextField
 									type="text"
@@ -158,10 +145,10 @@
 
 <script>
 import Board from '@components/Board';
+import EditableTextField from '@components/EditableTextField';
 import MdcButton from '@components/MdcButton';
 import MdcDialogActionButton from '@components/MdcDialogActionButton';
 import MdcDialogConfirm from '@components/MdcDialogConfirm';
-import MdcIconButton from '@components/MdcIconButton';
 import MdcList from '@components/MdcList';
 import MdcListItem from '@components/MdcListItem';
 import MdcListItemSelect from '@components/MdcListItemSelect';
@@ -170,10 +157,10 @@ import MdcTextField from '@components/MdcTextField';
 export default {
 	components: {
 		Board,
+		EditableTextField,
 		MdcButton,
 		MdcDialogActionButton,
 		MdcDialogConfirm,
-		MdcIconButton,
 		MdcList,
 		MdcListItem,
 		MdcListItemSelect,
@@ -182,6 +169,7 @@ export default {
 	data() {
 		return {
 			mode: 'viewMode',
+			displayName: 'LIN PEIZHEN',
 			language: 'zh-tw',
 			unitSystem: 'metric',
 			dateFormat: 'YYYY/MM/DD',
@@ -208,6 +196,14 @@ export default {
 					message: '更改密碼成功',
 				});
 			}, 1500);
+		},
+		async onSaveDisplayName(newDisplayName) {
+			await new Promise((resolve) => {
+				setTimeout(() => {
+					resolve();
+					this.displayName = newDisplayName;
+				}, 1500);
+			});
 		},
 	},
 };

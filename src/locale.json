@@ -1,4 +1,5 @@
 {
+	"error-auth/argument-error": "輸入參數錯誤",
 	"error-auth/email-already-in-use": "您輸入的 Email 已經被註冊",
 	"error-auth/expired-action-code": "您的連結已失效",
 	"error-auth/invalid-action-code": "您的連結已失效",

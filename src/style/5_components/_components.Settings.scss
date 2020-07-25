@@ -43,28 +43,6 @@
 		border-radius: $border-radius-lg $border-radius-lg 0 0;
 	}
 
-	&__profile-name {
-		position: relative;
-
-		.mdc-text-field__input {
-			padding-right: 40px;
-		}
-
-		&--editing .mdc-text-field__input {
-			padding-right: 80px;
-		}
-
-		.mdc-icon-button {
-			position: absolute;
-			top: 8px;
-			right: 0;
-
-			+ .mdc-icon-button {
-				right: 48px;
-			}
-		}
-	}
-
 	&__board {
 		margin-bottom: 24px;
 		&:first-child {

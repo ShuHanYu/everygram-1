@@ -99,7 +99,6 @@ export default [
 	},
 	{
 		path: '/login',
-		name: 'Login',
 		component: Login,
 		beforeEnter: async (to, from, next) => {
 			if (await getCurrentUser()) {

@@ -1,0 +1,29 @@
+{
+	"default": {
+		"language":  "zh-tw",
+		"unitSystem": "metric",
+		"dateFormat":  "YYYY/MM/DD",
+		"currency": "TWD"
+	},
+	"languages": [
+		"zh-tw",
+		"en-us"
+	],
+	"unitSystems": [
+		"metric",
+		"imperial"
+	],
+	"dateFormats": [
+		"YYYY/MM/DD",
+		"DD/MM/YYYY"
+	],
+	"currencies": [
+		"CNY",
+		"EUR",
+		"HKD",
+		"JPY",
+		"KRW",
+		"TWD",
+		"USD"
+	]
+}

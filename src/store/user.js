@@ -1,4 +1,5 @@
 import { errorMessageLang } from '@libs/lang';
+import settingsConfig from '@/settingsConfig';
 
 const state = {
 	user: null,
@@ -8,11 +9,18 @@ const getters = {
 	isSignedIn(state) {
 		return !!state.user;
 	},
+	userSettings(state) {
+		const settings = _.cloneDeep(settingsConfig.default);
+		if(!state.user) {
+			return settings;
+		}
+		return _.assign(settings, _.pick(state.user, _.keys(settings)));
+	},
 };
 
 const mutations = {
 	setUser(state, user) {
-		state.user = user;
+		state.user = _.assign({}, user);
 	}
 };
 
@@ -65,12 +73,30 @@ const actions = {
 			throw errorMessageLang(e.code);
 		}
 	},
-	async updateProfile(context, payload) {
-		if(!context.state.user) {
+	async updatePassword(context, { currentPassword, newPassword }) {
+		const currentUser = firebase.auth().currentUser;
+		if(!currentUser) {
 			throw 'user not exist';
 		}
 		try {
-			await context.state.user.updateProfile(_.pick(payload, ['displayName', 'photoURL']));
+			const credential = firebase.auth.EmailAuthProvider.credential(
+				currentUser.email,
+				currentPassword
+			);
+			await currentUser.reauthenticateWithCredential(credential);
+			await currentUser.updatePassword(newPassword);
+		} catch (e) {
+			throw errorMessageLang(e.code);
+		}
+	},
+	async updateProfile(context, payload) {
+		const currentUser = firebase.auth().currentUser;
+		if(!currentUser) {
+			throw 'user not exist';
+		}
+		try {
+			await currentUser.updateProfile(_.pick(payload, ['displayName', 'photoURL']));
+			context.commit('setUser', currentUser);
 		} catch (e) {
 			console.log(e);
 			throw errorMessageLang(e.code);
@@ -91,8 +117,8 @@ const actions = {
 		context.commit('setUser', null);
 		context.dispatch('member/onSignOut', null, { root: true });
 	},
-	signOut() {
-		return firebase.auth().signOut();
+	async signOut() {
+		await firebase.auth().signOut();
 	},
 };
 
