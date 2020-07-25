@@ -8,7 +8,7 @@ const state = {
 
 const getters = {
 	isSignedIn(state) {
-		return !state.user;
+		return !!state.user;
 	},
 	isUserHasPassword(state) {
 		return _.some(_.get(state.user, 'providerData', []), userInfo => {
