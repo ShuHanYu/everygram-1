@@ -1,3 +1,4 @@
+import store from '@/store';
 import Home from '@views/Home';
 import Login from '@views/Login';
 import SignIn from '@views/Login/SignIn';
@@ -23,12 +24,40 @@ const getCurrentUser = () => {
 	})
 };
 
+const untilInitialized = () => {
+	return new Promise((resolve) => {
+		if(store.state.isInitialized) {
+			resolve();
+			return;
+		}
+		const unwatch = store.watch(state => state.isInitialized, () => {
+			unwatch();
+			resolve();
+		});
+	});
+};
+
+const untilMemberLoaded = () => {
+	return new Promise((resolve) => {
+		if(store.state.member.member) {
+			resolve();
+			return;
+		}
+		const unwatch = store.watch(state => state.member.member, () => {
+			unwatch();
+			resolve();
+		});
+	});
+};
+
 export default [
 	{
 		path: '/',
 		component: Main,
 		beforeEnter: async (to, from, next) => {
 			if (await getCurrentUser()) {
+				await untilMemberLoaded();
+				await untilInitialized();
 				next();
 			} else {
 				next({

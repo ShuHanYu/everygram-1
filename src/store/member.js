@@ -1,4 +1,5 @@
-import { errorMessageLang } from '@libs/lang';
+import { errorMessageLang, getDefaultLanguage, updateCurrentLanguage } from '@libs/lang';
+import settingsConfig from '@/settingsConfig';
 
 const state = {
 	member: null,
@@ -6,7 +7,17 @@ const state = {
 };
 
 const getters = {
-
+	memberSettings(state) {
+		const defaultSettings = _.assign(_.cloneDeep(settingsConfig.default), {
+			language: getDefaultLanguage(),
+		});
+		if(!state.member) {
+			return defaultSettings;
+		}
+		const memberSettings = _.assign({}, defaultSettings, _.pick(state.member, _.keys(defaultSettings)));
+		updateCurrentLanguage(memberSettings.language);
+		return memberSettings;
+	},
 };
 
 const mutations = {
@@ -51,6 +62,7 @@ const actions = {
 			await context.dispatch('getMember');
 		} catch (e) {
 			console.log(e);
+			throw errorMessageLang(e.code);
 		}
 	},
 	async init(context) {

@@ -15,15 +15,16 @@
 						<div slot="header" class="settings__profile-header"></div>
 						<template #body>
 							<EditableTextField
-								label="名稱"
+								type="text"
 								name="display-name"
+								:label="lang('label_display_name')"
 								:value="user.displayName"
 								:on-save="onSaveDisplayName"
 							/>
 							<div class="mb-4">
 								<MdcTextField
 									type="text"
-									label="Email"
+									:label="lang('label_email')"
 									:value="user.email"
 									disabled
 								>
@@ -34,12 +35,12 @@
 									v-if="isUserHasPassword"
 									class="mdc-button--outlined"
 									@click.native="showChangePasswordDialog"
-								>更改密碼</MdcButton>
+								>{{ lang('action_change_password') }}</MdcButton>
 								<MdcButton
 									class="mdc-button--outlined"
 									:is-loading="isSigningOut"
 									@click.native="onClickSignOut"
-								>登出</MdcButton>
+								>{{ lang('action_sign_out') }}</MdcButton>
 							</div>
 						</template>
 					</Board>
@@ -48,7 +49,7 @@
 					<Board class="settings__board">
 						<MdcList>
 							<MdcListItem>
-								<template #text>裝備類別設定</template>
+								<template #text>{{ lang('title_settings_categories') }}</template>
 								<template #icon>arrow_right</template>
 							</MdcListItem>
 						</MdcList>
@@ -56,50 +57,39 @@
 					<Board class="settings__board">
 						<MdcList>
 							<MdcListItemSelect
-								label="系統語言"
-								:options="[
-									{ value: 'zh-tw', text: '繁體中文' },
-									{ value: 'en-us', text: 'English' },
-								]"
+								:label="lang('label_language')"
+								:options="languageOptions"
 								v-model="language"
+								@change="onSettingChange('language', arguments[0])"
 							/>
 							<MdcListItemSelect
-								label="預設單位"
-								:options="[
-									{ value: 'metric', text: '公制' },
-									{ value: 'imperial', text: '英制' },
-								]"
+								:label="lang('label_unit_system')"
+								:options="unitSystemOptions"
 								v-model="unitSystem"
+								@change="onSettingChange('unitSystem', arguments[0])"
 							/>
 							<MdcListItemSelect
-								label="日期格式"
-								:options="[
-									{ value: 'YYYY/MM/DD', text: 'YYYY/MM/DD' },
-									{ value: 'MM/DD/YYYY', text: 'MM/DD/YYYY' },
-									{ value: 'DD/MM/YYYY', text: 'DD/MM/YYYY' },
-								]"
+								:label="lang('label_date_format')"
+								:options="dateFormatOptions"
 								v-model="dateFormat"
+								@change="onSettingChange('dateFormat', arguments[0])"
 							/>
 							<MdcListItemSelect
-								label="預設幣別"
-								:options="[
-									{ value: 'TWD', text: 'TWD' },
-									{ value: 'USD', text: 'USD' },
-									{ value: 'JPY', text: 'JPY' },
-									{ value: 'KRW', text: 'KRW' },
-								]"
+								:label="lang('label_currency')"
+								:options="currencyOptions"
 								v-model="currency"
+								@change="onSettingChange('currency', arguments[0])"
 							/>
 						</MdcList>
 					</Board>
 					<Board class="settings__board">
 						<MdcList>
 							<MdcListItem>
-								<template #text>給予意見與回饋</template>
+								<template #text>{{ lang('action_give_us_feedback') }}</template>
 								<template #icon>open_in_new</template>
 							</MdcListItem>
 							<MdcListItem>
-								<template #text>Buy me a coffee</template>
+								<template #text>{{ lang('action_buy_me_a_coffee') }}</template>
 								<template #icon>free_breakfast</template>
 							</MdcListItem>
 						</MdcList>
@@ -114,7 +104,7 @@
 		</div>
 		<MdcDialogConfirm
 			ref="changePasswordDialog"
-			title="更改密碼"
+			:title="lang('title_change_password')"
 			:is-accept-on-enter="true"
 		>
 			<template #default>
@@ -122,7 +112,7 @@
 					<MdcTextField
 						v-model="currentPassword"
 						type="password"
-						label="舊密碼"
+						:label="lang('label_current_password')"
 						name="current-password"
 						autocomplete="off"
 					/>
@@ -131,7 +121,7 @@
 					<MdcTextField
 						v-model="newPassword"
 						type="password"
-						label="新密碼"
+						:label="lang('label_new_password')"
 						name="new-password"
 						autocomplete="off"
 					/>
@@ -139,14 +129,14 @@
 			</template>
 			<template #actions>
 				<MdcDialogActionButton @click.native="onClickCancelChangePassword">
-					取消
+					{{ lang('action_cancel') }}
 				</MdcDialogActionButton>
 				<MdcDialogActionButton
 					:is-loading="isSavingNewPassword"
 					:is-default="true"
 					@click.native="onClickAcceptChangePassword"
 				>
-					儲存
+					{{ lang('action_save') }}
 				</MdcDialogActionButton>
 			</template>
 		</MdcDialogConfirm>
@@ -154,6 +144,7 @@
 </template>
 
 <script>
+import settingsConfig from '@/settingsConfig.json';
 import Compressor from 'compressorjs';
 import Board from '@components/Board';
 import EditableTextField from '@components/EditableTextField';
@@ -195,10 +186,36 @@ export default {
 		};
 	},
 	computed: {
+		languageOptions() {
+			return _.map(settingsConfig.language, (option, key) => ({
+				text: lang(_.get(option, 'langKey')),
+				value: key,
+			}));
+		},
+		unitSystemOptions() {
+			return _.map(settingsConfig.unitSystem, (option, key) => ({
+				text: lang(_.get(option, 'langKey')),
+				value: key,
+			}));
+		},
+		dateFormatOptions() {
+			return _.map(settingsConfig.dateFormat, (option, key) => ({
+				text: lang(_.get(option, 'langKey')),
+				value: key,
+			}));
+		},
+		currencyOptions() {
+			return _.map(settingsConfig.currency, (option, key) => ({
+				text: `${ option.code } ${ lang(_.get(option, 'langKey')) }`,
+				value: key,
+			}));
+		},
+		...mapGetters('member', [
+			'memberSettings',
+		]),
 		...mapGetters('user', [
 			'user',
 			'isUserHasPassword',
-			'userSettings',
 		]),
 	},
 	created() {
@@ -206,10 +223,10 @@ export default {
 	},
 	methods: {
 		setInitialData() {
-			this.language = this.userSettings.language;
-			this.unitSystem = this.userSettings.unitSystem;
-			this.dateFormat = this.userSettings.dateFormat;
-			this.currency = this.userSettings.currency;
+			this.language = this.memberSettings.language;
+			this.unitSystem = this.memberSettings.unitSystem;
+			this.dateFormat = this.memberSettings.dateFormat;
+			this.currency = this.memberSettings.currency;
 		},
 		showChangePasswordDialog() {
 			this.currentPassword = this.newPassword = '';
@@ -227,11 +244,11 @@ export default {
 				});
 				this.$refs.changePasswordDialog.close('accept');
 				this.$snackbar({
-					message: '更改密碼成功',
+					message: lang('msg_password_changed'),
 				});
-			} catch (e) {
+			} catch (errorMessage) {
 				this.$snackbar({
-					message: e,
+					message: errorMessage,
 				});
 			} finally {
 				this.isSavingNewPassword = false;
@@ -245,7 +262,7 @@ export default {
 				displayName: newDisplayName,
 			});
 			this.$snackbar({
-				message: '變更已儲存',
+				message: lang('msg_changes_are_saved'),
 			});
 		},
 		async onClickSignOut() {
@@ -254,12 +271,26 @@ export default {
 				await this.signOut();
 				await this.$router.push({ name: 'SignIn' });
 				this.$snackbar({
-					message: '您已經登出',
+					message: lang('msg_signed_out'),
 				});
 			} catch (e) {
 				console.log('catch error', e);
 			} finally {
 				this.isSigningOut = false;
+			}
+		},
+		async onSettingChange(name, value) {
+			try {
+				await this.updateMember({
+					[name]: value,
+				});
+				this.$snackbar({
+					message: lang('msg_changes_are_saved'),
+				});
+			} catch (errorMessage) {
+				this.$snackbar({
+					message: errorMessage,
+				});
 			}
 		},
 		async onProfilePictureSelected(e) {
@@ -293,15 +324,10 @@ export default {
 					fileName: 'profile_picture',
 				});
 				// update member data
-				await this.updateMember({
-					photoURL,
-				});
+				await this.onSettingChange('photoURL', photoURL);
+			} catch (errorMessage) {
 				this.$snackbar({
-					message: '變更已儲存',
-				});
-			} catch (e) {
-				this.$snackbar({
-					message: e,
+					message: errorMessage,
 				});
 			} finally {
 				this.isUploadingProfilePicture = false;

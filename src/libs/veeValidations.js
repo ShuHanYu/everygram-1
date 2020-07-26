@@ -10,8 +10,10 @@ configure({
 
 // localization
 import { localize } from 'vee-validate';
-import zh_TW from 'vee-validate/dist/locale/zh_TW';
-localize('zh_TW', zh_TW);
+import localeZhTW from 'vee-validate/dist/locale/zh_TW';
+import localeEn from 'vee-validate/dist/locale/en';
+localize('zh_TW', localeZhTW);
+localize('en', localeEn);
 
 // rules
 import { extend } from 'vee-validate';
@@ -27,3 +29,11 @@ extend('min', min);
 
 import { alpha_num } from 'vee-validate/dist/rules';
 extend('alpha_num', alpha_num);
+
+export const setValidationLocale = (language) => {
+	const localeMap = {
+		'zh-tw': 'zh_TW',
+		'en-us': 'en',
+	};
+	localize(localeMap[language] || 'en');
+};

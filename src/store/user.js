@@ -1,5 +1,4 @@
 import { errorMessageLang } from '@libs/lang';
-import settingsConfig from '@/settingsConfig';
 const defaultMemberPhotoUrl = '/static/images/placeholder-user.jpg';
 
 const state = {
@@ -22,13 +21,6 @@ const getters = {
 		return _.assign({
 			photoURL: _.get(rootState.member, ['member', 'photoURL'], defaultMemberPhotoUrl),
 		}, _.pickBy(state.user));
-	},
-	userSettings(state) {
-		const settings = _.cloneDeep(settingsConfig.default);
-		if(!state.user) {
-			return settings;
-		}
-		return _.assign(settings, _.pick(state.user, _.keys(settings)));
 	},
 };
 
@@ -119,15 +111,18 @@ const actions = {
 			throw errorMessageLang(e.code);
 		}
 	},
-	init(context) {
-		firebase.auth().onAuthStateChanged((user) => {
-			if (user) {
-				// User is signed in.
-				context.dispatch('onSignIn', user);
-			} else {
-				// User is signed out.
-				context.dispatch('onSignOut');
-			}
+	async init(context) {
+		await new Promise((resolve) => {
+			firebase.auth().onAuthStateChanged(async (user) => {
+				if (user) {
+					// User is signed in.
+					await context.dispatch('onSignIn', user);
+				} else {
+					// User is signed out.
+					await context.dispatch('onSignOut');
+				}
+				resolve();
+			});
 		});
 	},
 	onSignOut(context) {

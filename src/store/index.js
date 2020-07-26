@@ -6,6 +6,7 @@ const state = {
 	db: null,
 	displayMode: null,
 	installPrompt: null,
+	isInitialized: false,
 	isReadyToInstall: false,
 };
 const getters = {
@@ -29,6 +30,9 @@ const mutations = {
 	setInstallPrompt(state, installPrompt) {
 		state.installPrompt = installPrompt;
 	},
+	setIsInitialized(state) {
+		state.isInitialized = true;
+	},
 	setIsReadyToInstall(state, isReadyToInstall) {
 		state.isReadyToInstall = isReadyToInstall;
 
@@ -36,9 +40,10 @@ const mutations = {
 };
 
 const actions = {
-	init(context) {
+	async init(context) {
 		context.commit('setDB', firebase.firestore());
-		context.dispatch('user/init');
+		await context.dispatch('user/init');
+		context.commit('setIsInitialized');
 		console.log('store initialized');
 	},
 	onInstallReady(context, installPrompt) {

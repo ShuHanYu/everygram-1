@@ -15,7 +15,7 @@
 						@keypress.enter="onClickReset"
 					/>
 					<MdcTextFieldHelperText v-if="!errors[0]">
-						{{ lang('password-length-hint') }}
+						{{ lang('hint_password_length') }}
 					</MdcTextFieldHelperText>
 					<TextFieldErrorMessage :message="errors[0]" />
 				</ValidationProvider>
@@ -29,13 +29,13 @@
 					:is-loading="isLoading"
 					@click.native="onClickReset"
 				>
-					重設密碼
+					{{ lang('action_reset_password') }}
 				</MdcButton>
 			</div>
 		</ValidationObserver>
 		<div class="text-center">
 			<MdcButton el="router-link" :to="{ name: 'Home' }">
-				返回首頁
+				{{ lang('action_back_to_home') }}
 			</MdcButton>
 		</div>
 	</div>
@@ -88,7 +88,7 @@ export default {
 					name: 'SignIn',
 				});
 				this.$snackbar({
-					message: '密碼重新設定完成，請重新登入',
+					message: lang('msg_password_reset'),
 				});
 			} catch (errorMessage) {
 				this.errorMessage = errorMessage;

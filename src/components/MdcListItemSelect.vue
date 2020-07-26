@@ -5,7 +5,12 @@
 		</template>
 		<template #icon>arrow_drop_down</template>
 		<select ref="select">
-			<option v-for="option in options" :key="option.value" :value="option.value">
+			<option
+				v-for="option in options"
+				:key="option.value"
+				:value="option.value"
+				:selected="option.value === value"
+			>
 				{{ option.text }}
 			</option>
 		</select>
@@ -40,6 +45,7 @@ export default {
 	mounted() {
 		this.$refs.select.addEventListener('change', () => {
 			this.$emit('input', this.$refs.select.value);
+			this.$emit('change', this.$refs.select.value);
 		});
 	},
 };

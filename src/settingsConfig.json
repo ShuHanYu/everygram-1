@@ -1,29 +1,69 @@
 {
 	"default": {
-		"language":  "zh-tw",
+		"language":  "en-us",
 		"unitSystem": "metric",
 		"dateFormat":  "YYYY/MM/DD",
-		"currency": "TWD"
+		"currency": "USD"
 	},
-	"languages": [
-		"zh-tw",
-		"en-us"
-	],
-	"unitSystems": [
-		"metric",
-		"imperial"
-	],
-	"dateFormats": [
-		"YYYY/MM/DD",
-		"DD/MM/YYYY"
-	],
-	"currencies": [
-		"CNY",
-		"EUR",
-		"HKD",
-		"JPY",
-		"KRW",
-		"TWD",
-		"USD"
-	]
+	"language": {
+		"zh-tw": {
+			"langKey": "language_zh_tw"
+		},
+		"en-us": {
+			"langKey": "language_en_us"
+		}
+	},
+	"unitSystem": {
+		"metric": {
+			"langKey": "unit_system_metric"
+		},
+		"imperial": {
+			"langKey": "unit_system_imperial"
+		}
+	},
+	"dateFormat": {
+		"YYYY/MM/DD": {
+			"langKey": "date_format_yyyy_mm_dd"
+		},
+		"DD/MM/YYYY": {
+			"langKey": "date_format_dd_mm_yyyy"
+		}
+	},
+	"currency": {
+		"CNY": {
+			"langKey": "currency_CNY",
+			"code":"CNY",
+			"symbol": "CN¥"
+		},
+		"EUR": {
+			"langKey": "currency_EUR",
+			"code": "EUR",
+			"symbol": "€"
+		},
+		"HKD": {
+			"langKey": "currency_HKD",
+			"code": "HKD",
+			"symbol": "HK$"
+		},
+		"JPY": {
+			"langKey": "currency_JPY",
+			"code": "JPY",
+			"symbol": "¥"
+		},
+		"KRW": {
+			"langKey": "currency_KRW",
+			"code": "KRW",
+			"symbol": "₩"
+		},
+		"TWD": {
+			"langKey": "currency_TWD",
+			"code": "TWD",
+			"symbol": "NT$"
+		},
+		"USD": {
+			"langKey": "currency_USD",
+			"code": "USD",
+			"symbol": "$"
+		}
+	}
 }
