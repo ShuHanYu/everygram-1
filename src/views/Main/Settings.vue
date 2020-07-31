@@ -51,6 +51,7 @@
 							<MdcListItem>
 								<template #text>{{ lang('title_settings_categories') }}</template>
 								<template #icon>arrow_right</template>
+								<RouterLink :to="{ name: 'SettingsCategories' }" />
 							</MdcListItem>
 						</MdcList>
 					</Board>
@@ -102,10 +103,9 @@
 				</div>
 			</div>
 		</div>
-		<MdcDialogConfirm
+		<MdcDialog
 			ref="changePasswordDialog"
 			:title="lang('title_change_password')"
-			:is-accept-on-enter="true"
 		>
 			<template #default>
 				<div class="mb-4">
@@ -139,7 +139,7 @@
 					{{ lang('action_save') }}
 				</MdcDialogActionButton>
 			</template>
-		</MdcDialogConfirm>
+		</MdcDialog>
 	</div>
 </template>
 
@@ -150,8 +150,8 @@ import Board from '@components/Board';
 import EditableTextField from '@components/EditableTextField';
 import MdcButton from '@components/MdcButton';
 import MdcCircularProgress from '@components/MdcCircularProgress';
+import MdcDialog from '@components/MdcDialog';
 import MdcDialogActionButton from '@components/MdcDialogActionButton';
-import MdcDialogConfirm from '@components/MdcDialogConfirm';
 import MdcList from '@components/MdcList';
 import MdcListItem from '@components/MdcListItem';
 import MdcListItemSelect from '@components/MdcListItemSelect';
@@ -163,8 +163,8 @@ export default {
 		EditableTextField,
 		MdcButton,
 		MdcCircularProgress,
+		MdcDialog,
 		MdcDialogActionButton,
-		MdcDialogConfirm,
 		MdcList,
 		MdcListItem,
 		MdcListItemSelect,

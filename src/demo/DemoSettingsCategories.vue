@@ -8,7 +8,6 @@
 				</section>
 			</div>
 		</header>
-		<div class="mdc-drawer-scrim"></div>
 		<div ref="mdcDrawerAppContent" class="mdc-drawer-app-content">
 			<main ref="mainContent" class="main__content">
 				<div class="container">

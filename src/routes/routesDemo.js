@@ -7,7 +7,7 @@ import DemoCollections from '@demo/DemoCollections';
 import DemoWishes from '@demo/DemoWishes';
 import DemoArchives from '@demo/DemoArchives';
 import DemoSettings from '@demo/DemoSettings';
-import DemoSettingsCategory from '@demo/DemoSettingsCategory';
+import DemoSettingsCategories from '@demo/DemoSettingsCategories';
 import DemoComponents from '@demo/DemoComponents';
 
 export default [
@@ -84,11 +84,11 @@ export default [
 		],
 	},
 	{
-		path: '/demo/settings/category',
-		name: 'DemoSettingsCategory',
-		component: DemoSettingsCategory,
+		path: '/demo/settings/categories',
+		name: 'DemoSettingsCategories',
+		component: DemoSettingsCategories,
 		meta: {
-			title: 'Demo Settings Category',
+			title: 'Demo Settings Categories',
 		},
 	},
 	{

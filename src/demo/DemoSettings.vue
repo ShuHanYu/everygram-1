@@ -43,7 +43,7 @@
 							<MdcListItem>
 								<template #text>裝備類別設定</template>
 								<template #icon>arrow_right</template>
-								<RouterLink :to="{ name: 'DemoSettingsCategory' }" />
+								<RouterLink :to="{ name: 'DemoSettingsCategories' }" />
 							</MdcListItem>
 						</MdcList>
 					</Board>
@@ -106,10 +106,9 @@
 				</div>
 			</div>
 		</div>
-		<MdcDialogConfirm
+		<MdcDialog
 			ref="changePasswordDialog"
 			title="更改密碼"
-			:is-accept-on-enter="true"
 		>
 			<template #default>
 				<div class="mb-4">
@@ -139,7 +138,7 @@
 					儲存
 				</MdcDialogActionButton>
 			</template>
-		</MdcDialogConfirm>
+		</MdcDialog>
 	</div>
 </template>
 
@@ -147,8 +146,8 @@
 import Board from '@components/Board';
 import EditableTextField from '@components/EditableTextField';
 import MdcButton from '@components/MdcButton';
+import MdcDialog from '@components/MdcDialog';
 import MdcDialogActionButton from '@components/MdcDialogActionButton';
-import MdcDialogConfirm from '@components/MdcDialogConfirm';
 import MdcList from '@components/MdcList';
 import MdcListItem from '@components/MdcListItem';
 import MdcListItemSelect from '@components/MdcListItemSelect';
@@ -159,8 +158,8 @@ export default {
 		Board,
 		EditableTextField,
 		MdcButton,
+		MdcDialog,
 		MdcDialogActionButton,
-		MdcDialogConfirm,
 		MdcList,
 		MdcListItem,
 		MdcListItemSelect,

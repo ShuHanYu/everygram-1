@@ -13,6 +13,7 @@ import Collections from '@views/main/Collections';
 import Wishes from '@views/main/Wishes';
 import Archives from '@views/main/Archives';
 import Settings from '@views/main/Settings';
+import Categories from '@views/Settings/Categories';
 import NotFound from '@views/NotFound';
 
 const getCurrentUser = () => {
@@ -61,8 +62,7 @@ export default [
 				next();
 			} else {
 				next({
-					// name: 'Home',
-					name: 'NotFound',
+					name: 'SignIn',
 				});
 			}
 		},
@@ -73,7 +73,7 @@ export default [
 				name: 'Gears',
 				component: Gears,
 				meta: {
-					title: 'Gears',
+					title: 'title_gears',
 				},
 			},
 			{
@@ -81,7 +81,7 @@ export default [
 				name: 'Trips',
 				component: Trips,
 				meta: {
-					title: 'Trips',
+					title: 'title_trips',
 				},
 			},
 			{
@@ -89,7 +89,7 @@ export default [
 				name: 'Collections',
 				component: Collections,
 				meta: {
-					title: 'Collections',
+					title: 'title_collections',
 				},
 			},
 			{
@@ -97,7 +97,7 @@ export default [
 				name: 'Wishes',
 				component: Wishes,
 				meta: {
-					title: 'Wishes',
+					title: 'title_wishes',
 				},
 			},
 			{
@@ -105,7 +105,7 @@ export default [
 				name: 'Archives',
 				component: Archives,
 				meta: {
-					title: 'Archives',
+					title: 'title_archives',
 				},
 			},
 			{
@@ -113,17 +113,36 @@ export default [
 				name: 'Settings',
 				component: Settings,
 				meta: {
-					title: 'Settings',
+					title: 'title_settings',
 				},
 			},
 		],
+	},
+	{
+		path: '/settings/categories',
+		name: 'SettingsCategories',
+		component: Categories,
+		beforeEnter: async ( to, from, next ) => {
+			if ( await getCurrentUser() ) {
+				await untilMemberLoaded();
+				await untilInitialized();
+				next();
+			} else {
+				next({
+					name: 'SignIn',
+				});
+			}
+		},
+		meta: {
+			title: 'title_settings_categories',
+		},
 	},
 	{
 		path: '/home',
 		name: 'Home',
 		component: Home,
 		meta: {
-			title: 'Home',
+			title: 'title_home',
 		},
 	},
 	{
@@ -146,7 +165,7 @@ export default [
 				name: 'SignIn',
 				component: SignIn,
 				meta: {
-					title: 'Sign In',
+					title: 'title_sign_in',
 				},
 			},
 			{
@@ -154,7 +173,7 @@ export default [
 				name: 'SignUp',
 				component: SignUp,
 				meta: {
-					title: 'Sign Up',
+					title: 'title_sign_up',
 				},
 			},
 			{
@@ -162,7 +181,7 @@ export default [
 				name: 'ForgetPassword',
 				component: ForgetPassword,
 				meta: {
-					title: 'Forget Password',
+					title: 'title_forget_password',
 				},
 			},
 			{
@@ -170,7 +189,7 @@ export default [
 				name: 'ResetPassword',
 				component: ResetPassword,
 				meta: {
-					title: 'Reset Password',
+					title: 'title_change_password',
 				},
 				beforeEnter: async (to, from, next) => {
 					const code = to.query.code;
@@ -190,7 +209,7 @@ export default [
 				name: 'ResetPasswordInvalid',
 				component: ResetPasswordInvalid,
 				meta: {
-					title: 'Reset Password Invalid',
+					title: 'title_reset_password_invalid',
 				},
 			},
 		],
@@ -199,5 +218,8 @@ export default [
 		path: '*' ,
 		name: 'NotFound',
 		component: NotFound,
+		meta: {
+			title: 'title_not_found',
+		},
 	},
 ];

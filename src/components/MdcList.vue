@@ -1,5 +1,5 @@
 <template>
-	<ul class="mdc-list board__mdc-list">
+	<ul class="mdc-list">
 		<slot></slot>
 	</ul>
 </template>

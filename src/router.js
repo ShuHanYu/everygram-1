@@ -13,7 +13,7 @@ const router =  new VueRouter({
 // set title
 router.afterEach((to) => {
 	Vue.nextTick(() => {
-		document.title = to.meta.title ? `${ to.meta.title } - everygram` : 'everygram';
+		document.title = to.meta.title ? `${ lang(to.meta.title) } - everygram` : 'everygram';
 	});
 });
 

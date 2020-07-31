@@ -11,7 +11,7 @@
 				<div ref="content" class="mdc-dialog__content">
 					<slot></slot>
 				</div>
-				<div class="mdc-dialog__actions">
+				<div v-if="$slots.actions" class="mdc-dialog__actions">
 					<slot name="actions"></slot>
 				</div>
 			</div>
@@ -31,35 +31,39 @@ export default {
 	},
 	data() {
 		return {
-			mdcDialogConfirm: null,
+			mdcDialog: null,
 		};
 	},
 	mounted() {
-		this.mdcDialogConfirm = new MDCDialog(this.$el);
+		this.mdcDialog = new MDCDialog(this.$el);
 		this.bindEvents();
 	},
 	destroyed() {
-		this.mdcDialogConfirm.destroy();
+		this.mdcDialog.destroy();
 	},
 	methods: {
 		bindEvents() {
 			// Making dialogs accessible
-			this.mdcDialogConfirm.listen('MDCDialog:opening', () => {
+			this.mdcDialog.listen('MDCDialog:opening', () => {
+				this.$emit('opening');
 			});
-			this.mdcDialogConfirm.listen('MDCDialog:opened', () => {
+			this.mdcDialog.listen('MDCDialog:opened', () => {
 				this.$refs.content.setAttribute('aria-hidden', 'true');
+				this.$emit('opened');
 			});
-			this.mdcDialogConfirm.listen('MDCDialog:closing', () => {
+			this.mdcDialog.listen('MDCDialog:closing', () => {
 				this.$refs.content.removeAttribute('aria-hidden');
+				this.$emit('closing');
 			});
-			this.mdcDialogConfirm.listen('MDCDialog:closed', () => {
+			this.mdcDialog.listen('MDCDialog:closed', () => {
+				this.$emit('closed');
 			});
 		},
 		open() {
-			this.mdcDialogConfirm.open();
+			this.mdcDialog.open();
 		},
 		close(action) {
-			this.mdcDialogConfirm.close(action);
+			this.mdcDialog.close(action);
 		},
 	},
 };
