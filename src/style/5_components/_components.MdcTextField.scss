@@ -11,12 +11,18 @@
 	@include textfield.fill-color(transparent);
 	@include textfield.placeholder-color($c-gray-600);
 	@include textfield.disabled-fill-color(transparent);
-	@include textfield.disabled-placeholder-color($c-gray-600);
+	@include textfield.disabled-placeholder-color($c-gray-400);
+	@include textfield.disabled-label-color($c-gray-600);
 	@include textfield.disabled-ink-color($c-gray-800);
 	@include textfield.hover-bottom-line-color($c-primary);
 
 	&--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
 		color: $c-primary-dark;
+	}
+
+	&__input {
+		// Reset style "opacity 0.4" on mobile browser
+		opacity: 1;
 	}
 
 	&__input:-webkit-autofill {
