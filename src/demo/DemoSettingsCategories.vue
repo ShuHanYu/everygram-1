@@ -34,11 +34,12 @@
 			</div>
 		</div>
 		<div class="fab--sticky">
-			<button class="mdc-fab mdc-fab--extended" @click="onClickCreateCategory">
-				<div class="mdc-fab__ripple"></div>
-				<span class="material-icons-outlined mdc-fab__icon">add</span>
-				<span class="mdc-fab__label">新增類別</span>
-			</button>
+			<MdcFab
+				icon="add"
+				label="新增類別"
+				class="mdc-fab--extended"
+				@click.native="onClickCreateCategory">
+			</MdcFab>
 		</div>
 		<CategoryEditorDialog
 			ref="categoryEditorDialog"
@@ -53,13 +54,13 @@
 
 <script>
 import settingsConfig from '@/settingsConfig';
-import { MDCRipple } from '@material/ripple';
 import Board from '@components/Board';
 import FullLayout from '@components/FullLayout';
 import CategoryDeleteDialog from '@components/Settings/CategoryDeleteDialog';
 import CategoryEditorDialog from '@components/Settings/CategoryEditorDialog';
 import CategoryListItem from '@components/Settings/CategoryListItem';
 import MdcButton from '@components/MdcButton';
+import MdcFab from '@components/MdcFab';
 import MdcList from '@components/MdcList';
 import MdcTopAppBar from '@components/MdcTopAppBar';
 import Sortable from 'sortablejs';
@@ -72,6 +73,7 @@ export default {
 		CategoryEditorDialog,
 		CategoryListItem,
 		MdcButton,
+		MdcFab,
 		MdcList,
 		MdcTopAppBar,
 	},
@@ -81,7 +83,6 @@ export default {
 		};
 	},
 	mounted() {
-		const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
 		Sortable.create(this.$refs.categoryList.$el, {
 			sort: true,
 			delay: 100,

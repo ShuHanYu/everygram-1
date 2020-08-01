@@ -34,11 +34,12 @@
 			</div>
 		</div>
 		<div class="fab--sticky">
-			<button class="mdc-fab mdc-fab--extended" @click="onClickCreateCategory">
-				<div class="mdc-fab__ripple"></div>
-				<span class="material-icons-outlined mdc-fab__icon">add</span>
-				<span class="mdc-fab__label">{{ lang('action_create_category') }}</span>
-			</button>
+			<MdcFab
+				icon="add"
+				:label="lang('action_create_category')"
+				class="mdc-fab--extended"
+				@click.native="onClickCreateCategory">
+			</MdcFab>
 		</div>
 		<CategoryEditorDialog
 			ref="categoryEditorDialog"
@@ -62,6 +63,7 @@ import CategoryEditorDialog from '@components/Settings/CategoryEditorDialog';
 import CategoryListItem from '@components/Settings/CategoryListItem';
 import FullLayout from '@components/FullLayout';
 import MdcButton from '@components/MdcButton';
+import MdcFab from '@components/MdcFab';
 import MdcList from '@components/MdcList';
 import MdcTopAppBar from '@components/MdcTopAppBar';
 export default {
@@ -72,6 +74,7 @@ export default {
 		CategoryListItem,
 		FullLayout,
 		MdcButton,
+		MdcFab,
 		MdcList,
 		MdcTopAppBar,
 	},
