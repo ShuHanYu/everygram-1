@@ -1,5 +1,4 @@
 import { errorMessageLang } from '@libs/lang';
-const defaultMemberPhotoUrl = '/static/images/placeholder-user.jpg';
 
 const state = {
 	user: null,
@@ -19,7 +18,7 @@ const getters = {
 			return {};
 		}
 		return _.assign({
-			photoURL: _.get(rootState.member, ['member', 'photoURL'], defaultMemberPhotoUrl),
+			photoURL: _.get(rootState.member, ['member', 'photoURL'], constant('DEFAULT_MEMBER_PHOTO_URL')),
 		}, _.pickBy(state.user));
 	},
 };
