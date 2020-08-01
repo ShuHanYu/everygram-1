@@ -5,6 +5,10 @@
 
 	&__body {
 		padding: 24px;
+
+		@include media-breakpoint-down(md) {
+			padding: 24px 16px;
+		}
 	}
 
 	@include media-breakpoint-down(md) {

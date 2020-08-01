@@ -2,7 +2,7 @@
 	<div class="settings">
 		<div class="container-xl">
 			<div class="row">
-				<div class="col-lg-5">
+				<div class="col-xl-5">
 					<div
 						class="avatar settings__profile-avatar"
 						:style="{ 'background-image': isUploadingProfilePicture ? '' : `url(${ user.photoURL })` }"
@@ -20,6 +20,7 @@
 								:label="lang('label_display_name')"
 								:value="user.displayName"
 								:on-save="onSaveDisplayName"
+								class="mb-4"
 							/>
 							<div class="mb-4">
 								<MdcTextField
@@ -33,11 +34,11 @@
 							<div class="text-center">
 								<MdcButton
 									v-if="isUserHasPassword"
-									class="mdc-button--outlined"
+									class="mdc-button--outlined my-2"
 									@click.native="onClickChangePassword"
 								>{{ lang('action_change_password') }}</MdcButton>
 								<MdcButton
-									class="mdc-button--outlined"
+									class="mdc-button--outlined my-2"
 									:is-loading="isSigningOut"
 									@click.native="onClickSignOut"
 								>{{ lang('action_sign_out') }}</MdcButton>
@@ -45,7 +46,7 @@
 						</template>
 					</Board>
 				</div>
-				<div class="col-lg-7">
+				<div class="col-xl-7">
 					<Board class="settings__board">
 						<MdcList>
 							<MdcListItem>

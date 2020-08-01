@@ -11,6 +11,7 @@
 	}
 	.mdc-list-item {
 		position: relative;
+
 		> select, a {
 			position: absolute;
 			top: 0;
@@ -20,6 +21,11 @@
 			z-index: 5;
 			opacity: 0;
 			cursor: pointer;
+		}
+
+		&__text {
+			white-space: normal;
+			word-break: break-word;
 		}
 	}
 }

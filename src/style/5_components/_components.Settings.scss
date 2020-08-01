@@ -60,9 +60,10 @@
 
 	&__board {
 		margin-bottom: 24px;
+
 		&:first-child {
 			margin-top: $setting-avatar-width / 2;
-			@include media-breakpoint-down(md) {
+			@include media-breakpoint-down(lg) {
 				margin-top: 24px;
 			}
 		}
