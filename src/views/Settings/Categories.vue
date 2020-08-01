@@ -39,11 +39,13 @@
 			</button>
 		</div>
 		<CategoryEditorDialog ref="categoryEditorDialog" />
+		<CategoryDeleteDialog ref="categoryDeleteDialog" />
 	</FullLayout>
 </template>
 
 <script>
 import Board from '@components/Board';
+import CategoryDeleteDialog from '@components/Settings/CategoryDeleteDialog';
 import CategoryEditorDialog from '@components/Settings/CategoryEditorDialog';
 import CategoryListItem from '@components/Settings/CategoryListItem';
 import FullLayout from '@components/FullLayout';
@@ -53,6 +55,7 @@ import MdcTopAppBar from '@components/MdcTopAppBar';
 export default {
 	components: {
 		Board,
+		CategoryDeleteDialog,
 		CategoryEditorDialog,
 		CategoryListItem,
 		FullLayout,
@@ -72,8 +75,8 @@ export default {
 		onClickEditCategory(index) {
 			this.$refs.categoryEditorDialog.edit(index);
 		},
-		onClickDeleteCategory() {
-
+		onClickDeleteCategory(index) {
+			this.$refs.categoryDeleteDialog.show(index);
 		},
 	},
 }

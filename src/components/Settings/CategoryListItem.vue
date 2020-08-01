@@ -4,7 +4,7 @@
 		<span class="mdc-list-item__text d-flex align-items-center">
 			<CategoryIcon :icon-type="category.iconType" :icon-name="category.iconName" />
 			<span class="ml-4">
-				{{  lang(_.get(category, 'langKey', category.name)) }}
+				{{ lang(_.get(category, 'langKey', category.name)) }}
 			</span>
 		</span>
 		<span class="mdc-list-item__meta">

@@ -6,79 +6,66 @@
 		"currency": "USD",
 		"categories": [
 			{
-				"name": "backpacks",
 				"langKey": "category_backpacks",
 				"iconType": "material",
 				"iconName": "backpack"
 			},
 			{
-				"name": "bedding_system",
 				"langKey": "category_bedding_system",
 				"iconType": "material",
 				"iconName": "airline_seat_individual_suite"
 			},
 			{
-				"name": "shelter_system",
 				"langKey": "category_shelter_system",
 				"iconType": "material",
 				"iconName": "foundation"
 			},
 			{
-				"name": "cook_system",
 				"langKey": "category_cook_system",
 				"iconType": "material",
 				"iconName": "outdoor_grill"
 			},
 			{
-				"name": "clothing",
 				"langKey": "category_clothing",
 				"iconType": "material",
 				"iconName": "checkroom"
 			},
 			{
-				"name": "footwear",
 				"langKey": "category_footwear",
 				"iconType": "material",
 				"iconName": "airline_seat_legroom_reduced"
 			},
 			{
-				"name": "water",
 				"langKey": "category_water",
 				"iconType": "material",
 				"iconName": "free_breakfast"
 			},
 			{
-				"name": "tools",
 				"langKey": "category_tools",
 				"iconType": "material",
 				"iconName": "handyman"
 			},
 			{
-				"name": "accessories",
 				"langKey": "category_accessories",
 				"iconType": "material",
 				"iconName": "watch"
 			},
 			{
-				"name": "electronic",
 				"langKey": "category_electronic",
 				"iconType": "material",
 				"iconName": "phone_iphone"
 			},
 			{
-				"name": "medical_supplies",
 				"langKey": "category_medical_supplies",
 				"iconType": "material",
 				"iconName": "healing"
 			},
 			{
-				"name": "feminine_supplies",
 				"langKey": "category_feminine_supplies",
 				"iconType": "material",
 				"iconName": "sanitizer"
 			},
 			{
-				"name": "others",
 				"langKey": "category_others",
 				"iconType": "material",
 				"iconName": "more_horiz"
