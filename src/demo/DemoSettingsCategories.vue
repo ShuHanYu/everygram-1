@@ -7,7 +7,7 @@
 				@click:navigation="$router.push({ name: 'DemoSettings' })"
 			/>
 		</template>
-		<div class="container">
+		<div class="container-lg">
 			<div class="row">
 				<div class="col-lg-6 mx-auto">
 					<div class="d-none d-lg-block">

@@ -2,7 +2,7 @@
 	<div class="settings">
 		<div class="container-xl">
 			<div class="row">
-				<div class="col-lg-5">
+				<div class="col-xl-5">
 					<div
 						class="avatar settings__profile-avatar"
 						:style="{ 'background-image': `url(${ constant('DEFAULT_MEMBER_PHOTO_URL') }` }"
@@ -17,6 +17,7 @@
 								label="名稱"
 								:value="displayName"
 								:on-save="onSaveDisplayName"
+								class="mb-4"
 							/>
 							<div class="mb-4">
 								<MdcTextField
@@ -31,13 +32,13 @@
 								</MdcTextField>
 							</div>
 							<div class="text-center">
-								<MdcButton class="mdc-button--outlined" @click.native="onClickChangePassword">更改密碼</MdcButton>
-								<MdcButton class="mdc-button--outlined">登出</MdcButton>
+								<MdcButton class="mdc-button--outlined my-2" @click.native="onClickChangePassword">更改密碼</MdcButton>
+								<MdcButton class="mdc-button--outlined my-2">登出</MdcButton>
 							</div>
 						</template>
 					</Board>
 				</div>
-				<div class="col-lg-7">
+				<div class="col-xl-7">
 					<Board class="settings__board">
 						<MdcList>
 							<MdcListItem>

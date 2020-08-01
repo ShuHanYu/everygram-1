@@ -7,7 +7,7 @@
 				{{ getCategoryName(category) }}
 			</span>
 		</span>
-		<span class="mdc-list-item__meta">
+		<span class="mdc-list-item__meta text-nowrap">
 			<MdcIconButton @click.native="$emit('click:edit')">edit</MdcIconButton>
 			<MdcIconButton @click.native="$emit('click:delete')">delete</MdcIconButton>
 		</span>
