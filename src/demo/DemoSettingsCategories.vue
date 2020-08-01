@@ -103,7 +103,7 @@ export default {
 			this.$refs.categoryEditorDialog.edit(index);
 		},
 		onClickDeleteCategory(index) {
-			this.$refs.categoryDeleteDialog.show(index);
+			this.$refs.categoryDeleteDialog.open(index);
 		},
 	},
 };

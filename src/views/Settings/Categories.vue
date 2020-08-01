@@ -108,7 +108,7 @@ export default {
 			this.$refs.categoryEditorDialog.edit(index);
 		},
 		onClickDeleteCategory(index) {
-			this.$refs.categoryDeleteDialog.show(index);
+			this.$refs.categoryDeleteDialog.open(index);
 		},
 		async onSortCategories(indexArray) {
 			const sortedCategories = _.map(indexArray, index => {

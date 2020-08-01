@@ -31,7 +31,7 @@
 								</MdcTextField>
 							</div>
 							<div class="text-center">
-								<MdcButton class="mdc-button--outlined" @click.native="showChangePasswordDialog">更改密碼</MdcButton>
+								<MdcButton class="mdc-button--outlined" @click.native="onClickChangePassword">更改密碼</MdcButton>
 								<MdcButton class="mdc-button--outlined">登出</MdcButton>
 							</div>
 						</template>
@@ -106,48 +106,15 @@
 				</div>
 			</div>
 		</div>
-		<MdcDialog
-			ref="changePasswordDialog"
-			title="更改密碼"
-		>
-			<template #default>
-				<div class="mb-4">
-					<MdcTextField
-						v-model="currentPassword"
-						type="password"
-						label="舊密碼"
-					/>
-				</div>
-				<div>
-					<MdcTextField
-						v-model="newPassword"
-						type="password"
-						label="新密碼"
-					/>
-				</div>
-			</template>
-			<template #actions>
-				<MdcDialogActionButton @click.native="onClickCancelChangePassword">
-					取消
-				</MdcDialogActionButton>
-				<MdcDialogActionButton
-					:is-loading="isSavingNewPassword"
-					:is-default="true"
-					@click.native="onClickAcceptChangePassword"
-				>
-					儲存
-				</MdcDialogActionButton>
-			</template>
-		</MdcDialog>
+		<ChangePasswordDialog ref="changePasswordDialog" />
 	</div>
 </template>
 
 <script>
 import Board from '@components/Board';
+import ChangePasswordDialog from '@components/Settings/ChangePasswordDialog';
 import EditableTextField from '@components/EditableTextField';
 import MdcButton from '@components/MdcButton';
-import MdcDialog from '@components/MdcDialog';
-import MdcDialogActionButton from '@components/MdcDialogActionButton';
 import MdcList from '@components/MdcList';
 import MdcListItem from '@components/MdcListItem';
 import MdcListItemSelect from '@components/MdcListItemSelect';
@@ -156,10 +123,9 @@ import MdcTextField from '@components/MdcTextField';
 export default {
 	components: {
 		Board,
+		ChangePasswordDialog,
 		EditableTextField,
 		MdcButton,
-		MdcDialog,
-		MdcDialogActionButton,
 		MdcList,
 		MdcListItem,
 		MdcListItemSelect,
@@ -173,28 +139,11 @@ export default {
 			unitSystem: 'metric',
 			dateFormat: 'YYYY/MM/DD',
 			currency: 'TWD',
-			currentPassword: '',
-			newPassword: '',
-			isSavingNewPassword: false,
 		};
 	},
 	methods: {
-		showChangePasswordDialog() {
-			this.currentPassword = this.newPassword = '';
+		onClickChangePassword() {
 			this.$refs.changePasswordDialog.open();
-		},
-		onClickCancelChangePassword() {
-			this.$refs.changePasswordDialog.close('cancel');
-		},
-		onClickAcceptChangePassword() {
-			this.isSavingNewPassword = true;
-			setTimeout(() => {
-				this.$refs.changePasswordDialog.close('accept');
-				this.isSavingNewPassword = false;
-				this.$snackbar({
-					message: '更改密碼成功',
-				});
-			}, 1500);
 		},
 		async onSaveDisplayName(newDisplayName) {
 			await new Promise((resolve) => {

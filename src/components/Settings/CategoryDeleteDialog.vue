@@ -45,7 +45,7 @@ export default {
 		};
 	},
 	methods: {
-		show(index) {
+		open(index) {
 			this.categoryIndex = index;
 			this.categoryName = lang(_.get(this.categories[index], 'langKey', this.categories[index].name));
 			this.$refs.mdcDialog.open();

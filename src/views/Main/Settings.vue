@@ -34,7 +34,7 @@
 								<MdcButton
 									v-if="isUserHasPassword"
 									class="mdc-button--outlined"
-									@click.native="showChangePasswordDialog"
+									@click.native="onClickChangePassword"
 								>{{ lang('action_change_password') }}</MdcButton>
 								<MdcButton
 									class="mdc-button--outlined"
@@ -103,43 +103,10 @@
 				</div>
 			</div>
 		</div>
-		<MdcDialog
+		<ChangePasswordDialog
 			ref="changePasswordDialog"
-			:title="lang('title_change_password')"
-		>
-			<template #default>
-				<div class="mb-4">
-					<MdcTextField
-						v-model="currentPassword"
-						type="password"
-						:label="lang('label_current_password')"
-						name="current-password"
-						autocomplete="off"
-					/>
-				</div>
-				<div>
-					<MdcTextField
-						v-model="newPassword"
-						type="password"
-						:label="lang('label_new_password')"
-						name="new-password"
-						autocomplete="off"
-					/>
-				</div>
-			</template>
-			<template #actions>
-				<MdcDialogActionButton @click.native="onClickCancelChangePassword">
-					{{ lang('action_cancel') }}
-				</MdcDialogActionButton>
-				<MdcDialogActionButton
-					:is-loading="isSavingNewPassword"
-					:is-default="true"
-					@click.native="onClickAcceptChangePassword"
-				>
-					{{ lang('action_save') }}
-				</MdcDialogActionButton>
-			</template>
-		</MdcDialog>
+			:on-change-password="onChangePassword"
+		/>
 	</div>
 </template>
 
@@ -147,11 +114,10 @@
 import settingsConfig from '@/settingsConfig.json';
 import Compressor from 'compressorjs';
 import Board from '@components/Board';
+import ChangePasswordDialog from '@components/Settings/ChangePasswordDialog';
 import EditableTextField from '@components/EditableTextField';
 import MdcButton from '@components/MdcButton';
 import MdcCircularProgress from '@components/MdcCircularProgress';
-import MdcDialog from '@components/MdcDialog';
-import MdcDialogActionButton from '@components/MdcDialogActionButton';
 import MdcList from '@components/MdcList';
 import MdcListItem from '@components/MdcListItem';
 import MdcListItemSelect from '@components/MdcListItemSelect';
@@ -160,11 +126,10 @@ import MdcTextField from '@components/MdcTextField';
 export default {
 	components: {
 		Board,
+		ChangePasswordDialog,
 		EditableTextField,
 		MdcButton,
 		MdcCircularProgress,
-		MdcDialog,
-		MdcDialogActionButton,
 		MdcList,
 		MdcListItem,
 		MdcListItemSelect,
@@ -173,15 +138,12 @@ export default {
 	data() {
 		return {
 			currency: '',
-			currentPassword: '',
 			dateFormat: '',
-			isSavingNewPassword: false,
 			isSigningOut: false,
 			isUploadingProfilePicture: false,
 			language: '',
 			mode: 'viewMode',
 			newDisplayName: '',
-			newPassword: '',
 			unitSystem: '',
 		};
 	},
@@ -228,31 +190,14 @@ export default {
 			this.dateFormat = this.memberSettings.dateFormat;
 			this.currency = this.memberSettings.currency;
 		},
-		showChangePasswordDialog() {
-			this.currentPassword = this.newPassword = '';
+		onClickChangePassword() {
 			this.$refs.changePasswordDialog.open();
 		},
-		onClickCancelChangePassword() {
-			this.$refs.changePasswordDialog.close('cancel');
-		},
-		async onClickAcceptChangePassword() {
-			try {
-				this.isSavingNewPassword = true;
-				await this.updatePassword({
-					currentPassword: this.currentPassword,
-					newPassword: this.newPassword,
-				});
-				this.$refs.changePasswordDialog.close('accept');
-				this.$snackbar({
-					message: lang('msg_password_changed'),
-				});
-			} catch (errorMessage) {
-				this.$snackbar({
-					message: errorMessage,
-				});
-			} finally {
-				this.isSavingNewPassword = false;
-			}
+		async onChangePassword(currentPassword, newPassword) {
+			await this.updatePassword({
+				currentPassword,
+				newPassword,
+			});
 		},
 		async onSaveDisplayName(newDisplayName) {
 			if(!newDisplayName) {
