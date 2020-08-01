@@ -11,7 +11,7 @@
 				"iconName": "backpack"
 			},
 			{
-				"langKey": "category_bedding_system",
+				"langKey": "category_sleeping_system",
 				"iconType": "material",
 				"iconName": "airline_seat_individual_suite"
 			},
@@ -36,9 +36,9 @@
 				"iconName": "airline_seat_legroom_reduced"
 			},
 			{
-				"langKey": "category_water",
+				"langKey": "category_hydration",
 				"iconType": "material",
-				"iconName": "free_breakfast"
+				"iconName": "local_drink"
 			},
 			{
 				"langKey": "category_tools",
@@ -48,7 +48,7 @@
 			{
 				"langKey": "category_accessories",
 				"iconType": "material",
-				"iconName": "watch"
+				"iconName": "sports_mma"
 			},
 			{
 				"langKey": "category_electronic",
@@ -61,7 +61,7 @@
 				"iconName": "healing"
 			},
 			{
-				"langKey": "category_feminine_supplies",
+				"langKey": "category_sanitary_supplies",
 				"iconType": "material",
 				"iconName": "sanitizer"
 			},
@@ -160,11 +160,19 @@
 		},
 		{
 			"type": "material",
-			"name": "free_breakfast"
+			"name": "pets"
 		},
 		{
 			"type": "material",
 			"name": "handyman"
+		},
+		{
+			"type": "material",
+			"name": "all_inclusive"
+		},
+		{
+			"type": "material",
+			"name": "explore"
 		},
 		{
 			"type": "material",
@@ -176,11 +184,135 @@
 		},
 		{
 			"type": "material",
+			"name": "phone_android"
+		},
+		{
+			"type": "material",
+			"name": "camera_roll"
+		},
+		{
+			"type": "material",
+			"name": "camera_alt"
+		},
+		{
+			"type": "material",
 			"name": "healing"
 		},
 		{
 			"type": "material",
+			"name": "local_hospital"
+		},
+		{
+			"type": "material",
 			"name": "sanitizer"
+		},
+		{
+			"type": "material",
+			"name": "soap"
+		},
+		{
+			"type": "material",
+			"name": "clean_hands"
+		},
+		{
+			"type": "material",
+			"name": "sports_mma"
+		},
+		{
+			"type": "material",
+			"name": "wb_incandescent"
+		},
+		{
+			"type": "material",
+			"name": "highlight"
+		},
+		{
+			"type": "material",
+			"name": "electrical_services"
+		},
+		{
+			"type": "material",
+			"name": "work_outline"
+		},
+		{
+			"type": "material",
+			"name": "vpn_key"
+		},
+		{
+			"type": "material",
+			"name": "flag"
+		},
+		{
+			"type": "material",
+			"name": "map"
+		},
+		{
+			"type": "material",
+			"name": "place"
+		},
+		{
+			"type": "material",
+			"name": "color_lens"
+		},
+		{
+			"type": "material",
+			"name": "local_drink"
+		},
+		{
+			"type": "material",
+			"name": "restaurant"
+		},
+		{
+			"type": "material",
+			"name": "free_breakfast"
+		},
+		{
+			"type": "material",
+			"name": "notifications"
+		},
+		{
+			"type": "material",
+			"name": "fireplace"
+		},
+		{
+			"type": "material",
+			"name": "local_fire_department"
+		},
+		{
+			"type": "material",
+			"name": "beach_access"
+		},
+		{
+			"type": "material",
+			"name": "umbrella"
+		},
+		{
+			"type": "material",
+			"name": "filter_hdr"
+		},
+		{
+			"type": "material",
+			"name": "extension"
+		},
+		{
+			"type": "material",
+			"name": "apps"
+		},
+		{
+			"type": "material",
+			"name": "widgets"
+		},
+		{
+			"type": "material",
+			"name": "category"
+		},
+		{
+			"type": "material",
+			"name": "settings"
+		},
+		{
+			"type": "material",
+			"name": "pending"
 		},
 		{
 			"type": "material",

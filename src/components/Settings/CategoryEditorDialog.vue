@@ -84,7 +84,6 @@ export default {
 	},
 	data() {
 		return {
-			categoryIcons: settingsConfig.categoryIcons,
 			categoryIndex: null,
 			categoryName: '',
 			errorMessage: null,
@@ -94,6 +93,26 @@ export default {
 		};
 	},
 	computed: {
+		categoryIcons() {
+			if(this.isEditing) {
+				const category = this.categories[this.categoryIndex];
+				const isCurrentIconIncluded = _.some(settingsConfig.categoryIcons, categoryIcon => {
+					return category.iconType === categoryIcon.type && category.iconName === categoryIcon.name;
+				});
+				if(!isCurrentIconIncluded) {
+					// prepend original icon if it is no loner existing
+					return [
+						{
+							type: category.iconType,
+							name: category.iconName,
+						},
+						...settingsConfig.categoryIcons,
+					];
+				}
+			}
+
+			return settingsConfig.categoryIcons;
+		},
 		newCategory() {
 			if(!this.categoryName || _.isNil(this.iconIndex)) {
 				return  null;
@@ -113,7 +132,7 @@ export default {
 			const category = this.categories[index];
 			this.isEditing = true;
 			this.categoryIndex = index;
-			this.categoryName = lang(_.get(category, 'langKey', category.name));
+			this.categoryName = getCategoryName(category);
 			this.iconIndex = _.findIndex(this.categoryIcons, categoryIcon => {
 				return category.iconType === categoryIcon.type && category.iconName === categoryIcon.name;
 			});
@@ -163,7 +182,7 @@ export default {
 		},
 		checkIsCategoryNameExisting() {
 			const existingIndex = _.findIndex(this.categories, category => {
-				return this.categoryName === lang(_.get(category, 'langKey', category.name));
+				return this.categoryName === getCategoryName(category);
 			});
 			if(existingIndex !== -1) {
 				if(!this.isEditing) {
