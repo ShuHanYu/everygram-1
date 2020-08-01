@@ -34,14 +34,23 @@
 			</div>
 		</div>
 		<div class="fab--sticky">
-			<button class="mdc-fab mdc-fab--extended" @click="onClickAddCategory">
+			<button class="mdc-fab mdc-fab--extended" @click="onClickCreateCategory">
 				<div class="mdc-fab__ripple"></div>
 				<span class="material-icons-outlined mdc-fab__icon">add</span>
 				<span class="mdc-fab__label">{{ lang('action_create_category') }}</span>
 			</button>
 		</div>
-		<CategoryEditorDialog ref="categoryEditorDialog" />
-		<CategoryDeleteDialog ref="categoryDeleteDialog" />
+		<CategoryEditorDialog
+			ref="categoryEditorDialog"
+			:categories="memberSettings.categories"
+			:on-create-category="onCreateCategory"
+			:on-update-category="onUpdateCategory"
+		/>
+		<CategoryDeleteDialog
+			ref="categoryDeleteDialog"
+			:categories="memberSettings.categories"
+			:on-delete-category="onDeleteCategory"
+		/>
 	</FullLayout>
 </template>
 
@@ -89,7 +98,7 @@ export default {
 		});
 	},
 	methods: {
-		onClickAddCategory() {
+		onClickCreateCategory() {
 			this.$refs.categoryEditorDialog.create();
 		},
 		onClickEditCategory(index) {
@@ -104,6 +113,23 @@ export default {
 			});
 			await this.updateMember({
 				categories: sortedCategories,
+			});
+		},
+		async onCreateCategory(newCategory) {
+			await this.updateMember({
+				categories: firebase.firestore.FieldValue.arrayUnion(newCategory),
+			});
+		},
+		async onUpdateCategory(index, newCategory) {
+			const newCategories = [...this.memberSettings.categories];
+			newCategories[index] = newCategory;
+			await this.updateMember({
+				categories: newCategories,
+			});
+		},
+		async onDeleteCategory(index) {
+			await this.updateMember({
+				categories: firebase.firestore.FieldValue.arrayRemove(this.memberSettings.categories[index]),
 			});
 		},
 		...mapActions('member', [

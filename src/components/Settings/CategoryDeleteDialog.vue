@@ -27,24 +27,27 @@ export default {
 		MdcDialog,
 		MdcDialogActionButton,
 	},
+	props: {
+		categories: {
+			type: Array,
+			default: () => [],
+		},
+		onDeleteCategory: {
+			type: Function,
+			default: () => {},
+		},
+	},
 	data() {
 		return {
-			category: null,
 			categoryIndex: null,
 			categoryName: null,
 			isDeleting: false,
 		};
 	},
-	computed: {
-		...mapGetters('member', [
-			'memberSettings',
-		]),
-	},
 	methods: {
 		show(index) {
-			this.category = this.memberSettings.categories[index];
 			this.categoryIndex = index;
-			this.categoryName = lang(_.get(this.category, 'langKey', this.category.name));
+			this.categoryName = lang(_.get(this.categories[index], 'langKey', this.categories[index].name));
 			this.$refs.mdcDialog.open();
 		},
 		onClickCancel() {
@@ -53,9 +56,7 @@ export default {
 		async onClickAccept() {
 			try {
 				this.isDeleting = true;
-				await this.updateMember({
-					categories: firebase.firestore.FieldValue.arrayRemove(this.category),
-				});
+				await this.onDeleteCategory(this.categoryIndex);
 				this.$snackbar({
 					message: lang('msg_category_deleted', [this.categoryName]),
 				});
@@ -68,9 +69,6 @@ export default {
 				this.isDeleting = false;
 			}
 		},
-		...mapActions('member', [
-			'updateMember',
-		]),
 	},
 }
 </script>

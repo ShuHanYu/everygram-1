@@ -68,6 +68,20 @@ export default {
 		ValidationObserver,
 		ValidationProvider,
 	},
+	props: {
+		categories: {
+			type: Array,
+			default: () => [],
+		},
+		onCreateCategory: {
+			type: Function,
+			default: () => {},
+		},
+		onUpdateCategory: {
+			type: Function,
+			default: () => {},
+		},
+	},
 	data() {
 		return {
 			categoryIcons: settingsConfig.categoryIcons,
@@ -90,16 +104,13 @@ export default {
 				iconName: this.categoryIcons[this.iconIndex].name,
 			};
 		},
-		...mapGetters('member', [
-			'memberSettings',
-		]),
 	},
 	methods: {
 		create() {
 			this.$refs.mdcDialog.open();
 		},
 		edit(index) {
-			const category = this.memberSettings.categories[index];
+			const category = this.categories[index];
 			this.isEditing = true;
 			this.categoryIndex = index;
 			this.categoryName = lang(_.get(category, 'langKey', category.name));
@@ -125,9 +136,15 @@ export default {
 				}
 				this.isSaving = true;
 				if(this.isEditing) {
-					await this.updateCategory();
+					await this.onUpdateCategory(this.categoryIndex, this.newCategory);
+					this.$snackbar({
+						message: lang('msg_changes_are_saved'),
+					});
 				} else {
-					await this.createCategory();
+					await this.onCreateCategory(this.newCategory);
+					this.$snackbar({
+						message: lang('msg_category_created'),
+					});
 				}
 				this.$refs.mdcDialog.close('accept');
 			} catch (errorMessage) {
@@ -135,24 +152,6 @@ export default {
 			} finally {
 				this.isSaving = false;
 			}
-		},
-		async updateCategory() {
-			const newCategories = [...this.memberSettings.categories];
-			newCategories[this.categoryIndex] = this.newCategory;
-			await this.updateMember({
-				categories: newCategories,
-			});
-			this.$snackbar({
-				message: lang('msg_changes_are_saved'),
-			});
-		},
-		async createCategory() {
-			await this.updateMember({
-				categories: firebase.firestore.FieldValue.arrayUnion(this.newCategory),
-			});
-			this.$snackbar({
-				message: lang('msg_category_created'),
-			});
 		},
 		onDialogClosed() {
 			this.categoryName = '';
@@ -163,7 +162,9 @@ export default {
 			this.$refs.validationObserver.reset();
 		},
 		checkIsCategoryNameExisting() {
-			const existingIndex = _.findIndex(this.memberSettings.categories, ['name', this.categoryName]);
+			const existingIndex = _.findIndex(this.categories, category => {
+				return this.categoryName === lang(_.get(category, 'langKey', category.name));
+			});
 			if(existingIndex !== -1) {
 				if(!this.isEditing) {
 					return true;
@@ -174,9 +175,6 @@ export default {
 			}
 			return false;
 		},
-		...mapActions('member', [
-			'updateMember',
-		]),
 	},
 }
 </script>
