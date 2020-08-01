@@ -1,0 +1,15 @@
+.sortable-draggable {
+	user-select: none;
+}
+
+.sortable-ghost {
+	> * {
+		visibility: hidden;
+	}
+	opacity: .5;
+	animation: none !important;
+}
+.sortable-drag {
+	border-radius: 0 !important;
+	box-shadow: $box-shadow-md;
+}

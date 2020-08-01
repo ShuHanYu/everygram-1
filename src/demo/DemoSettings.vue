@@ -2,35 +2,23 @@
 	<div class="settings">
 		<div class="container-xl">
 			<div class="row">
-				<div class="col-lg-5">
+				<div class="col-xl-5">
 					<div
 						class="avatar settings__profile-avatar"
-						style="background-image: url(https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.0-9/44521390_2446796028670090_1705224010763075584_o.jpg?_nc_cat=108&_nc_sid=85a577&_nc_oc=AQl9SiIa6nmBF5CuI5qYve3a7aA6f-xUaFxA8cJ0BFR9O1yA2frgoZ0jfn6IqC_OzmQ&_nc_ht=scontent.ftpe7-3.fna&oh=9c92eecac1f5af4dd1a888577d458d20&oe=5EE89297);"
+						:style="{ 'background-image': `url(${ constant('DEFAULT_MEMBER_PHOTO_URL') }` }"
 					>
 						<i class="material-icons-outlined settings__profile-camera">photo_camera</i>
 						<input type="file">
 					</div>
-					<div class="board">
-						<div class="settings__profile-header"></div>
-						<div class="board__body">
-							<div v-if="mode === 'viewMode'" class="settings__profile-name mb-4">
-								<MdcTextField
-									type="text"
-									label="名稱"
-									value="LIN PEI ZHEN"
-									disabled
-								/>
-								<button class="mdc-icon-button material-icons-outlined" @click="mode = 'editName'">edit</button>
-							</div>
-							<div v-if="mode === 'editName'" class="settings__profile-name settings__profile-name--editing mb-4">
-								<MdcTextField
-									type="text"
-									label="名稱"
-									value="LIN PEI ZHEN"
-								/>
-								<button class="mdc-icon-button material-icons-outlined text-danger" @click="mode = 'viewMode'">close</button>
-								<button class="mdc-icon-button material-icons-outlined text-success" @click="mode = 'viewMode'">check</button>
-							</div>
+					<Board>
+						<div slot="header" class="settings__profile-header"></div>
+						<template #body>
+							<EditableTextField
+								label="名稱"
+								:value="displayName"
+								:on-save="onSaveDisplayName"
+								class="mb-4"
+							/>
 							<div class="mb-4">
 								<MdcTextField
 									type="text"
@@ -39,169 +27,132 @@
 									disabled
 								>
 									<template #trailingIcon>
-										<img src="static/images/social-google.svg" alt="">
+										<img src="/static/images/social-google.svg" alt="">
 									</template>
 								</MdcTextField>
 							</div>
 							<div class="text-center">
-								<MdcButton class="mdc-button--outlined" @click.native="showDialog">更改密碼</MdcButton>
-								<MdcButton class="mdc-button--outlined">登出</MdcButton>
+								<MdcButton class="mdc-button--outlined my-2" @click.native="onClickChangePassword">更改密碼</MdcButton>
+								<MdcButton class="mdc-button--outlined my-2">登出</MdcButton>
 							</div>
-							<div class="mdc-dialog" ref="changePasswordDialog">
-								<div class="mdc-dialog__container">
-									<div class="mdc-dialog__surface"
-										role="alertdialog"
-										aria-modal="true"
-										aria-labelledby="my-dialog-title"
-										aria-describedby="my-dialog-content"
-									>
-										<!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-										<h2 class="mdc-dialog__title" id="my-dialog-title"><!--
-										-->更改密碼<!--
-									--></h2>
-										<div class="mdc-dialog__content" id="my-dialog-content">
-											<div class="mb-4">
-												<MdcTextField
-													type="password"
-													label="舊密碼"
-												/>
-											</div>
-											<div>
-												<MdcTextField
-													type="password"
-													label="新密碼"
-												/>
-											</div>
-										</div>
-										<div class="mdc-dialog__actions">
-											<MdcButton class="mdc-dialog__button" data-mdc-dialog-action="close">取消</MdcButton>
-											<MdcButton class="mdc-dialog__button" data-mdc-dialog-action="accept">儲存</MdcButton>
-										</div>
-									</div>
-								</div>
-								<div class="mdc-dialog__scrim"></div>
-							</div>
-						</div>
-					</div>
+						</template>
+					</Board>
 				</div>
-				<div class="col-lg-7">
-					<div class="board settings__board">
-						<ul class="mdc-list">
-							<li class="mdc-list-item" tabindex="0">
-								<span class="mdc-list-item__text">裝備類別設定</span>
-								<span class="mdc-list-item__meta material-icons material-icons-outlined" aria-hidden="true">arrow_right</span>
-							</li>
-						</ul>
-					</div>
-					<div class="board settings__board">
-						<ul class="mdc-list">
-							<li class="mdc-list-item" tabindex="0">
-								<span class="mdc-list-item__text">
-									<span class="text-muted">系統語言 -</span> 中文
-								</span>
-								<span class="mdc-list-item__meta material-icons material-icons-outlined" aria-hidden="true">arrow_drop_down</span>
-								<select>
-									<option selected>中文</option>
-									<option>English</option>
-								</select>
-							</li>
-							<li class="mdc-list-item">
-								<span class="mdc-list-item__text">
-									<span class="text-muted">預設單位 -</span> 公制
-								</span>
-								<span class="mdc-list-item__meta material-icons material-icons-outlined" aria-hidden="true">arrow_drop_down</span>
-								<select>
-									<option selected>公制</option>
-									<option>英制</option>
-								</select>
-							</li>
-							<li class="mdc-list-item">
-								<span class="mdc-list-item__text">
-									<span class="text-muted">日期格式 -</span> YYYY/MM/DD
-								</span>
-								<span class="mdc-list-item__meta material-icons material-icons-outlined" aria-hidden="true">arrow_drop_down</span>
-								<select>
-									<option selected>YYYY/MM/DD</option>
-									<option>MM/DD/YYYY</option>
-									<option>DD/MM/YYYY</option>
-								</select>
-							</li>
-							<li class="mdc-list-item">
-								<span class="mdc-list-item__text">
-									<span class="text-muted">預設幣別 -</span> TWD
-								</span>
-								<span class="mdc-list-item__meta material-icons material-icons-outlined" aria-hidden="true">arrow_drop_down</span>
-								<select>
-									<option selected>TWD</option>
-									<option>USD</option>
-									<option>JPY</option>
-									<option>KRW</option>
-								</select>
-							</li>
-						</ul>
-					</div>
-					<div class="board settings__board">
-						<ul class="mdc-list">
-							<li class="mdc-list-item" tabindex="0">
-								<span class="mdc-list-item__text">給予意見與回饋</span>
-								<span class="mdc-list-item__meta material-icons material-icons-outlined" aria-hidden="true">open_in_new</span>
-							</li>
-							<li class="mdc-list-item">
-								<span class="mdc-list-item__text">Buy me a coffee</span>
-								<span class="mdc-list-item__meta material-icons material-icons-outlined" aria-hidden="true">free_breakfast</span>
-							</li>
-						</ul>
-					</div>
-					<div class="board">
-						<div class="board__body">
+				<div class="col-xl-7">
+					<Board class="settings__board">
+						<MdcList>
+							<MdcListItem>
+								<template #text>裝備類別設定</template>
+								<template #icon>arrow_right</template>
+								<RouterLink :to="{ name: 'DemoSettingsCategories' }" />
+							</MdcListItem>
+						</MdcList>
+					</Board>
+					<Board class="settings__board">
+						<MdcList>
+							<MdcListItemSelect
+								label="系統語言"
+								:options="[
+									{ value: 'zh-tw', text: '繁體中文' },
+									{ value: 'en-us', text: 'English' },
+								]"
+								v-model="language"
+							/>
+							<MdcListItemSelect
+								label="預設單位"
+								:options="[
+									{ value: 'metric', text: '公制' },
+									{ value: 'imperial', text: '英制' },
+								]"
+								v-model="unitSystem"
+							/>
+							<MdcListItemSelect
+								label="日期格式"
+								:options="[
+									{ value: 'YYYY/MM/DD', text: 'YYYY/MM/DD' },
+									{ value: 'MM/DD/YYYY', text: 'MM/DD/YYYY' },
+									{ value: 'DD/MM/YYYY', text: 'DD/MM/YYYY' },
+								]"
+								v-model="dateFormat"
+							/>
+							<MdcListItemSelect
+								label="預設幣別"
+								:options="[
+									{ value: 'TWD', text: 'TWD' },
+									{ value: 'USD', text: 'USD' },
+									{ value: 'JPY', text: 'JPY' },
+									{ value: 'KRW', text: 'KRW' },
+								]"
+								v-model="currency"
+							/>
+						</MdcList>
+					</Board>
+					<Board class="settings__board">
+						<MdcList>
+							<MdcListItem>
+								<template #text>給予意見與回饋</template>
+								<template #icon>open_in_new</template>
+							</MdcListItem>
+							<MdcListItem>
+								<template #text>Buy me a coffee</template>
+								<template #icon>free_breakfast</template>
+							</MdcListItem>
+						</MdcList>
+					</Board>
+					<Board>
+						<template #body>
 							PWA
-						</div>
-					</div>
+						</template>
+					</Board>
 				</div>
 			</div>
 		</div>
+		<ChangePasswordDialog ref="changePasswordDialog" />
 	</div>
 </template>
 
 <script>
-import { MDCDialog } from '@material/dialog';
-import { MDCList } from '@material/list';
-import { MDCRipple } from '@material/ripple';
+import Board from '@components/Board';
+import ChangePasswordDialog from '@components/Settings/ChangePasswordDialog';
+import EditableTextField from '@components/EditableTextField';
 import MdcButton from '@components/MdcButton';
+import MdcList from '@components/MdcList';
+import MdcListItem from '@components/MdcListItem';
+import MdcListItemSelect from '@components/MdcListItemSelect';
 import MdcTextField from '@components/MdcTextField';
 
 export default {
 	components: {
+		Board,
+		ChangePasswordDialog,
+		EditableTextField,
 		MdcButton,
+		MdcList,
+		MdcListItem,
+		MdcListItemSelect,
 		MdcTextField,
 	},
 	data() {
 		return {
 			mode: 'viewMode',
-			menu: null,
-			mdcDialog: null,
+			displayName: 'LIN PEIZHEN',
+			language: 'zh-tw',
+			unitSystem: 'metric',
+			dateFormat: 'YYYY/MM/DD',
+			currency: 'TWD',
 		};
 	},
-	mounted() {
-		document.querySelectorAll('.mdc-list').forEach((listEl) => {
-			const list = new MDCList(listEl);
-			const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(listItemEl));
-		});
-
-		document.querySelectorAll('.mdc-icon-button').forEach((iconBtn) => {
-			const iconButtonRipple = new MDCRipple(iconBtn);
-			iconButtonRipple.unbounded = true;
-		});	
-
-		document.querySelectorAll('.mdc-button').forEach((btn) => {
-			const btnRipple = new MDCRipple(btn);
-		});
-
-		this.mdcDialog = new MDCDialog(this.$refs.changePasswordDialog);
-	},
 	methods: {
-		showDialog() {
-			this.mdcDialog.open();
+		onClickChangePassword() {
+			this.$refs.changePasswordDialog.open();
+		},
+		async onSaveDisplayName(newDisplayName) {
+			await new Promise((resolve) => {
+				setTimeout(() => {
+					resolve();
+					this.displayName = newDisplayName;
+				}, 1500);
+			});
 		},
 	},
 };

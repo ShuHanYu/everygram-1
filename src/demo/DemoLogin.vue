@@ -5,14 +5,14 @@
 				<div class="col-lg-6 col-xl-5 d-none d-lg-block">
 					<div class="login__banner">
 						<h1 class="login__title">Start managing your gears with Everygram</h1>
-						<img src="static/images/illustration/login.png" alt="" class="login__illustration">
+						<img src="/static/images/illustration/login.png" alt="" class="login__illustration">
 					</div>
 				</div>
 				<div class="col-md-8 col-lg-6 col-xl-5 offset-xl-1 mx-auto">
 					<!-- Login -->
 					<div v-if="mode === 'signIn'" class="login__form">
-						<a href="/#/demo/home" class="login__logo" tabindex="-1">
-							<img src="static/images/logo-vertical.svg" alt="">
+						<a href="/demo/home" class="login__logo" tabindex="-1">
+							<img src="/static/images/logo-vertical.svg" alt="">
 						</a>
 						<div class="mb-4">
 							<MdcTextField
@@ -39,7 +39,7 @@
 						<div class="mb-3 text-center text-muted">或</div>
 						<div>
 							<MdcButton class="mdc-button--raised button--white w-100">
-								<img slot="icon"  src="static/images/social-google.svg" alt="" class="mdc-button__icon">
+								<img slot="icon"  src="/static/images/social-google.svg" alt="" class="mdc-button__icon">
 								使用 Google 登入
 							</MdcButton>
 						</div>

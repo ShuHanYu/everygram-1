@@ -1,6 +1,11 @@
+// style
+import '@style/vendor.scss';
+import '@style/custom.scss';
+
 // firebase
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/storage';
 import firebaseConfig from '../firebase.config';
 export const project = firebase.initializeApp(firebaseConfig);
 
@@ -13,11 +18,12 @@ import store from '@/store';
 import '@libs/veeValidations';
 
 // lang
-import { lang, errorMessageLang } from '@libs/lang';
+import { lang, getCategoryName, errorMessageLang } from '@libs/lang';
 
 // use _ in all of vue component template
 Object.defineProperty(Vue.prototype, '_', { value: _ });
 Object.defineProperty(Vue.prototype, 'lang', { value: lang });
+Object.defineProperty(Vue.prototype, 'getCategoryName', { value: getCategoryName });
 Object.defineProperty(Vue.prototype, 'errorMessageLang', { value: errorMessageLang });
 Object.defineProperty(Vue.prototype, 'constant', { value: constant });
 
@@ -65,10 +71,10 @@ new Vue({
 	}
 });
 
-// register service worker
-import runtime from 'serviceworker-webpack-plugin/lib/runtime';
+// Check that service workers are supported
 if ('serviceWorker' in navigator) {
+	// Use the window load event to keep the page load performant
 	window.addEventListener('load', () => {
-		runtime.register();
+		navigator.serviceWorker.register('/service-worker.js');
 	});
 }

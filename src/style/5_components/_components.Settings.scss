@@ -1,19 +1,22 @@
-@use "@material/ripple";
-
 .settings {
-	$setting-avater-width: 120px;
+	$setting-avatar-width: 120px;
 
 	&__profile-avatar {
 		position: relative;
-		width: $setting-avater-width;
-		height: $setting-avater-width;
-		margin: 0 auto -#{$setting-avater-width / 2};
+		width: $setting-avatar-width;
+		height: $setting-avatar-width;
+		margin: 0 auto -#{$setting-avatar-width / 2};
 		z-index: 1;
 		box-shadow: $box-shadow-md;
 		transition: box-shadow .3s;
+		background-color: $c-bright;
 
 		&:hover {
 			box-shadow: $box-shadow-lg;
+		}
+
+		@include media-breakpoint-down(md) {
+			margin: 24px auto -#{$setting-avatar-width + 24px};
 		}
 
 		> input[type=file] {
@@ -40,61 +43,28 @@
 		box-shadow: $box-shadow-md;
 	}
 
+	&__profile-avatar-loading.mdc-circular-progress {
+		@extend %absolute-center;
+	}
+
 	&__profile-header {
-		height: $setting-avater-width / 3;
-		border-radius: $border-radius-lg $border-radius-lg 0 0;
-	}
+		height: $setting-avatar-width / 3;
 
-	&__profile-name {
-		position: relative;
-
-		.mdc-text-field__input {
-			padding-right: 40px;
-		}
-
-		&--editing .mdc-text-field__input {
-			padding-right: 80px;
-		}
-
-		.mdc-icon-button {
-			position: absolute;
-			top: 8px;
-			right: 0;
-
-			+ .mdc-icon-button {
-				right: 48px;
-			}
+		@include media-breakpoint-down(md) {
+			height: $setting-avatar-width + 48px;
+			background-image: url('/static/images/illustration/illu-mountains.jpg');
+			background-size: cover;
+			background-position: bottom;
 		}
 	}
-	
+
 	&__board {
 		margin-bottom: 24px;
-		
-		
+
 		&:first-child {
-			margin-top: $setting-avater-width / 2;
-			@include media-breakpoint-down(md) {
+			margin-top: $setting-avatar-width / 2;
+			@include media-breakpoint-down(lg) {
 				margin-top: 24px;
-			}
-		}
-
-		> .mdc-list {
-
-			.mdc-list-item {
-				position: relative;
-				padding-top: 24px;
-				padding-bottom: 24px;
-
-				> select {
-					position: absolute;
-					top: 0;
-					bottom: 0;
-					left: 0;
-					width: 100%;
-					z-index: 5;
-					opacity: 0;
-					cursor: pointer;
-				}
 			}
 		}
 	}

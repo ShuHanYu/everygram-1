@@ -1,6 +1,6 @@
 <template>
 	<div class="login__form">
-		<h2>註冊會員</h2>
+		<h2>{{ lang('title_sign_up') }}</h2>
 		<ValidationObserver ref="validationObserver" v-slot="{ pristine }">
 			<div class="mb-4">
 				<ValidationProvider name="Name" rules="required" v-slot="{ failed, errors }">
@@ -8,6 +8,8 @@
 						v-model="name"
 						type="text"
 						label="Name"
+						name="sign-up-name"
+						autocomplete="off"
 						:required="true"
 						:invalid="failed"
 						@keypress.enter="onClickSignUp"
@@ -21,6 +23,8 @@
 						v-model="email"
 						type="email"
 						label="Email"
+						name="sign-up-email"
+						autocomplete="off"
 						:required="true"
 						:invalid="failed"
 						@keypress.enter="onClickSignUp"
@@ -34,12 +38,14 @@
 						v-model="password"
 						type="password"
 						label="Password"
+						name="sign-up-password"
+						autocomplete="off"
 						:required="true"
 						:invalid="failed"
 						@keypress.enter="onClickSignUp"
 					/>
 					<MdcTextFieldHelperText v-if="!errors[0]">
-						{{ lang('password-length-hint') }}
+						{{ lang('hint_password_length') }}
 					</MdcTextFieldHelperText>
 					<TextFieldErrorMessage :message="errors[0]" />
 				</ValidationProvider>
@@ -53,14 +59,14 @@
 					:is-loading="isLoading"
 					@click.native="onClickSignUp"
 				>
-					註冊
+					{{ lang('action_sign_up') }}
 				</MdcButton>
 			</div>
 		</ValidationObserver>
 		<div>
 			<MdcButton el="router-link" :to="{ name: 'SignIn' }">
 				<i slot="icon" class="material-icons material-icons-outlined mdc-button__icon">keyboard_arrow_left</i>
-				返回登入
+				{{ lang('action_back_to_sign_in') }}
 			</MdcButton>
 		</div>
 	</div>

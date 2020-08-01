@@ -26,6 +26,8 @@
 			:placeholder="placeholder"
 			:disabled="disabled"
 			:required="required"
+			:name="name"
+			:autocomplete="autocomplete"
 			@input="$emit('input', $event.target.value)"
 			@change="$emit('change', $event.target.value)"
 			@keypress="$emit('keypress', $event)"
@@ -55,6 +57,10 @@ import { MDCTextFieldIcon } from '@material/textfield/icon';
 
 export default {
 	props: {
+		autocomplete: {
+			type: String,
+			default: 'on',
+		},
 		autofocus: {
 			type: Boolean,
 			default: false,
@@ -68,6 +74,10 @@ export default {
 			default: false,
 		},
 		label: {
+			type: String,
+			default: null,
+		},
+		name: {
 			type: String,
 			default: null,
 		},

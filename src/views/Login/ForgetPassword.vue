@@ -1,6 +1,6 @@
 <template>
 	<div class="login__form">
-		<h2>忘記密碼</h2>
+		<h2>{{ lang('title_forget_password') }}</h2>
 		<ValidationObserver ref="validationObserver" v-slot="{ pristine }">
 			<div class="mb-4">
 				<ValidationProvider name="Email" rules="required|email" v-slot="{ failed, errors }">
@@ -24,14 +24,14 @@
 					:is-loading="isLoading"
 					@click.native="onClickSend"
 				>
-					寄送密碼重設信件
+					{{ lang('action_send_password_reset_email') }}
 				</MdcButton>
 			</div>
 		</ValidationObserver>
 		<div>
 			<MdcButton el="router-link" :to="{ name: 'SignIn' }">
 				<i slot="icon" class="material-icons material-icons-outlined mdc-button__icon">keyboard_arrow_left</i>
-				返回登入
+				{{ lang('action_back_to_sign_in') }}
 			</MdcButton>
 		</div>
 	</div>
@@ -73,8 +73,7 @@ export default {
 				await this.sendPasswordResetEmail(this.email);
 				this.isLoading = false;
 				this.$snackbar({
-					message: 'Reset password email sent',
-					buttonText: 'Got it',
+					message: lang('msg_password_reset_email_sent'),
 				});
 			} catch (errorMessage) {
 				this.errorMessage = errorMessage;

@@ -1,0 +1,27 @@
+.editable-text-field {
+	position: relative;
+
+	&__text-field {
+		padding-right: 40px;
+	}
+
+	&--editing &__text-field {
+		padding-right: 80px;
+	}
+
+	&__action-button.mdc-icon-button {
+		position: absolute;
+		top: 8px;
+		right: 0;
+
+		+ .mdc-icon-button {
+			right: 48px;
+		}
+	}
+	&__circular-progress.mdc-circular-progress {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 16px;
+	}
+}

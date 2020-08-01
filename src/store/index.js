@@ -1,14 +1,18 @@
 import memberStore from '@store/member';
+import storageStore from '@store/storage';
 import userStore from '@store/user';
+
 const state = {
 	db: null,
 	displayMode: null,
 	installPrompt: null,
+	isInitialized: false,
 	isReadyToInstall: false,
 };
 const getters = {
 
 };
+
 const mutations = {
 	setDB(state, db) {
 		// if (location.hostname === "localhost") {
@@ -26,15 +30,20 @@ const mutations = {
 	setInstallPrompt(state, installPrompt) {
 		state.installPrompt = installPrompt;
 	},
+	setIsInitialized(state) {
+		state.isInitialized = true;
+	},
 	setIsReadyToInstall(state, isReadyToInstall) {
 		state.isReadyToInstall = isReadyToInstall;
 
 	},
 };
+
 const actions = {
-	init(context) {
+	async init(context) {
 		context.commit('setDB', firebase.firestore());
-		context.dispatch('user/init');
+		await context.dispatch('user/init');
+		context.commit('setIsInitialized');
 		console.log('store initialized');
 	},
 	onInstallReady(context, installPrompt) {
@@ -50,6 +59,7 @@ export default {
 	actions,
 	modules: {
 		member: memberStore,
+		storage: storageStore,
 		user: userStore,
 	},
 };

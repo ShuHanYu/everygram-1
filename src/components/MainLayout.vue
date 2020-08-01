@@ -1,13 +1,10 @@
 <template>
 	<div class="main">
-		<header ref="mdcTopAppBar" class="mdc-top-app-bar">
-			<div class="mdc-top-app-bar__row">
-				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-					<button class="material-icons-outlined mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-					<span class="mdc-top-app-bar__title">{{ currentPage.text }}</span>
-				</section>
-			</div>
-		</header>
+		<MdcTopAppBar
+			ref="mdcTopAppBar"
+			:title="currentPage.text"
+			navigation-icon="menu"
+		/>
 		<aside ref="mdcDrawer" class="mdc-drawer mdc-drawer--modal">
 			<div class="mdc-drawer__header">
 				<div class="drawer-header">
@@ -44,7 +41,7 @@
 			</div>
 		</aside>
 		<div class="mdc-drawer-scrim"></div>
-		<div ref="mdcDrawerAppContent" class="mdc-drawer-app-content">
+		<div ref="mdcDrawerAppContent" class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust">
 			<main ref="mainContent" class="main__content">
 				<router-view></router-view>
 			</main>
@@ -57,7 +54,11 @@ import { MDCList } from "@material/list";
 import { MDCDrawer } from "@material/drawer";
 import { MDCTopAppBar } from "@material/top-app-bar";
 import { MDCRipple } from '@material/ripple/index';
+import MdcTopAppBar from '@components/MdcTopAppBar';
 export default {
+	components: {
+		MdcTopAppBar,
+	},
 	props: {
 		user: {
 			type: Object,
@@ -80,7 +81,7 @@ export default {
 	methods: {
 		initResponsiveDrawer() {
 			// https://glitch.com/~material-responsive-drawer
-			const topAppBarElement = this.$refs.mdcTopAppBar;
+			const topAppBarElement = this.$refs.mdcTopAppBar.$el;
 			const listEl = this.$refs.mdcList;
 			const drawerElement = this.$refs.mdcDrawer;
 			const appContentEl = this.$refs.mdcDrawerAppContent;

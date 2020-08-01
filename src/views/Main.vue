@@ -8,44 +8,42 @@ export default {
 	components: {
 		MainLayout,
 	},
-	data() {
-		return {
-			pageList: [
+	computed: {
+		pageList() {
+			return [
 				{
 					name: 'Gears',
 					icon: 'category',
-					text: '裝備清單',
+					text: lang('title_gears'),
 				},
 				{
 					name: 'Trips',
 					icon: 'landscape',
-					text: '行程裝備',
+					text: lang('title_trips'),
 				},
 				{
 					name: 'Collections',
 					icon: 'collections_bookmark',
-					text: '常用裝備組合',
+					text: lang('title_collections'),
 				},
 				{
 					name: 'Wishes',
 					icon: 'favorite_border',
-					text: '願望清單',
+					text: lang('title_wishes'),
 				},
 				{
 					name: 'Archives',
 					icon: 'archive',
-					text: '已封存',
+					text: lang('title_archives'),
 				},
 				{
 					name: 'Settings',
 					icon: 'settings',
-					text: '設定',
+					text: lang('title_settings'),
 				},
-			],
-		};
-	},
-	computed: {
-		...mapState('user', [
+			];
+		},
+		...mapGetters('user', [
 			'user',
 		]),
 	},

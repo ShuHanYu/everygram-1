@@ -1,4 +1,4 @@
-@use "@material/fab/mdc-fab";
+@use "node_modules/@material/fab/mdc-fab";
 
 .fab--sticky {
 	display: flex;
@@ -6,4 +6,8 @@
 	padding: 24px 0 0;
 	position: sticky;
 	bottom: 0;
+
+	@include media-breakpoint-down(md) {
+		padding: 16px;
+	}
 }

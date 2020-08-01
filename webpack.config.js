@@ -3,19 +3,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
-const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
+
 const autoprefixer = require('autoprefixer');
 const GoogleFontsPlugin = require('google-fonts-plugin');
 
-module.exports = [{
+module.exports = {
 	// js
 	entry: {
 		main: ['./src/main.js'],
-		lazy: ['./src/lazy.js'],
+		// lazy: ['./src/lazy.js'],
 	},
 	output: {
 		filename: '[name].bundle.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/'
 	},
 	resolve: {
 		alias: {
@@ -43,51 +45,6 @@ module.exports = [{
 					'file-loader',
 				],
 			},
-		]
-	},
-	devServer: {
-		open: false,
-		hot: true,
-		host: '0.0.0.0',
-		port: 3690,
-		historyApiFallback: true,// for vue router mode history
-	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: './src/index.html',
-			inject: false,// for vue router mode history
-		}),
-		new CopyPlugin([
-			{ from: 'static', to: 'static' },
-			{ from: 'manifest.pwa.json', to: 'manifest.pwa.json' },
-		]),
-		new VueLoaderPlugin(),
-		new GoogleFontsPlugin('./googlefonts.config.json'),
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.ProvidePlugin({
-			_: 'lodash',
-			moment: 'moment',
-			Vue: ['vue/dist/vue.esm.js', 'default'],
-			firebase: 'firebase/app',
-			mapState: ['vuex', 'mapState'],
-			mapGetters: ['vuex', 'mapGetters'],
-			mapMutations: ['vuex', 'mapMutations'],
-			mapActions: ['vuex', 'mapActions'],
-			lang: ['@libs/lang', 'lang'],
-			constant: ['@libs/constants', 'constant'],
-		}),
-		new ServiceWorkerWebpackPlugin({
-			entry: path.join(__dirname, 'src/sw/sw.js'),
-		}),
-	],
-}, {
-	// css
-	entry: [
-		'./src/style/custom.scss',
-		'./src/style/vendor.scss'
-	],
-	module: {
-		rules: [
 			{
 				test: /\.scss$/,
 				use: [
@@ -122,4 +79,45 @@ module.exports = [{
 			}
 		]
 	},
-}];
+	devServer: {
+		open: false,
+		hot: true,
+		host: '0.0.0.0',
+		port: 3690,
+		historyApiFallback: true,// for vue router mode history
+		// writeToDisk: true,
+		watchOptions: {
+			poll: true
+		},
+	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: './src/index.html',
+			// inject: false, // for vue router mode history
+		}),
+		new CopyPlugin([
+			{ from: 'static', to: 'static' },
+			{ from: 'manifest.pwa.json', to: 'manifest.pwa.json' },
+		]),
+		new VueLoaderPlugin(),
+		new GoogleFontsPlugin('./googlefonts.config.json'),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.ProvidePlugin({
+			_: 'lodash',
+			moment: 'moment',
+			Vue: ['vue/dist/vue.esm.js', 'default'],
+			firebase: 'firebase/app',
+			mapState: ['vuex', 'mapState'],
+			mapGetters: ['vuex', 'mapGetters'],
+			mapMutations: ['vuex', 'mapMutations'],
+			mapActions: ['vuex', 'mapActions'],
+			lang: ['@libs/lang', 'lang'],
+			constant: ['@libs/constants', 'constant'],
+		}),
+		new InjectManifest({
+			swSrc: '@/service-worker.js',
+			swDest: 'service-worker.js',
+			maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
+		}),
+	],
+};

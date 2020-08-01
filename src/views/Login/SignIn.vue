@@ -1,7 +1,7 @@
 <template>
 	<div class="login__form">
 		<RouterLink :to="{ name: 'Home' }" class="login__logo" tabindex="-1">
-			<img src="static/images/logo-vertical.svg" alt="logo">
+			<img src="/static/images/logo-vertical.svg" alt="logo">
 		</RouterLink>
 		<ValidationObserver ref="validationObserver" v-slot="{ pristine }">
 			<div class="mb-4">
@@ -40,23 +40,23 @@
 					:is-loading="isLoading"
 					@click.native="onClickSignIn"
 				>
-					登入
+					{{ lang('action_sign_in') }}
 				</MdcButton>
 			</div>
 		</ValidationObserver>
 		<div class="text-center mb-2">
-			<MdcButton el="router-link" :to="{ name: 'SignUp' }">註冊會員</MdcButton>
+			<MdcButton el="router-link" :to="{ name: 'SignUp' }">{{ lang('action_sign_up_new_member') }}</MdcButton>
 			<span class="text-muted">|</span>
-			<MdcButton el="router-link" :to="{ name: 'ForgetPassword' }">忘記密碼</MdcButton>
+			<MdcButton el="router-link" :to="{ name: 'ForgetPassword' }">{{ lang('action_forget_password') }}</MdcButton>
 		</div>
-		<div class="mb-3 text-center text-muted">或</div>
+		<div class="mb-3 text-center text-muted">{{ lang('util_or') }}</div>
 		<div>
 			<MdcButton
 				class="mdc-button--raised button--white w-100"
 				@click.native="onClickSignInWithGoogle"
 			>
-				<img slot="icon" src="static/images/social-google.svg" alt="Google" class="mdc-button__icon">
-				使用 Google 登入
+				<img slot="icon" src="/static/images/social-google.svg" alt="Google" class="mdc-button__icon">
+				{{ lang('action_sign_in_with_google') }}
 			</MdcButton>
 		</div>
 	</div>

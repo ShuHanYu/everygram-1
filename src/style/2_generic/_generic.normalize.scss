@@ -13,7 +13,7 @@ body {
 
 @media (display-mode: standalone) {
 	/* All installed PWAs */
-	html, body {
+	html {
 		background-color: $c-primary;
 	}
 	body {

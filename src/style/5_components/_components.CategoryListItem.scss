@@ -1,0 +1,7 @@
+.category-list-item {
+	background-color: $c-bright;
+	cursor: grab;
+	&:active {
+		cursor: grabbing;
+	}
+}

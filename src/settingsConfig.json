@@ -1,0 +1,322 @@
+{
+	"default": {
+		"language":  "en-us",
+		"unitSystem": "metric",
+		"dateFormat":  "YYYY/MM/DD",
+		"currency": "USD",
+		"categories": [
+			{
+				"langKey": "category_backpacks",
+				"iconType": "material",
+				"iconName": "backpack"
+			},
+			{
+				"langKey": "category_sleeping_system",
+				"iconType": "material",
+				"iconName": "airline_seat_individual_suite"
+			},
+			{
+				"langKey": "category_shelter_system",
+				"iconType": "material",
+				"iconName": "foundation"
+			},
+			{
+				"langKey": "category_cook_system",
+				"iconType": "material",
+				"iconName": "outdoor_grill"
+			},
+			{
+				"langKey": "category_clothing",
+				"iconType": "material",
+				"iconName": "checkroom"
+			},
+			{
+				"langKey": "category_footwear",
+				"iconType": "material",
+				"iconName": "airline_seat_legroom_reduced"
+			},
+			{
+				"langKey": "category_hydration",
+				"iconType": "material",
+				"iconName": "local_drink"
+			},
+			{
+				"langKey": "category_tools",
+				"iconType": "material",
+				"iconName": "handyman"
+			},
+			{
+				"langKey": "category_accessories",
+				"iconType": "material",
+				"iconName": "sports_mma"
+			},
+			{
+				"langKey": "category_electronic",
+				"iconType": "material",
+				"iconName": "phone_iphone"
+			},
+			{
+				"langKey": "category_medical_supplies",
+				"iconType": "material",
+				"iconName": "healing"
+			},
+			{
+				"langKey": "category_sanitary_supplies",
+				"iconType": "material",
+				"iconName": "sanitizer"
+			},
+			{
+				"langKey": "category_others",
+				"iconType": "material",
+				"iconName": "more_horiz"
+			}
+		]
+	},
+	"language": {
+		"zh-tw": {
+			"langKey": "language_zh_tw"
+		},
+		"en-us": {
+			"langKey": "language_en_us"
+		}
+	},
+	"unitSystem": {
+		"metric": {
+			"langKey": "unit_system_metric"
+		},
+		"imperial": {
+			"langKey": "unit_system_imperial"
+		}
+	},
+	"dateFormat": {
+		"YYYY/MM/DD": {
+			"langKey": "date_format_yyyy_mm_dd"
+		},
+		"DD/MM/YYYY": {
+			"langKey": "date_format_dd_mm_yyyy"
+		}
+	},
+	"currency": {
+		"CNY": {
+			"langKey": "currency_CNY",
+			"code":"CNY",
+			"symbol": "CN¥"
+		},
+		"EUR": {
+			"langKey": "currency_EUR",
+			"code": "EUR",
+			"symbol": "€"
+		},
+		"HKD": {
+			"langKey": "currency_HKD",
+			"code": "HKD",
+			"symbol": "HK$"
+		},
+		"JPY": {
+			"langKey": "currency_JPY",
+			"code": "JPY",
+			"symbol": "¥"
+		},
+		"KRW": {
+			"langKey": "currency_KRW",
+			"code": "KRW",
+			"symbol": "₩"
+		},
+		"TWD": {
+			"langKey": "currency_TWD",
+			"code": "TWD",
+			"symbol": "NT$"
+		},
+		"USD": {
+			"langKey": "currency_USD",
+			"code": "USD",
+			"symbol": "$"
+		}
+	},
+	"categoryIcons": [
+		{
+			"type": "material",
+			"name": "backpack"
+		},
+		{
+			"type": "material",
+			"name": "airline_seat_individual_suite"
+		},
+		{
+			"type": "material",
+			"name": "foundation"
+		},
+		{
+			"type": "material",
+			"name": "outdoor_grill"
+		},
+		{
+			"type": "material",
+			"name": "checkroom"
+		},
+		{
+			"type": "material",
+			"name": "airline_seat_legroom_reduced"
+		},
+		{
+			"type": "material",
+			"name": "pets"
+		},
+		{
+			"type": "material",
+			"name": "handyman"
+		},
+		{
+			"type": "material",
+			"name": "all_inclusive"
+		},
+		{
+			"type": "material",
+			"name": "explore"
+		},
+		{
+			"type": "material",
+			"name": "watch"
+		},
+		{
+			"type": "material",
+			"name": "phone_iphone"
+		},
+		{
+			"type": "material",
+			"name": "phone_android"
+		},
+		{
+			"type": "material",
+			"name": "camera_roll"
+		},
+		{
+			"type": "material",
+			"name": "camera_alt"
+		},
+		{
+			"type": "material",
+			"name": "healing"
+		},
+		{
+			"type": "material",
+			"name": "local_hospital"
+		},
+		{
+			"type": "material",
+			"name": "sanitizer"
+		},
+		{
+			"type": "material",
+			"name": "soap"
+		},
+		{
+			"type": "material",
+			"name": "clean_hands"
+		},
+		{
+			"type": "material",
+			"name": "sports_mma"
+		},
+		{
+			"type": "material",
+			"name": "wb_incandescent"
+		},
+		{
+			"type": "material",
+			"name": "highlight"
+		},
+		{
+			"type": "material",
+			"name": "electrical_services"
+		},
+		{
+			"type": "material",
+			"name": "work_outline"
+		},
+		{
+			"type": "material",
+			"name": "vpn_key"
+		},
+		{
+			"type": "material",
+			"name": "flag"
+		},
+		{
+			"type": "material",
+			"name": "map"
+		},
+		{
+			"type": "material",
+			"name": "place"
+		},
+		{
+			"type": "material",
+			"name": "color_lens"
+		},
+		{
+			"type": "material",
+			"name": "local_drink"
+		},
+		{
+			"type": "material",
+			"name": "restaurant"
+		},
+		{
+			"type": "material",
+			"name": "free_breakfast"
+		},
+		{
+			"type": "material",
+			"name": "notifications"
+		},
+		{
+			"type": "material",
+			"name": "fireplace"
+		},
+		{
+			"type": "material",
+			"name": "local_fire_department"
+		},
+		{
+			"type": "material",
+			"name": "beach_access"
+		},
+		{
+			"type": "material",
+			"name": "umbrella"
+		},
+		{
+			"type": "material",
+			"name": "filter_hdr"
+		},
+		{
+			"type": "material",
+			"name": "extension"
+		},
+		{
+			"type": "material",
+			"name": "apps"
+		},
+		{
+			"type": "material",
+			"name": "widgets"
+		},
+		{
+			"type": "material",
+			"name": "category"
+		},
+		{
+			"type": "material",
+			"name": "settings"
+		},
+		{
+			"type": "material",
+			"name": "pending"
+		},
+		{
+			"type": "material",
+			"name": "more_horiz"
+		}
+	]
+}

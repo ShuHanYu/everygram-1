@@ -8,11 +8,27 @@ const getters = {
 	isSignedIn(state) {
 		return !!state.user;
 	},
+	isUserHasPassword(state) {
+		return _.some(_.get(state.user, 'providerData', []), userInfo => {
+			return userInfo.providerId === 'password';
+		});
+	},
+	user(state, getter, rootState) {
+		if(!state.user) {
+			return {};
+		}
+		return _.assign({
+			photoURL: _.get(rootState.member, ['member', 'photoURL'], constant('DEFAULT_MEMBER_PHOTO_URL')),
+		}, _.pickBy(state.user));
+	},
 };
 
 const mutations = {
+	clearUser(state) {
+		state.user = null;
+	},
 	setUser(state, user) {
-		state.user = user;
+		state.user = _.assign({}, user);
 	}
 };
 
@@ -65,34 +81,55 @@ const actions = {
 			throw errorMessageLang(e.code);
 		}
 	},
-	async updateProfile(context, payload) {
-		if(!context.state.user) {
+	async updatePassword(context, { currentPassword, newPassword }) {
+		const currentUser = firebase.auth().currentUser;
+		if(!currentUser) {
 			throw 'user not exist';
 		}
 		try {
-			await context.state.user.updateProfile(_.pick(payload, ['displayName', 'photoURL']));
+			const credential = firebase.auth.EmailAuthProvider.credential(
+				currentUser.email,
+				currentPassword
+			);
+			await currentUser.reauthenticateWithCredential(credential);
+			await currentUser.updatePassword(newPassword);
+		} catch (e) {
+			throw errorMessageLang(e.code);
+		}
+	},
+	async updateProfile(context, payload) {
+		const currentUser = firebase.auth().currentUser;
+		if(!currentUser) {
+			throw 'user not exist';
+		}
+		try {
+			await currentUser.updateProfile(_.pick(payload, ['displayName', 'photoURL']));
+			context.commit('setUser', currentUser);
 		} catch (e) {
 			console.log(e);
 			throw errorMessageLang(e.code);
 		}
 	},
-	init(context) {
-		firebase.auth().onAuthStateChanged((user) => {
-			if (user) {
-				// User is signed in.
-				context.dispatch('onSignIn', user);
-			} else {
-				// User is signed out.
-				context.dispatch('onSignOut');
-			}
+	async init(context) {
+		await new Promise((resolve) => {
+			firebase.auth().onAuthStateChanged(async (user) => {
+				if (user) {
+					// User is signed in.
+					await context.dispatch('onSignIn', user);
+				} else {
+					// User is signed out.
+					await context.dispatch('onSignOut');
+				}
+				resolve();
+			});
 		});
 	},
 	onSignOut(context) {
-		context.commit('setUser', null);
+		context.commit('clearUser');
 		context.dispatch('member/onSignOut', null, { root: true });
 	},
-	signOut() {
-		return firebase.auth().signOut();
+	async signOut() {
+		await firebase.auth().signOut();
 	},
 };
 
