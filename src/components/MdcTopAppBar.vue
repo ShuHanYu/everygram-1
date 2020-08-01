@@ -1,5 +1,5 @@
 <template>
-	<header class="mdc-top-app-bar">
+	<header class="mdc-top-app-bar mdc-top-app-bar--fixed">
 		<div class="mdc-top-app-bar__row">
 			<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
 				<button

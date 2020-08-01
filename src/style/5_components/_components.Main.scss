@@ -1,15 +1,17 @@
 .main {
 	display: flex;
 	height: 100vh;
+	border-top: 8px solid $c-primary;
 
-	@include media-breakpoint-up(lg) {
-		border-top: 8px solid $c-primary;
+	@include media-breakpoint-down(md) {
+		border-top: 0;
+		height: auto;
+		min-height: 100vh;
 	}
 
 	.mdc-drawer-app-content {
 		flex: auto;
-		overflow: auto;
-		position: relative;
+		height: 100%;
 	}
 
 	&__content {
@@ -18,11 +20,8 @@
 		padding: 40px 24px 24px;
 
 		@include media-breakpoint-down(md) {
-			padding: 40px 16px 16px;
-		}
-
-		[class*=container] {
 			padding: 0;
+			overflow: visible;
 		}
 	}
 }
