@@ -48,3 +48,8 @@ export const updateCurrentLanguage = (language) => {
 	window.localStorage.setItem('language', language);
 	setValidationLocale(language);
 };
+
+export const getCategoryName = (category) => {
+	const langKey = _.get(category, 'langKey');
+	return langKey ? lang(langKey) : _.get(category, 'name', 'undefined');
+};
