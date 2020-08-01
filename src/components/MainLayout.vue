@@ -41,7 +41,7 @@
 			</div>
 		</aside>
 		<div class="mdc-drawer-scrim"></div>
-		<div ref="mdcDrawerAppContent" class="mdc-drawer-app-content">
+		<div ref="mdcDrawerAppContent" class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust">
 			<main ref="mainContent" class="main__content">
 				<router-view></router-view>
 			</main>

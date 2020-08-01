@@ -7,3 +7,9 @@
 		display: block;
 	}
 }
+
+.mdc-top-app-bar--fixed-adjust {
+	@include media-breakpoint-up(lg) {
+		padding-top: 0;
+	}
+}
