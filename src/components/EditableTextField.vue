@@ -88,6 +88,7 @@ export default {
 			this.newValue = value;
 		},
 		async onClickSave() {
+			this.$refs.textField.blur();
 			this.newValue = _.trim(this.newValue);
 			if(this.value === this.newValue) {
 				this.isEditing = false;
