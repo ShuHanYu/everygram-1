@@ -42,7 +42,6 @@ export default {
 	},
 	methods: {
 		show(index) {
-console.log(index);
 			this.category = this.memberSettings.categories[index];
 			this.categoryIndex = index;
 			this.categoryName = lang(_.get(this.category, 'langKey', this.category.name));

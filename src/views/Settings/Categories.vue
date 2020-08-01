@@ -18,11 +18,13 @@
 						<h2 class="mt-2 px-3">{{ lang('title_settings_categories') }}</h2>
 					</div>
 					<Board>
-						<MdcList class="mdc-list--non-interactive">
+						<MdcList ref="categoryList" class="mdc-list--non-interactive">
 							<CategoryListItem
 								v-for="(category, index) in memberSettings.categories"
 								:key="category.name + index"
 								:category="category"
+								:data-id="index"
+								class="sortable-draggable"
 								@click:edit="onClickEditCategory(index)"
 								@click:delete="onClickDeleteCategory(index)"
 							/>
@@ -44,6 +46,7 @@
 </template>
 
 <script>
+import Sortable from 'sortablejs';
 import Board from '@components/Board';
 import CategoryDeleteDialog from '@components/Settings/CategoryDeleteDialog';
 import CategoryEditorDialog from '@components/Settings/CategoryEditorDialog';
@@ -68,6 +71,23 @@ export default {
 			'memberSettings',
 		]),
 	},
+	mounted() {
+		const self = this;
+		Sortable.create(this.$refs.categoryList.$el, {
+			sort: true,
+			delay: 100,
+			delayOnTouchOnly: true,
+			animation: 300,
+			draggable: ".sortable-draggable",
+			ghostClass: "sortable-ghost",
+			chosenClass: "sortable-chosen",
+			dragClass: "sortable-drag",
+			direction: 'vertical',
+			onSort() {
+				self.onSortCategories(this.toArray());
+			},
+		});
+	},
 	methods: {
 		onClickAddCategory() {
 			this.$refs.categoryEditorDialog.create();
@@ -78,6 +98,17 @@ export default {
 		onClickDeleteCategory(index) {
 			this.$refs.categoryDeleteDialog.show(index);
 		},
+		async onSortCategories(indexArray) {
+			const sortedCategories = _.map(indexArray, index => {
+				return this.memberSettings.categories[index];
+			});
+			await this.updateMember({
+				categories: sortedCategories,
+			});
+		},
+		...mapActions('member', [
+			'updateMember',
+		]),
 	},
 }
 </script>

@@ -22,10 +22,4 @@
 			cursor: pointer;
 		}
 	}
-	&.mdc-list--non-interactive .mdc-list-item {
-		&:hover {
-			z-index: 2;
-			box-shadow: $box-shadow-sm;
-		}
-	}
 }

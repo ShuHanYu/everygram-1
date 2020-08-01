@@ -22,12 +22,14 @@
 @import "3_elements/elements";
 
 // 4. objects
+@import "4_objects/objects.sortable";
 
 // 5. components
 @import "5_components/components.AlertInline";
 @import "5_components/components.App";
 @import "5_components/components.Avatar";
 @import "5_components/components.Board";
+@import "5_components/components.CategoryListItem";
 @import "5_components/components.DrawerHeader";
 @import "5_components/components.EditableTextField";
 @import "5_components/components.IconRadio";

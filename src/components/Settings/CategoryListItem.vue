@@ -1,6 +1,6 @@
 <template>
-	<li class="mdc-list-item">
-		<span class="mdc-list-item__graphic material-icons-outlined" aria-hidden="true">drag_handle</span>
+	<li class="category-list-item mdc-list-item">
+		<span class="category-list-item__handle mdc-list-item__graphic material-icons-outlined" aria-hidden="true">drag_handle</span>
 		<span class="mdc-list-item__text d-flex align-items-center">
 			<CategoryIcon :icon-type="category.iconType" :icon-name="category.iconName" />
 			<span class="ml-4">
