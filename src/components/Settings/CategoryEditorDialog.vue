@@ -11,6 +11,8 @@
 						<MdcTextField
 							type="text"
 							v-model.trim="categoryName"
+							name="category-name"
+							autocomplete="off"
 							:label="lang('label_category_name')"
 							:required="true"
 							:invalid="failed"

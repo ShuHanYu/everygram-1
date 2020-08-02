@@ -19,6 +19,7 @@
 		</span>
 		<!-- input -->
 		<input
+			ref="input"
 			:value="value"
 			:type="type"
 			:class="{ 'mdc-text-field--label-floating': !!value.length }"
@@ -128,6 +129,10 @@ export default {
 		this.mdcTextField.destroy();
 	},
 	methods: {
+		blur() {
+			this.$refs.input.blur();
+			this.mdcTextField.getDefaultFoundation().deactivateFocus();
+		},
 		focus() {
 			this.mdcTextField.focus();
 		},

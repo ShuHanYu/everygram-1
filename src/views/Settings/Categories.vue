@@ -21,7 +21,7 @@
 						<MdcList ref="categoryList" class="mdc-list--non-interactive">
 							<CategoryListItem
 								v-for="(category, index) in memberSettings.categories"
-								:key="category.name + index"
+								:key="index"
 								:category="category"
 								:data-id="index"
 								class="sortable-draggable"

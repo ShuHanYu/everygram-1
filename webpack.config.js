@@ -112,6 +112,7 @@ module.exports = {
 			mapMutations: ['vuex', 'mapMutations'],
 			mapActions: ['vuex', 'mapActions'],
 			lang: ['@libs/lang', 'lang'],
+			getCategoryName: ['@libs/lang', 'getCategoryName'],
 			constant: ['@libs/constants', 'constant'],
 		}),
 		new InjectManifest({
